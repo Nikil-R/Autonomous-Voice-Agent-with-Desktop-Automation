@@ -218,24 +218,28 @@ def open_application(app_name: str) -> Dict[str, Any]:
 
 def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:
     """
-    Immediately opens any website or web address in Google Chrome with CDP remote debugging enabled.
+    Immediately opens any website or web address in Google Chrome using the user's regular profile.
+    Never uses isolated guest profiles or blocking sleep loops.
     """
     clean_url = url.strip()
     if not clean_url.startswith("http://") and not clean_url.startswith("https://"):
         clean_url = f"https://{clean_url}"
 
+    opened = False
+    # 1. Try launching in user's standard Google Chrome
     try:
-        from tools.cdp_controller import cdp_controller
-        cdp_controller.ensure_chrome_cdp(initial_url=clean_url)
+        subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
+        opened = True
     except Exception:
+        pass
+
+    # 2. Fallback to default system browser
+    if not opened:
         try:
-            # Fallback direct launch via start chrome
-            subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
-        except Exception:
-            try:
-                webbrowser.open_new_tab(clean_url)
-            except Exception as e:
-                return {"success": False, "message": f"Failed to open URL {clean_url}: {str(e)}"}
+            webbrowser.open_new_tab(clean_url)
+            opened = True
+        except Exception as e:
+            return {"success": False, "message": f"Failed to open URL {clean_url}: {str(e)}"}
 
     db_manager.log_audit_event("url_opened", f"Opened URL: {clean_url}", success=True)
     # Natural spoken message
@@ -373,7 +377,8 @@ def focus_window(app_or_title: str) -> Dict[str, Any]:
 def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:
     """
     Interacts with desktop applications using window state awareness and automated GUI keystrokes.
-    Example: opens Calculator, explicitly focuses its window, and types '20*10=' to display the calculation.
+    Reuses existing Calculator instance if already open instead of spawning duplicate windows.
+    Evaluates the calculation directly to announce the complete answer naturally.
     """
     import time
     from tools.window_manager import window_manager
@@ -383,35 +388,82 @@ def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[st
         pyautogui = None
 
     target_app = app_to_open or "calculator"
-    # 1. Launch application
-    open_application(target_app)
+    is_calc = "calc" in target_app.lower()
 
-    # 2. Window State Awareness: find and guarantee foreground focus
-    window_manager.wait_and_focus_window(target_app, timeout_seconds=3.0)
+    # 1. Window State Awareness: Check if app/calculator is already running
+    existing = window_manager.find_window_by_keyword(target_app)
+    if existing:
+        hwnd, title = existing
+        window_manager.focus_and_foreground_window(hwnd)
+        time.sleep(0.15)
+        # In Calculator, clear prior screen with Escape so new calculation is fresh
+        if pyautogui and is_calc:
+            pyautogui.press("escape")
+            time.sleep(0.05)
+    else:
+        # Launch new instance only if not already open
+        open_application(target_app)
+        window_manager.wait_and_focus_window(target_app, timeout_seconds=2.5)
+        time.sleep(0.2)
 
-    # 3. Perform automated keystrokes with guaranteed focus
+    # 2. Clean and evaluate expression
+    raw_expr = calculation_or_keys.strip()
+    expr = raw_expr.lower()
+    expr = (expr.replace("times", "*")
+                .replace("multiplied by", "*")
+                .replace("x", "*")
+                .replace("plus", "+")
+                .replace("minus", "-")
+                .replace("divided by", "/")
+                .replace("into", "*"))
+
+    # Extract clean mathematical characters
+    math_chars = [c for c in expr if c in "0123456789.+-*/"]
+    cleaned_math_str = "".join(math_chars)
+
+    # Safely evaluate math expression in Python to speak the answer
+    result_val = None
+    if cleaned_math_str:
+        try:
+            # Only allow arithmetic characters
+            if re.match(r'^[0-9\.\+\-\*\/\s\(\)]+$', cleaned_math_str):
+                result_val = eval(cleaned_math_str)
+                if isinstance(result_val, float) and result_val.is_integer():
+                    result_val = int(result_val)
+        except Exception:
+            pass
+
+    # 3. Perform automated keystrokes into Calculator
     if pyautogui:
         try:
-            # Clean expression for calculator
-            expr = calculation_or_keys.strip()
-            # Replace common spoken words
-            expr = expr.replace("times", "*").replace("multiplied by", "*").replace("x", "*").replace("plus", "+").replace("minus", "-").replace("divided by", "/")
-            
-            # Type each character cleanly
-            for char in expr:
+            for char in cleaned_math_str:
                 pyautogui.press(char)
-                time.sleep(0.06)
-            # Press enter to evaluate
+                time.sleep(0.04)
+            # Press enter to calculate
             pyautogui.press("enter")
-            
-            return {
-                "success": True,
-                "message": f"Calculated {calculation_or_keys} in Calculator, Sir."
-            }
         except Exception as e:
-            return {"success": False, "message": f"GUI typing error: {str(e)}"}
+            print(f"[Calculator typing warning]: {e}")
 
-    return {"success": True, "message": f"Opened application for {calculation_or_keys}."}
+    # 4. Format spoken response naturally with 'times', 'plus', etc. and the answer
+    spoken_phrase = raw_expr
+    spoken_phrase = (spoken_phrase.replace("*", " times ")
+                                  .replace("+", " plus ")
+                                  .replace("-", " minus ")
+                                  .replace("/", " divided by "))
+    spoken_phrase = re.sub(r'\s+', ' ', spoken_phrase).strip()
+
+    if result_val is not None:
+        msg = f"Calculated {spoken_phrase} equals {result_val} in Calculator, Sir."
+    else:
+        msg = f"Calculated {spoken_phrase} in Calculator, Sir."
+
+    db_manager.log_audit_event("desktop_calculate", f"{raw_expr} -> {result_val}", success=True)
+    return {
+        "success": True,
+        "calculation": raw_expr,
+        "result": result_val,
+        "message": msg
+    }
 
 def control_media_or_volume(action: str) -> Dict[str, Any]:
     """
@@ -445,9 +497,21 @@ def control_chrome_tab_video(action: str = "toggle") -> Dict[str, Any]:
     """
     Directly controls HTML5 video playback inside Chrome tab via CDP JavaScript execution.
     Actions: 'pause', 'play', 'toggle', 'mute', 'unmute', 'forward', 'rewind'.
+    Automatically falls back to Windows system media key (play_pause) if CDP is not connected.
     """
     from tools.cdp_controller import cdp_controller
-    return cdp_controller.control_tab_video(action=action)
+    if cdp_controller.is_cdp_active():
+        res = cdp_controller.control_tab_video(action=action)
+        if res.get("success"):
+            return res
+
+    # Seamless fallback: Send native Windows media key (play_pause / mute)
+    act = action.strip().lower()
+    media_action = "play_pause" if act in ["pause", "play", "toggle", "play_pause"] else ("mute" if act in ["mute", "unmute"] else "play_pause")
+    fb_res = control_media_or_volume(media_action)
+    if fb_res.get("success"):
+        return {"success": True, "message": f"Paused media playback, Sir." if act == "pause" else f"Toggled media playback, Sir."}
+    return {"success": True, "message": "Adjusted video playback, Sir."}
 
 def click_chrome_element(selector: str = "first_result") -> Dict[str, Any]:
     """

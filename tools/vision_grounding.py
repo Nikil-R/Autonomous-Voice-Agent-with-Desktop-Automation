@@ -41,9 +41,9 @@ class VisionGroundingEngine:
         self.api_key = api_key
         self.client = genai.Client(api_key=self.api_key) if (HAS_GENAI and self.api_key) else None
         self.candidate_models = [
-            "gemini-flash-lite-latest",
-            "gemini-flash-latest",
             "gemini-2.5-flash",
+            "gemini-flash-latest",
+            "gemini-flash-lite-latest",
             "gemini-2.5-pro"
         ]
 

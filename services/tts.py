@@ -16,8 +16,18 @@ def clean_text_for_speech(text: str) -> str:
     """
     if not text:
         return ""
-    # Strip markdown headers (###), bold/italic asterisks (***, **, *), underscores (_), backticks (`)
-    cleaned = re.sub(r'[*_#`~]', '', text)
+    
+    # 1. Convert mathematical operations into natural spoken English
+    # Examples: "20 * 10" -> "20 times 10", "500 + 250" -> "500 plus 250"
+    cleaned = re.sub(r'(\d+)\s*\*\s*(\d+)', r'\1 times \2', text)
+    cleaned = re.sub(r'(\d+)\s*x\s*(\d+)', r'\1 times \2', cleaned)
+    cleaned = re.sub(r'(\d+)\s*\+\s*(\d+)', r'\1 plus \2', cleaned)
+    cleaned = re.sub(r'(\d+)\s*-\s*(\d+)', r'\1 minus \2', cleaned)
+    cleaned = re.sub(r'(\d+)\s*/\s*(\d+)', r'\1 divided by \2', cleaned)
+    cleaned = re.sub(r'(\d+)\s*=\s*(\d+)', r'\1 equals \2', cleaned)
+
+    # 2. Strip markdown headers (###), bold/italic asterisks (***, **, *), underscores (_), backticks (`)
+    cleaned = re.sub(r'[*_#`~]', '', cleaned)
     # Strip markdown table formatting bars
     cleaned = re.sub(r'\|', ' ', cleaned)
     # Replace dashes at start of lines (bullet points)

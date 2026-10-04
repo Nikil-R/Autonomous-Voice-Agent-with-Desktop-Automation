@@ -331,21 +331,20 @@ async def websocket_stream(websocket: WebSocket):
                     yield token
 
             async def audio_streamer():
-                """Chunks sentences and streams Edge-TTS binary audio frames to client."""
+                """Chunks sentences and streams complete sentence MP3 audio frames to client."""
                 nonlocal first_audio_sent
                 async for sentence in chunker.chunk_stream(token_generator()):
                     if current_cancel_event.is_set():
                         break
                     
-                    # Stream binary MP3 chunks for this sentence
-                    async for audio_chunk in tts.stream_audio_chunks(sentence):
-                        if current_cancel_event.is_set():
-                            break
+                    # Synthesize clean audio for this complete sentence
+                    sentence_audio = await tts.synthesize_to_bytes(sentence)
+                    if sentence_audio:
                         if not first_audio_sent:
                             telemetry.mark("tts_first_audio")
                             first_audio_sent = True
-                        # Send binary audio frame directly over WebSocket
-                        await websocket.send_bytes(audio_chunk)
+                        # Send the complete sentence MP3 frame directly over WebSocket
+                        await websocket.send_bytes(sentence_audio)
 
             # Run token generation and concurrent TTS streaming together
             feeder_task = asyncio.create_task(token_feeder())
