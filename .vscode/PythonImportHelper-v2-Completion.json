@@ -36,6 +36,41 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "Path",
         "importPath": "pathlib",
         "description": "pathlib",
@@ -948,15 +983,6 @@
         "documentation": {}
     },
     {
-        "label": "asyncio",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "asyncio",
-        "description": "asyncio",
-        "detail": "asyncio",
-        "documentation": {}
-    },
-    {
         "label": "WhisperSTTService",
         "importPath": "services.stt",
         "description": "services.stt",
@@ -1040,15 +1066,6 @@
         "description": "services.vad",
         "isExtraImport": true,
         "detail": "services.vad",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
         "documentation": {}
     },
     {
@@ -1188,15 +1205,6 @@
         "documentation": {}
     },
     {
-        "label": "logging",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "logging",
-        "description": "logging",
-        "detail": "logging",
-        "documentation": {}
-    },
-    {
         "label": "websockets",
         "kind": 6,
         "isExtraImport": true,
@@ -1251,6 +1259,47 @@
         "documentation": {}
     },
     {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "ImageDraw",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "pystray",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pystray",
+        "description": "pystray",
+        "detail": "pystray",
+        "documentation": {}
+    },
+    {
+        "label": "keyboard",
+        "importPath": "pynput",
+        "description": "pynput",
+        "isExtraImport": true,
+        "detail": "pynput",
+        "documentation": {}
+    },
+    {
+        "label": "window_manager",
+        "importPath": "tools.window_manager",
+        "description": "tools.window_manager",
+        "isExtraImport": true,
+        "detail": "tools.window_manager",
+        "documentation": {}
+    },
+    {
         "label": "ChatRequest",
         "kind": 6,
         "importPath": "api.app",
@@ -1292,6 +1341,15 @@
         "importPath": "api.app",
         "description": "api.app",
         "peekOfCode": "class FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Jarvis Dynamic Notch React UI.\"\"\"\n    if REACT_DIST_DIR.exists() and (REACT_DIST_DIR / \"index.html\").exists():\n        return FileResponse(REACT_DIST_DIR / \"index.html\")\n    return FileResponse(STATIC_DIR / \"index.html\")",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "logger = logging.getLogger(\"api\")\n# Ensure project root is in path\nBASE_DIR = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(BASE_DIR))\nfrom fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect\nfrom fastapi.staticfiles import StaticFiles\nfrom fastapi.responses import FileResponse, JSONResponse\nfrom fastapi.middleware.cors import CORSMiddleware\nfrom pydantic import BaseModel\nfrom core.config import GROQ_API_KEY, TTS_VOICE",
         "detail": "api.app",
         "documentation": {}
     },
@@ -2121,6 +2179,60 @@
         "description": "run",
         "peekOfCode": "def check_environment():\n    \"\"\"Validates runtime prerequisites and keys.\"\"\"\n    if not GROQ_API_KEY:\n        print(\"\\n❌ Error: GROQ_API_KEY is not set in ApexCore/.env or environment.\")\n        print(\"Please configure your GROQ_API_KEY in ApexCore/.env before launching.\\n\")\n        sys.exit(1)\nasync def main():\n    check_environment()\n    orchestrator = FullDuplexOrchestrator()\n    try:",
         "detail": "run",
+        "documentation": {}
+    },
+    {
+        "label": "GlobalHotkeyManager",
+        "kind": 6,
+        "importPath": "tray_agent",
+        "description": "tray_agent",
+        "peekOfCode": "class GlobalHotkeyManager:\n    \"\"\"Manages system-wide global hotkey listener using pynput.\"\"\"\n    def __init__(self):\n        self.listener = None\n        # Track active keys for Ctrl + Shift + Space\n        self.current_keys = set()\n    def on_press(self, key):\n        self.current_keys.add(key)\n        # Check if Ctrl + Shift + Space is triggered\n        ctrl_pressed = any(",
+        "detail": "tray_agent",
+        "documentation": {}
+    },
+    {
+        "label": "create_tray_icon_image",
+        "kind": 2,
+        "importPath": "tray_agent",
+        "description": "tray_agent",
+        "peekOfCode": "def create_tray_icon_image():\n    \"\"\"Generates an elegant glowing Jarvis circular icon for the Windows system tray.\"\"\"\n    image = Image.new(\"RGBA\", (64, 64), color=(0, 0, 0, 0))\n    draw = ImageDraw.Draw(image)\n    # Outer cyan glowing ring\n    draw.ellipse((4, 4, 60, 60), outline=(0, 240, 255, 255), width=4)\n    # Inner glowing core\n    draw.ellipse((16, 16, 48, 48), fill=(0, 160, 255, 220))\n    # Center pulse dot\n    draw.ellipse((26, 26, 38, 38), fill=(255, 255, 255, 255))",
+        "detail": "tray_agent",
+        "documentation": {}
+    },
+    {
+        "label": "focus_or_launch_hud",
+        "kind": 2,
+        "importPath": "tray_agent",
+        "description": "tray_agent",
+        "peekOfCode": "def focus_or_launch_hud():\n    \"\"\"Brings the Jarvis Dynamic Notch window to the absolute foreground or launches it.\"\"\"\n    # Look for existing browser window with Jarvis HUD\n    found = window_manager.find_window_by_keyword(\"Jarvis\")\n    if not found:\n        found = window_manager.find_window_by_keyword(\"ApexCore\")\n    if found:\n        hwnd, title = found\n        window_manager.focus_and_foreground_window(hwnd)\n        print(f\"⚡ [Global Hotkey] Focused existing Jarvis HUD: {title}\")",
+        "detail": "tray_agent",
+        "documentation": {}
+    },
+    {
+        "label": "run_system_tray",
+        "kind": 2,
+        "importPath": "tray_agent",
+        "description": "tray_agent",
+        "peekOfCode": "def run_system_tray():\n    \"\"\"Runs the persistent Windows System Tray icon.\"\"\"\n    print(\"🌟 Starting Jarvis System Tray & Global Hotkey Engine...\")\n    print(\"👉 Global Hotkey: Press [Ctrl + Shift + Space] from ANY window to pop up Jarvis HUD.\")\n    # 1. Start Global Hotkey listener in background thread\n    hotkey_mgr = GlobalHotkeyManager()\n    hotkey_mgr.start()\n    # 2. Build System Tray Menu\n    icon_image = create_tray_icon_image()\n    def on_open_hud(icon, item):",
+        "detail": "tray_agent",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "tray_agent",
+        "description": "tray_agent",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(BASE_DIR))\nfrom tools.window_manager import window_manager\nFRONTEND_URL = \"http://127.0.0.1:8000\"\ndef create_tray_icon_image():\n    \"\"\"Generates an elegant glowing Jarvis circular icon for the Windows system tray.\"\"\"\n    image = Image.new(\"RGBA\", (64, 64), color=(0, 0, 0, 0))\n    draw = ImageDraw.Draw(image)\n    # Outer cyan glowing ring\n    draw.ellipse((4, 4, 60, 60), outline=(0, 240, 255, 255), width=4)",
+        "detail": "tray_agent",
+        "documentation": {}
+    },
+    {
+        "label": "FRONTEND_URL",
+        "kind": 5,
+        "importPath": "tray_agent",
+        "description": "tray_agent",
+        "peekOfCode": "FRONTEND_URL = \"http://127.0.0.1:8000\"\ndef create_tray_icon_image():\n    \"\"\"Generates an elegant glowing Jarvis circular icon for the Windows system tray.\"\"\"\n    image = Image.new(\"RGBA\", (64, 64), color=(0, 0, 0, 0))\n    draw = ImageDraw.Draw(image)\n    # Outer cyan glowing ring\n    draw.ellipse((4, 4, 60, 60), outline=(0, 240, 255, 255), width=4)\n    # Inner glowing core\n    draw.ellipse((16, 16, 48, 48), fill=(0, 160, 255, 220))\n    # Center pulse dot",
+        "detail": "tray_agent",
         "documentation": {}
     }
 ]

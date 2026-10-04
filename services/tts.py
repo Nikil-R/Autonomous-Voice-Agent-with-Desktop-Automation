@@ -49,6 +49,19 @@ class TTSService:
                 audio_buffer.extend(chunk["data"])
         return bytes(audio_buffer)
 
+    async def stream_audio_chunks(self, text: str):
+        """
+        Synthesizes text and yields binary MP3 audio frames incrementally
+        as soon as Edge-TTS generates them for sub-300ms Time-to-First-Audio (TTFA).
+        """
+        clean_prompt = clean_text_for_speech(text)
+        if not clean_prompt:
+            return
+        communicate = edge_tts.Communicate(clean_prompt, self.voice)
+        async for chunk in communicate.stream():
+            if chunk["type"] == "audio" and chunk["data"]:
+                yield chunk["data"]
+
     @staticmethod
     def decode_audio_bytes(audio_bytes: bytes):
         """Decodes MP3/WAV audio bytes into (numpy_data, sample_rate)."""

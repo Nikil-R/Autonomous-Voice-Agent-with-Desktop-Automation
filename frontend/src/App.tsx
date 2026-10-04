@@ -41,6 +41,9 @@ export default function App(): React.JSX.Element {
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
   const silenceTimerRef = useRef<any>(null);
   const speechBufferRef = useRef<string>('');
+  const wsRef = useRef<WebSocket | null>(null);
+  const audioQueueRef = useRef<Blob[]>([]);
+  const isPlayingQueueRef = useRef<boolean>(false);
 
   // Stop currently playing audio immediately (Instant Barge-In)
   const stopAudio = (): void => {
@@ -49,7 +52,85 @@ export default function App(): React.JSX.Element {
       currentAudioRef.current.currentTime = 0;
       currentAudioRef.current = null;
     }
+    audioQueueRef.current = [];
+    isPlayingQueueRef.current = false;
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ type: 'interrupt' }));
+    }
   };
+
+  // Play next audio chunk from WebSocket streaming queue
+  const playNextInQueue = () => {
+    if (audioQueueRef.current.length === 0) {
+      isPlayingQueueRef.current = false;
+      setStatus(isListening ? 'listening' : 'idle');
+      return;
+    }
+    isPlayingQueueRef.current = true;
+    setStatus('speaking');
+    const chunkBlob = audioQueueRef.current.shift()!;
+    const audioUrl = URL.createObjectURL(chunkBlob);
+    const audio = new Audio(audioUrl);
+    currentAudioRef.current = audio;
+    audio.onended = () => {
+      URL.revokeObjectURL(audioUrl);
+      playNextInQueue();
+    };
+    audio.onerror = () => {
+      URL.revokeObjectURL(audioUrl);
+      playNextInQueue();
+    };
+    audio.play().catch(() => playNextInQueue());
+  };
+
+  // Initialize persistent streaming WebSocket
+  useEffect(() => {
+    const wsUrl = API_BASE.replace('http', 'ws') + '/ws/stream';
+    const connectWs = () => {
+      try {
+        const ws = new WebSocket(wsUrl);
+        ws.binaryType = 'blob';
+
+        ws.onopen = () => {
+          console.log('⚡ Connected to ApexCore binary audio WebSocket');
+        };
+
+        ws.onmessage = (event) => {
+          if (event.data instanceof Blob) {
+            // Received binary MP3 audio chunk!
+            audioQueueRef.current.push(event.data);
+            if (!isPlayingQueueRef.current) {
+              playNextInQueue();
+            }
+          } else {
+            try {
+              const msg = JSON.parse(event.data);
+              if (msg.type === 'token') {
+                setLastResponse((prev) => prev + msg.content);
+              } else if (msg.type === 'done') {
+                if (msg.full_response) {
+                  setLastResponse(msg.full_response);
+                  setHistory((prev) => [...prev, { role: 'assistant', text: msg.full_response }]);
+                }
+              }
+            } catch (e) {}
+          }
+        };
+
+        ws.onclose = () => {
+          setTimeout(connectWs, 2000);
+        };
+        wsRef.current = ws;
+      } catch (err) {
+        console.warn('WebSocket connection error:', err);
+      }
+    };
+
+    connectWs();
+    return () => {
+      if (wsRef.current) wsRef.current.close();
+    };
+  }, [isListening]);
 
   // Fetch real-time vitals
   useEffect(() => {
@@ -153,6 +234,13 @@ export default function App(): React.JSX.Element {
     stopAudio();
     setStatus('thinking');
     setHistory((prev) => [...prev, { role: 'user', text: prompt }]);
+    setLastResponse('');
+
+    // If streaming WebSocket is connected, dispatch over WebSocket for sub-300ms streaming audio!
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ prompt }));
+      return;
+    }
 
     try {
       const res = await fetch(`${API_BASE}/api/chat`, {
