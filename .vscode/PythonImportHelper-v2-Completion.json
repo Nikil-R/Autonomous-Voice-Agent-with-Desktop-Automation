@@ -364,6 +364,30 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -1128,6 +1152,24 @@
         "documentation": {}
     },
     {
+        "label": "ctypes",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ctypes",
+        "description": "ctypes",
+        "detail": "ctypes",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
         "label": "ChatRequest",
         "kind": 6,
         "importPath": "api.app",
@@ -1681,7 +1723,25 @@
         "kind": 2,
         "importPath": "tests.test_os_tools",
         "description": "tests.test_os_tools",
-        "peekOfCode": "def test_desktop_type_or_calculate_dispatch():\n    \"\"\"Verify desktop_type_or_calculate can be dispatched safely.\"\"\"\n    res_str = dispatch_tool(\"desktop_type_or_calculate\", '{\"calculation_or_keys\": \"20*10\"}')\n    assert \"Calculated\" in res_str or \"success\" in res_str",
+        "peekOfCode": "def test_desktop_type_or_calculate_dispatch():\n    \"\"\"Verify desktop_type_or_calculate can be dispatched safely.\"\"\"\n    res_str = dispatch_tool(\"desktop_type_or_calculate\", '{\"calculation_or_keys\": \"20*10\"}')\n    assert \"Calculated\" in res_str or \"success\" in res_str\ndef test_window_manager_listing():\n    \"\"\"Verify WindowManager enumerates active desktop windows.\"\"\"\n    from tools.window_manager import window_manager\n    windows = window_manager.list_visible_windows()\n    assert isinstance(windows, list)\ndef test_focus_window_dispatch():",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_window_manager_listing",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_window_manager_listing():\n    \"\"\"Verify WindowManager enumerates active desktop windows.\"\"\"\n    from tools.window_manager import window_manager\n    windows = window_manager.list_visible_windows()\n    assert isinstance(windows, list)\ndef test_focus_window_dispatch():\n    \"\"\"Verify focus_window tool can be safely called.\"\"\"\n    res_str = dispatch_tool(\"focus_window\", '{\"app_or_title\": \"Calculator\"}')\n    assert \"success\" in res_str or \"message\" in res_str",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_focus_window_dispatch",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_focus_window_dispatch():\n    \"\"\"Verify focus_window tool can be safely called.\"\"\"\n    res_str = dispatch_tool(\"focus_window\", '{\"app_or_title\": \"Calculator\"}')\n    assert \"success\" in res_str or \"message\" in res_str",
         "detail": "tests.test_os_tools",
         "documentation": {}
     },
@@ -1749,11 +1809,20 @@
         "documentation": {}
     },
     {
+        "label": "focus_window",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def focus_window(app_or_title: str) -> Dict[str, Any]:\n    \"\"\"\n    Finds and brings any running desktop window into the active foreground.\n    \"\"\"\n    from tools.window_manager import window_manager\n    found = window_manager.wait_and_focus_window(app_or_title, timeout_seconds=2.0)\n    if found:\n        hwnd, title = found\n        return {\"success\": True, \"message\": f\"Focused window '{title}', Sir.\"}\n    return {\"success\": False, \"message\": f\"Window '{app_or_title}' is not currently running.\"}",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
         "label": "desktop_type_or_calculate",
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Interacts with desktop applications using automated GUI keystrokes.\n    Example: opens Calculator and types '20*10=' to display the calculation, or types text into Notepad.\n    \"\"\"\n    import time\n    try:\n        import pyautogui\n    except ImportError:\n        pyautogui = None",
+        "peekOfCode": "def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Interacts with desktop applications using window state awareness and automated GUI keystrokes.\n    Example: opens Calculator, explicitly focuses its window, and types '20*10=' to display the calculation.\n    \"\"\"\n    import time\n    from tools.window_manager import window_manager\n    try:\n        import pyautogui\n    except ImportError:",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -1800,6 +1869,33 @@
         "description": "tools.system_tools",
         "peekOfCode": "def get_top_processes(sort_by: str = \"memory\", count: int = 5) -> List[Dict[str, Any]]:\n    \"\"\"\n    Enumerates running Windows processes sorted by memory consumption (RAM) or CPU usage.\n    Filters out system idle and zero-value background processes.\n    \"\"\"\n    count = min(max(1, count), 10)\n    sort_key = \"memory_percent\" if sort_by.lower() == \"memory\" else \"cpu_percent\"\n    processes = []\n    for proc in psutil.process_iter(['pid', 'name', 'memory_info', 'memory_percent', 'cpu_percent']):\n        try:",
         "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "WindowManager",
+        "kind": 6,
+        "importPath": "tools.window_manager",
+        "description": "tools.window_manager",
+        "peekOfCode": "class WindowManager:\n    \"\"\"Manages active Windows desktop windows, focus switching, and window state awareness.\"\"\"\n    @staticmethod\n    def _ensure_default_desktop():\n        \"\"\"Ensures the calling thread is attached to the user's interactive 'Default' desktop.\"\"\"\n        if not HAS_WIN32:\n            return\n        try:\n            h_default = win32service.OpenDesktop(\"Default\", 0, False, win32con.GENERIC_ALL)\n            h_default.SetThreadDesktop()",
+        "detail": "tools.window_manager",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tools.window_manager",
+        "description": "tools.window_manager",
+        "peekOfCode": "logger = logging.getLogger(\"window_manager\")\ntry:\n    import win32gui\n    import win32con\n    import win32service\n    HAS_WIN32 = True\nexcept ImportError:\n    HAS_WIN32 = False\nclass WindowManager:\n    \"\"\"Manages active Windows desktop windows, focus switching, and window state awareness.\"\"\"",
+        "detail": "tools.window_manager",
+        "documentation": {}
+    },
+    {
+        "label": "window_manager",
+        "kind": 5,
+        "importPath": "tools.window_manager",
+        "description": "tools.window_manager",
+        "peekOfCode": "window_manager = WindowManager()",
+        "detail": "tools.window_manager",
         "documentation": {}
     },
     {

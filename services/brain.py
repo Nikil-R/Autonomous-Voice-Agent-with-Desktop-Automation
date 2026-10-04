@@ -76,7 +76,8 @@ class AgentBrain:
                     "control_media_or_volume",
                     "search_web_or_play",
                     "open_folder_or_path",
-                    "desktop_type_or_calculate"
+                    "desktop_type_or_calculate",
+                    "focus_window"
                 }
                 executed_tool_names = {tc.function.name for tc in tool_calls}
                 if action_spoken_messages and executed_tool_names.issubset(action_tools):

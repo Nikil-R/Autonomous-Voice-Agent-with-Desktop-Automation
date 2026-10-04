@@ -145,6 +145,12 @@ async def api_desktop_calculate(calculation: str, app: Optional[str] = "calculat
     from tools.file_tools import desktop_type_or_calculate
     return desktop_type_or_calculate(calculation_or_keys=calculation, app_to_open=app)
 
+@app.post("/api/tools/focus-window")
+async def api_focus_window(title: str):
+    """Finds and foregrounds an active desktop window."""
+    from tools.file_tools import focus_window
+    return focus_window(title)
+
 @app.post("/api/tools/query-db")
 async def api_query_db(req: SQLRequest):
     """Executes safe read-only SQL queries against SQLite WAL tables."""

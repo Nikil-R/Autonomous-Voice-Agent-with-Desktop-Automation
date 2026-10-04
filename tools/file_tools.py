@@ -355,23 +355,37 @@ def open_folder_or_path(folder_name_or_path: str) -> Dict[str, Any]:
         "message": f"Could not find folder '{folder_name_or_path}'. Checked Desktop, Documents, and Downloads."
     }
 
+def focus_window(app_or_title: str) -> Dict[str, Any]:
+    """
+    Finds and brings any running desktop window into the active foreground.
+    """
+    from tools.window_manager import window_manager
+    found = window_manager.wait_and_focus_window(app_or_title, timeout_seconds=2.0)
+    if found:
+        hwnd, title = found
+        return {"success": True, "message": f"Focused window '{title}', Sir."}
+    return {"success": False, "message": f"Window '{app_or_title}' is not currently running."}
+
 def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:
     """
-    Interacts with desktop applications using automated GUI keystrokes.
-    Example: opens Calculator and types '20*10=' to display the calculation, or types text into Notepad.
+    Interacts with desktop applications using window state awareness and automated GUI keystrokes.
+    Example: opens Calculator, explicitly focuses its window, and types '20*10=' to display the calculation.
     """
     import time
+    from tools.window_manager import window_manager
     try:
         import pyautogui
     except ImportError:
         pyautogui = None
 
-    if app_to_open:
-        open_application(app_to_open)
-        # Give Windows a moment to launch and focus the application window
-        time.sleep(1.0)
+    target_app = app_to_open or "calculator"
+    # 1. Launch application
+    open_application(target_app)
 
-    # Perform automated keystrokes if pyautogui is available
+    # 2. Window State Awareness: find and guarantee foreground focus
+    window_manager.wait_and_focus_window(target_app, timeout_seconds=3.0)
+
+    # 3. Perform automated keystrokes with guaranteed focus
     if pyautogui:
         try:
             # Clean expression for calculator
@@ -382,7 +396,7 @@ def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[st
             # Type each character cleanly
             for char in expr:
                 pyautogui.press(char)
-                time.sleep(0.05)
+                time.sleep(0.06)
             # Press enter to evaluate
             pyautogui.press("enter")
             

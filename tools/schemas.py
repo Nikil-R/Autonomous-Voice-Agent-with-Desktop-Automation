@@ -193,5 +193,22 @@ TOOL_SCHEMAS = [
                 "required": ["calculation_or_keys"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "focus_window",
+            "description": "Brings an open desktop application or window into the absolute foreground and focus (e.g. 'Calculator', 'Chrome', 'Visual Studio Code', 'WhatsApp').",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "app_or_title": {
+                        "type": "string",
+                        "description": "Name or title of the window to focus (e.g. 'Calculator', 'Chrome', 'Code')."
+                    }
+                },
+                "required": ["app_or_title"]
+            }
+        }
     }
 ]

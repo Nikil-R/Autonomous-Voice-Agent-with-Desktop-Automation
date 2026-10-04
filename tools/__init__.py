@@ -11,7 +11,8 @@ from tools.file_tools import (
     search_web_or_play,
     control_media_or_volume,
     open_folder_or_path,
-    desktop_type_or_calculate
+    desktop_type_or_calculate,
+    focus_window
 )
 from tools.db_tools import query_local_db
 
@@ -25,6 +26,7 @@ TOOL_REGISTRY: Dict[str, Callable] = {
     "control_media_or_volume": control_media_or_volume,
     "open_folder_or_path": open_folder_or_path,
     "desktop_type_or_calculate": desktop_type_or_calculate,
+    "focus_window": focus_window,
     "query_local_db": query_local_db,
 }
 

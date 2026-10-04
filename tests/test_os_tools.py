@@ -59,3 +59,14 @@ def test_desktop_type_or_calculate_dispatch():
     """Verify desktop_type_or_calculate can be dispatched safely."""
     res_str = dispatch_tool("desktop_type_or_calculate", '{"calculation_or_keys": "20*10"}')
     assert "Calculated" in res_str or "success" in res_str
+
+def test_window_manager_listing():
+    """Verify WindowManager enumerates active desktop windows."""
+    from tools.window_manager import window_manager
+    windows = window_manager.list_visible_windows()
+    assert isinstance(windows, list)
+
+def test_focus_window_dispatch():
+    """Verify focus_window tool can be safely called."""
+    res_str = dispatch_tool("focus_window", '{"app_or_title": "Calculator"}')
+    assert "success" in res_str or "message" in res_str
