@@ -49,6 +49,7 @@ class AgentBrain:
 
             if tool_calls:
                 # Model requested tool calls
+                action_spoken_messages = []
                 for tc in tool_calls:
                     fn_name = tc.function.name
                     fn_args = tc.function.arguments
@@ -58,7 +59,26 @@ class AgentBrain:
                     result_str = dispatch_tool(fn_name, fn_args)
                     state.add_tool_result(tool_call_id, fn_name, result_str)
 
-                # Loop again to let the LLM evaluate tool results
+                    # Fast-path for instant action confirmation (e.g. open_url, open_application, media)
+                    # This eliminates the 2nd LLM round-trip so the voice speaks immediately!
+                    try:
+                        res_obj = json.loads(result_str)
+                        if isinstance(res_obj, dict) and "message" in res_obj:
+                            action_spoken_messages.append(res_obj["message"])
+                    except Exception:
+                        pass
+
+                # If action tools returned user-facing messages (and not multi-step reasoning tools like DB or vitals query),
+                # yield that confirmation immediately to eliminate LLM latency!
+                action_tools = {"open_url", "open_application", "control_media_or_volume", "search_web_or_play"}
+                executed_tool_names = {tc.function.name for tc in tool_calls}
+                if action_spoken_messages and executed_tool_names.issubset(action_tools):
+                    immediate_reply = " ".join(action_spoken_messages)
+                    state.add_assistant_message(immediate_reply)
+                    yield immediate_reply
+                    return
+
+                # Otherwise loop again to let LLM evaluate complex data results (vitals, SQL, search)
                 continue
             else:
                 # No more tools needed; stream final response tokens

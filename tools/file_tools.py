@@ -214,33 +214,29 @@ def open_application(app_name: str) -> Dict[str, Any]:
 
 def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:
     """
-    Opens any website or web address in Google Chrome or default browser.
+    Immediately opens any website or web address in Google Chrome or default browser.
     """
     clean_url = url.strip()
     if not clean_url.startswith("http://") and not clean_url.startswith("https://"):
         clean_url = f"https://{clean_url}"
 
-    opened_with_chrome = False
     try:
-        installed = get_installed_windows_apps()
-        has_chrome = any("chrome" in k for k in installed.keys())
-        if has_chrome or (browser and "chrome" in browser.lower()):
-            subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
-            opened_with_chrome = True
+        # Non-blocking direct launch via start chrome
+        subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
     except Exception:
-        opened_with_chrome = False
-
-    if not opened_with_chrome:
         try:
             webbrowser.open_new_tab(clean_url)
         except Exception as e:
             return {"success": False, "message": f"Failed to open URL {clean_url}: {str(e)}"}
 
     db_manager.log_audit_event("url_opened", f"Opened URL: {clean_url}", success=True)
+    # Natural spoken message
+    domain = clean_url.replace("https://", "").replace("http://", "").replace("www.", "").split("/")[0]
+    site_name = domain.split(".")[0].capitalize() if domain else "requested page"
     return {
         "success": True,
         "url": clean_url,
-        "message": f"Opening {clean_url} in your browser."
+        "message": f"Opening {site_name}, Sir."
     }
 
 def search_web_or_play(query: str, platform: str = "youtube") -> Dict[str, Any]:

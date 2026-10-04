@@ -113,8 +113,10 @@ export default function App(): React.JSX.Element {
           speechBufferRef.current += ' ' + final.trim();
         }
 
-        // Debounce silence (1000ms pause) so user can speak long sentences
+        // Dynamic silence debounce:
+        // If final transcript is detected, dispatch quickly in 450ms; if only interim, give 800ms
         clearTimeout(silenceTimerRef.current);
+        const debounceTime = final.trim().length > 0 ? 450 : 800;
         silenceTimerRef.current = setTimeout(() => {
           const userPrompt = (speechBufferRef.current + ' ' + interim).trim();
           if (userPrompt.length > 0) {
@@ -122,7 +124,7 @@ export default function App(): React.JSX.Element {
             setInterimText('');
             sendUserMessage(userPrompt);
           }
-        }, 1000);
+        }, debounceTime);
       };
 
       rec.onend = () => {
@@ -251,7 +253,7 @@ export default function App(): React.JSX.Element {
                 : status === 'speaking'
                 ? lastResponse || 'Speaking...'
                 : status === 'thinking'
-                ? 'Processing command...'
+                ? 'Executing...'
                 : 'Press Space to Activate'}
             </span>
           </div>

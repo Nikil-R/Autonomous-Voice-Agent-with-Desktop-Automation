@@ -1699,7 +1699,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Opens any website or web address in Google Chrome or default browser.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    opened_with_chrome = False\n    try:\n        installed = get_installed_windows_apps()",
+        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome or default browser.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    try:\n        # Non-blocking direct launch via start chrome\n        subprocess.Popen(f'start chrome \"{clean_url}\"', shell=True)",
         "detail": "tools.file_tools",
         "documentation": {}
     },
