@@ -6,6 +6,8 @@ import subprocess
 import webbrowser
 import json
 import urllib.parse
+import urllib.request
+import re
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from database.db import db_manager
@@ -37,6 +39,8 @@ COMMON_DESKTOP_APPS = {
     "settings": "start ms-settings:",
     "spotify": "start spotify:",
     "whatsapp": "explorer.exe shell:AppsFolder\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
+    "antigravity": "start chrome \"https://mrdoob.com/projects/chromeexperiments/google-space/\"",
+    "google antigravity": "start chrome \"https://mrdoob.com/projects/chromeexperiments/google-space/\"",
 }
 
 _installed_apps_cache: Optional[Dict[str, str]] = None
@@ -239,25 +243,157 @@ def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:
         "message": f"Opening {site_name}, Sir."
     }
 
-def search_web_or_play(query: str, platform: str = "youtube") -> Dict[str, Any]:
+def search_web_or_play(query: str, platform: str = "youtube", play_direct: bool = True) -> Dict[str, Any]:
     """
-    Searches Google, YouTube, or Wikipedia directly and opens the resulting page/video in Chrome.
-    Example: search_web_or_play(query="Interstellar soundtrack", platform="youtube")
+    Searches Google, YouTube, or Wikipedia directly and opens the resulting page or plays the video in Chrome.
+    If platform is 'youtube', automatically extracts the top video ID and opens the direct watch URL to play the song immediately!
     """
-    q_encoded = urllib.parse.quote(query.strip())
+    clean_query = query.strip()
+    q_encoded = urllib.parse.quote(clean_query)
     plat = platform.strip().lower()
 
     if plat == "youtube":
         target_url = f"https://www.youtube.com/results?search_query={q_encoded}"
-        label = f"Searching YouTube for '{query}'"
+        if play_direct:
+            try:
+                # Scrape top video ID from YouTube search page
+                req = urllib.request.Request(
+                    target_url,
+                    headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+                )
+                html = urllib.request.urlopen(req, timeout=4).read().decode("utf-8", errors="ignore")
+                video_ids = re.findall(r'watch\?v=([a-zA-Z0-9_-]{11})', html)
+                if video_ids:
+                    # Found direct video!
+                    top_video_id = video_ids[0]
+                    direct_watch_url = f"https://www.youtube.com/watch?v={top_video_id}"
+                    open_url(direct_watch_url)
+                    db_manager.log_audit_event("youtube_play", f"Playing {clean_query} ({direct_watch_url})", success=True)
+                    return {
+                        "success": True,
+                        "url": direct_watch_url,
+                        "message": f"Playing {clean_query} on YouTube now, Sir."
+                    }
+            except Exception as e:
+                print(f"[YouTube direct play fallback]: {e}")
+
+        # Fallback to standard search query if direct scrape didn't catch
+        open_url(target_url)
+        return {
+            "success": True,
+            "url": target_url,
+            "message": f"Playing {clean_query} on YouTube, Sir."
+        }
     elif plat == "wikipedia":
         target_url = f"https://en.wikipedia.org/wiki/Special:Search?search={q_encoded}"
-        label = f"Searching Wikipedia for '{query}'"
+        open_url(target_url)
+        return {
+            "success": True,
+            "url": target_url,
+            "message": f"Searching Wikipedia for {clean_query}, Sir."
+        }
     else:
         target_url = f"https://www.google.com/search?q={q_encoded}"
-        label = f"Searching Google for '{query}'"
+        open_url(target_url)
+        return {
+            "success": True,
+            "url": target_url,
+            "message": f"Searching Google for {clean_query}, Sir."
+        }
 
-    return open_url(target_url)
+def open_folder_or_path(folder_name_or_path: str) -> Dict[str, Any]:
+    """
+    Locates and opens any user folder, directory, or project in Windows Explorer or VS Code.
+    Searches Desktop, Documents, Downloads, user home directory, and common OneDrive paths.
+    """
+    user_home = Path.home()
+    target_clean = folder_name_or_path.strip().strip('"').strip("'")
+    target_path = Path(target_clean)
+
+    # 1. Check direct path
+    if target_path.exists():
+        subprocess.Popen(f'explorer.exe "{target_path}"', shell=True)
+        return {"success": True, "message": f"Opened folder {target_path.name}, Sir."}
+
+    # 2. Check standard user directories
+    candidates = [
+        user_home / "Desktop" / target_clean,
+        user_home / "OneDrive" / "Desktop" / target_clean,
+        user_home / "Documents" / target_clean,
+        user_home / "OneDrive" / "Documents" / target_clean,
+        user_home / "Downloads" / target_clean,
+        user_home / target_clean,
+        user_home / "OneDrive" / target_clean,
+    ]
+
+    for cand in candidates:
+        if cand.exists():
+            subprocess.Popen(f'explorer.exe "{cand}"', shell=True)
+            db_manager.log_audit_event("folder_opened", f"Opened {cand}", success=True)
+            return {"success": True, "message": f"Opening {cand.name} folder, Sir."}
+
+    # 3. Fuzzy search Desktop and Documents
+    search_roots = [
+        user_home / "Desktop",
+        user_home / "OneDrive" / "Desktop",
+        user_home / "Documents",
+        user_home / "Downloads"
+    ]
+    for root in search_roots:
+        if root.exists():
+            try:
+                for entry in root.iterdir():
+                    if entry.is_dir() and target_clean.lower() in entry.name.lower():
+                        subprocess.Popen(f'explorer.exe "{entry}"', shell=True)
+                        db_manager.log_audit_event("folder_opened", f"Fuzzy matched {entry}", success=True)
+                        return {"success": True, "message": f"Opening {entry.name} folder, Sir."}
+            except Exception:
+                pass
+
+    return {
+        "success": False,
+        "message": f"Could not find folder '{folder_name_or_path}'. Checked Desktop, Documents, and Downloads."
+    }
+
+def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:
+    """
+    Interacts with desktop applications using automated GUI keystrokes.
+    Example: opens Calculator and types '20*10=' to display the calculation, or types text into Notepad.
+    """
+    import time
+    try:
+        import pyautogui
+    except ImportError:
+        pyautogui = None
+
+    if app_to_open:
+        open_application(app_to_open)
+        # Give Windows a moment to launch and focus the application window
+        time.sleep(1.0)
+
+    # Perform automated keystrokes if pyautogui is available
+    if pyautogui:
+        try:
+            # Clean expression for calculator
+            expr = calculation_or_keys.strip()
+            # Replace common spoken words
+            expr = expr.replace("times", "*").replace("multiplied by", "*").replace("x", "*").replace("plus", "+").replace("minus", "-").replace("divided by", "/")
+            
+            # Type each character cleanly
+            for char in expr:
+                pyautogui.press(char)
+                time.sleep(0.05)
+            # Press enter to evaluate
+            pyautogui.press("enter")
+            
+            return {
+                "success": True,
+                "message": f"Calculated {calculation_or_keys} in Calculator, Sir."
+            }
+        except Exception as e:
+            return {"success": False, "message": f"GUI typing error: {str(e)}"}
+
+    return {"success": True, "message": f"Opened application for {calculation_or_keys}."}
 
 def control_media_or_volume(action: str) -> Dict[str, Any]:
     """

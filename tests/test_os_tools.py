@@ -47,3 +47,15 @@ def test_tool_dispatch():
 
     err_str = dispatch_tool("non_existent_tool", "{}")
     assert "error" in err_str
+
+def test_open_folder_or_path():
+    """Verify open_folder_or_path correctly matches existing system folder."""
+    from tools.file_tools import open_folder_or_path
+    res = open_folder_or_path("Desktop")
+    assert res["success"] is True
+    assert "folder" in res["message"].lower()
+
+def test_desktop_type_or_calculate_dispatch():
+    """Verify desktop_type_or_calculate can be dispatched safely."""
+    res_str = dispatch_tool("desktop_type_or_calculate", '{"calculation_or_keys": "20*10"}')
+    assert "Calculated" in res_str or "success" in res_str

@@ -155,5 +155,43 @@ TOOL_SCHEMAS = [
                 "required": ["action"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "open_folder_or_path",
+            "description": "Locates and opens any user folder, directory, studies folder, or project in Windows File Explorer (e.g. 'Nikhil', 'studies', 'ApexCore', 'Downloads').",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "folder_name_or_path": {
+                        "type": "string",
+                        "description": "Folder name, directory name, or path to open in File Explorer."
+                    }
+                },
+                "required": ["folder_name_or_path"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "desktop_type_or_calculate",
+            "description": "Interacts with desktop applications using automated GUI keystrokes. Use when user asks to open Calculator and calculate something (e.g. '20 times 10', '500 plus 250'), or type text into an application.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "calculation_or_keys": {
+                        "type": "string",
+                        "description": "Mathematical expression or keystrokes to type (e.g. '20*10', '150+50')."
+                    },
+                    "app_to_open": {
+                        "type": "string",
+                        "description": "Optional application to launch first, e.g. 'calculator' or 'calc'."
+                    }
+                },
+                "required": ["calculation_or_keys"]
+            }
+        }
     }
 ]

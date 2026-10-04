@@ -1110,6 +1110,15 @@
         "documentation": {}
     },
     {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
         "label": "psutil",
         "kind": 6,
         "isExtraImport": true,
@@ -1438,7 +1447,7 @@
         "kind": 5,
         "importPath": "core.state",
         "description": "core.state",
-        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Universal Application Control: Launch ANY software or program (WhatsApp, Chrome, VS Code, Spotify, Discord, Notepad, Calculator, Paint, Settings) using `open_application`.\n4. Browser & Tab Navigation: Open ANY website or tab (YouTube, Wikipedia, Facebook, Instagram, GitHub, etc.) using `open_url`.\n5. Web & Video Search: If the user says \"search for X on YouTube\" or \"play X\", use `search_web_or_play(query=\"...\", platform=\"youtube\")`.\n6. Audio Controls: Control PC volume or playback (mute, volume_up, volume_down, play_pause) with `control_media_or_volume`.\n7. Vitals & DB: Report CPU, RAM, disk space using `get_system_vitals` or query SQLite databases.\n8. Tone: Address the user politely like Jarvis (\"Right away, Sir\", \"Opening WhatsApp now\"). Keep it human, warm, and brief.",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.\n4. Playing Songs & Videos: If the user asks to \"play a song\" or \"play X from Jailer 2 on YouTube\", use `search_web_or_play(query=\"...\", platform=\"youtube\")`. It automatically finds the top video and plays it immediately.\n5. Opening Folders & Projects: If the user asks to open a folder (e.g. \"Open folder Nikhil\", \"Open studies\", \"Open documents\"), use `open_folder_or_path(folder_name_or_path=\"...\")`.\n6. Universal Application Control: Launch ANY software or program (WhatsApp, Google Chrome, Google Antigravity, VS Code, Spotify, Discord, Notepad, Calculator, Paint, Settings) using `open_application`.\n7. Browser & Tab Navigation: Open ANY website or tab (YouTube, Wikipedia, Facebook, Instagram, GitHub, etc.) using `open_url`.\n8. Audio Controls: Control PC volume or playback (mute, volume_up, volume_down, play_pause) with `control_media_or_volume`.",
         "detail": "core.state",
         "documentation": {}
     },
@@ -1654,7 +1663,25 @@
         "kind": 2,
         "importPath": "tests.test_os_tools",
         "description": "tests.test_os_tools",
-        "peekOfCode": "def test_tool_dispatch():\n    \"\"\"Verify generic tool dispatcher handles valid and invalid requests.\"\"\"\n    res_str = dispatch_tool(\"get_system_vitals\", \"{}\")\n    assert \"cpu_usage_percent\" in res_str\n    err_str = dispatch_tool(\"non_existent_tool\", \"{}\")\n    assert \"error\" in err_str",
+        "peekOfCode": "def test_tool_dispatch():\n    \"\"\"Verify generic tool dispatcher handles valid and invalid requests.\"\"\"\n    res_str = dispatch_tool(\"get_system_vitals\", \"{}\")\n    assert \"cpu_usage_percent\" in res_str\n    err_str = dispatch_tool(\"non_existent_tool\", \"{}\")\n    assert \"error\" in err_str\ndef test_open_folder_or_path():\n    \"\"\"Verify open_folder_or_path correctly matches existing system folder.\"\"\"\n    from tools.file_tools import open_folder_or_path\n    res = open_folder_or_path(\"Desktop\")",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_open_folder_or_path",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_open_folder_or_path():\n    \"\"\"Verify open_folder_or_path correctly matches existing system folder.\"\"\"\n    from tools.file_tools import open_folder_or_path\n    res = open_folder_or_path(\"Desktop\")\n    assert res[\"success\"] is True\n    assert \"folder\" in res[\"message\"].lower()\ndef test_desktop_type_or_calculate_dispatch():\n    \"\"\"Verify desktop_type_or_calculate can be dispatched safely.\"\"\"\n    res_str = dispatch_tool(\"desktop_type_or_calculate\", '{\"calculation_or_keys\": \"20*10\"}')\n    assert \"Calculated\" in res_str or \"success\" in res_str",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_desktop_type_or_calculate_dispatch",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_desktop_type_or_calculate_dispatch():\n    \"\"\"Verify desktop_type_or_calculate can be dispatched safely.\"\"\"\n    res_str = dispatch_tool(\"desktop_type_or_calculate\", '{\"calculation_or_keys\": \"20*10\"}')\n    assert \"Calculated\" in res_str or \"success\" in res_str",
         "detail": "tests.test_os_tools",
         "documentation": {}
     },
@@ -1708,7 +1735,25 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def search_web_or_play(query: str, platform: str = \"youtube\") -> Dict[str, Any]:\n    \"\"\"\n    Searches Google, YouTube, or Wikipedia directly and opens the resulting page/video in Chrome.\n    Example: search_web_or_play(query=\"Interstellar soundtrack\", platform=\"youtube\")\n    \"\"\"\n    q_encoded = urllib.parse.quote(query.strip())\n    plat = platform.strip().lower()\n    if plat == \"youtube\":\n        target_url = f\"https://www.youtube.com/results?search_query={q_encoded}\"\n        label = f\"Searching YouTube for '{query}'\"",
+        "peekOfCode": "def search_web_or_play(query: str, platform: str = \"youtube\", play_direct: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Searches Google, YouTube, or Wikipedia directly and opens the resulting page or plays the video in Chrome.\n    If platform is 'youtube', automatically extracts the top video ID and opens the direct watch URL to play the song immediately!\n    \"\"\"\n    clean_query = query.strip()\n    q_encoded = urllib.parse.quote(clean_query)\n    plat = platform.strip().lower()\n    if plat == \"youtube\":\n        target_url = f\"https://www.youtube.com/results?search_query={q_encoded}\"",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "open_folder_or_path",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def open_folder_or_path(folder_name_or_path: str) -> Dict[str, Any]:\n    \"\"\"\n    Locates and opens any user folder, directory, or project in Windows Explorer or VS Code.\n    Searches Desktop, Documents, Downloads, user home directory, and common OneDrive paths.\n    \"\"\"\n    user_home = Path.home()\n    target_clean = folder_name_or_path.strip().strip('\"').strip(\"'\")\n    target_path = Path(target_clean)\n    # 1. Check direct path\n    if target_path.exists():",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "desktop_type_or_calculate",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Interacts with desktop applications using automated GUI keystrokes.\n    Example: opens Calculator and types '20*10=' to display the calculation, or types text into Notepad.\n    \"\"\"\n    import time\n    try:\n        import pyautogui\n    except ImportError:\n        pyautogui = None",
         "detail": "tools.file_tools",
         "documentation": {}
     },

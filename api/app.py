@@ -133,6 +133,18 @@ async def api_media_control(action: str):
     from tools.file_tools import control_media_or_volume
     return control_media_or_volume(action=action)
 
+@app.post("/api/tools/open-folder")
+async def api_open_folder(folder_name: str):
+    """Opens target user directory or project folder in Windows Explorer."""
+    from tools.file_tools import open_folder_or_path
+    return open_folder_or_path(folder_name)
+
+@app.post("/api/tools/desktop-calculate")
+async def api_desktop_calculate(calculation: str, app: Optional[str] = "calculator"):
+    """Performs automated GUI typing into desktop calculator."""
+    from tools.file_tools import desktop_type_or_calculate
+    return desktop_type_or_calculate(calculation_or_keys=calculation, app_to_open=app)
+
 @app.post("/api/tools/query-db")
 async def api_query_db(req: SQLRequest):
     """Executes safe read-only SQL queries against SQLite WAL tables."""

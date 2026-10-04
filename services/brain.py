@@ -70,7 +70,14 @@ class AgentBrain:
 
                 # If action tools returned user-facing messages (and not multi-step reasoning tools like DB or vitals query),
                 # yield that confirmation immediately to eliminate LLM latency!
-                action_tools = {"open_url", "open_application", "control_media_or_volume", "search_web_or_play"}
+                action_tools = {
+                    "open_url",
+                    "open_application",
+                    "control_media_or_volume",
+                    "search_web_or_play",
+                    "open_folder_or_path",
+                    "desktop_type_or_calculate"
+                }
                 executed_tool_names = {tc.function.name for tc in tool_calls}
                 if action_spoken_messages and executed_tool_names.issubset(action_tools):
                     immediate_reply = " ".join(action_spoken_messages)

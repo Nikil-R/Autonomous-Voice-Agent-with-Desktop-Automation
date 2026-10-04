@@ -4,7 +4,15 @@ import json
 from typing import Dict, Any, Callable
 from tools.schemas import TOOL_SCHEMAS
 from tools.system_tools import get_system_vitals, get_top_processes
-from tools.file_tools import search_files, open_application, open_url, search_web_or_play, control_media_or_volume
+from tools.file_tools import (
+    search_files,
+    open_application,
+    open_url,
+    search_web_or_play,
+    control_media_or_volume,
+    open_folder_or_path,
+    desktop_type_or_calculate
+)
 from tools.db_tools import query_local_db
 
 TOOL_REGISTRY: Dict[str, Callable] = {
@@ -15,6 +23,8 @@ TOOL_REGISTRY: Dict[str, Callable] = {
     "open_url": open_url,
     "search_web_or_play": search_web_or_play,
     "control_media_or_volume": control_media_or_volume,
+    "open_folder_or_path": open_folder_or_path,
+    "desktop_type_or_calculate": desktop_type_or_calculate,
     "query_local_db": query_local_db,
 }
 
