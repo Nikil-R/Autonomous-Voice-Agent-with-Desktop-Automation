@@ -396,6 +396,38 @@
         "documentation": {}
     },
     {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -637,6 +669,14 @@
     },
     {
         "label": "INPUT_SAMPLE_RATE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GEMINI_API_KEY",
         "importPath": "core.config",
         "description": "core.config",
         "isExtraImport": true,
@@ -1530,7 +1570,7 @@
         "kind": 5,
         "importPath": "core.state",
         "description": "core.state",
-        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. In-Tab Chrome Video & Media Controls: If the user says \"pause the video\", \"play the video\", \"mute the video\", \"unmute\", or \"forward 10 seconds\", use `control_chrome_tab_video(action=\"pause\"|\"play\"|\"toggle\"|\"mute\"|\"forward\")`.\n4. Clicking Search Results & Elements in Chrome: If the user says \"click the first search result\", \"click the top video\", or \"select the first result\", use `click_chrome_element(selector=\"first_result\")`.\n5. Filling In Search Boxes: If the user says \"fill in this search box with ...\" or \"type into Google search\", use `fill_chrome_search(query=\"...\", submit=True)`.\n6. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.\n7. Playing Songs & Videos: If the user asks to \"play a song\" or \"play X from Jailer 2 on YouTube\", use `search_web_or_play(query=\"...\", platform=\"youtube\")`. It automatically finds the top video and plays it immediately.\n8. Window Focus & Switching: If the user asks to focus or switch to an app (\"bring Chrome to the front\", \"focus VS Code\", \"switch to Calculator\"), use `focus_window(app_or_title=\"...\")`.",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Multimodal Screen Grounding & Visual Clicking: If the user says \"click the blue download button\", \"select the second song\", \"click the submit button\", or tells you to click something visually on screen, use `click_on_visual_target(target_description=\"...\")`. It takes a screenshot, locates the exact coordinates with Vision AI, and clicks it!\n4. Seeing and Inspecting Screen: If the user asks \"what is on my screen?\", \"look at this\", or asks to describe the screen, use `capture_and_analyze_screen(question_or_task=\"...\")`.\n5. In-Tab Chrome Video & Media Controls: If the user says \"pause the video\", \"play the video\", \"mute the video\", \"unmute\", or \"forward 10 seconds\", use `control_chrome_tab_video(action=\"pause\"|\"play\"|\"toggle\"|\"mute\"|\"forward\")`.\n6. Clicking Search Results & Elements in Chrome: If the user says \"click the first search result\", \"click the top video\", or \"select the first result\", use `click_chrome_element(selector=\"first_result\")`.\n7. Filling In Search Boxes: If the user says \"fill in this search box with ...\" or \"type into Google search\", use `fill_chrome_search(query=\"...\", submit=True)`.\n8. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.",
         "detail": "core.state",
         "documentation": {}
     },
@@ -1791,7 +1831,16 @@
         "kind": 2,
         "importPath": "tests.test_os_tools",
         "description": "tests.test_os_tools",
-        "peekOfCode": "def test_cdp_tools_dispatch():\n    \"\"\"Verify CDP browser tools can be safely dispatched.\"\"\"\n    res_v = dispatch_tool(\"control_chrome_tab_video\", '{\"action\": \"pause\"}')\n    assert \"success\" in res_v or \"message\" in res_v\n    res_c = dispatch_tool(\"click_chrome_element\", '{\"selector\": \"first_result\"}')\n    assert \"success\" in res_c or \"message\" in res_c\n    res_f = dispatch_tool(\"fill_chrome_search\", '{\"query\": \"interstellar soundtrack\", \"submit\": false}')\n    assert \"success\" in res_f or \"message\" in res_f",
+        "peekOfCode": "def test_cdp_tools_dispatch():\n    \"\"\"Verify CDP browser tools can be safely dispatched.\"\"\"\n    res_v = dispatch_tool(\"control_chrome_tab_video\", '{\"action\": \"pause\"}')\n    assert \"success\" in res_v or \"message\" in res_v\n    res_c = dispatch_tool(\"click_chrome_element\", '{\"selector\": \"first_result\"}')\n    assert \"success\" in res_c or \"message\" in res_c\n    res_f = dispatch_tool(\"fill_chrome_search\", '{\"query\": \"interstellar soundtrack\", \"submit\": false}')\n    assert \"success\" in res_f or \"message\" in res_f\ndef test_vision_grounding_dispatch():\n    \"\"\"Verify vision grounding tools can be safely dispatched.\"\"\"",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_vision_grounding_dispatch",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_vision_grounding_dispatch():\n    \"\"\"Verify vision grounding tools can be safely dispatched.\"\"\"\n    res_a = dispatch_tool(\"capture_and_analyze_screen\", '{\"question_or_task\": \"test inspection\"}')\n    assert \"success\" in res_a or \"message\" in res_a\n    res_click = dispatch_tool(\"click_on_visual_target\", '{\"target_description\": \"blue download button\"}')\n    assert \"success\" in res_click or \"message\" in res_click or \"found\" in res_click",
         "detail": "tests.test_os_tools",
         "documentation": {}
     },
@@ -1935,7 +1984,25 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def fill_chrome_search(query: str, submit: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Enters query text into the search box in the active Chrome tab and submits.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    return cdp_controller.fill_search_input(text=query, submit=submit)",
+        "peekOfCode": "def fill_chrome_search(query: str, submit: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Enters query text into the search box in the active Chrome tab and submits.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    return cdp_controller.fill_search_input(text=query, submit=submit)\ndef capture_and_analyze_screen(question_or_task: str = \"Describe what is currently visible on the screen.\") -> Dict[str, Any]:\n    \"\"\"\n    Captures a real-time screenshot and uses Multimodal Vision to inspect and explain the screen.\n    \"\"\"",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "capture_and_analyze_screen",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def capture_and_analyze_screen(question_or_task: str = \"Describe what is currently visible on the screen.\") -> Dict[str, Any]:\n    \"\"\"\n    Captures a real-time screenshot and uses Multimodal Vision to inspect and explain the screen.\n    \"\"\"\n    from tools.vision_grounding import vision_engine\n    return vision_engine.analyze_screen(question_or_task=question_or_task)\ndef click_on_visual_target(target_description: str, double_click: bool = False) -> Dict[str, Any]:\n    \"\"\"\n    Multimodal Screen Grounding: Captures the screen, uses Vision AI to identify the exact (x, y) coordinates\n    of any visual target (e.g. 'blue download button', 'second song', 'close icon', 'submit button'),",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "click_on_visual_target",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def click_on_visual_target(target_description: str, double_click: bool = False) -> Dict[str, Any]:\n    \"\"\"\n    Multimodal Screen Grounding: Captures the screen, uses Vision AI to identify the exact (x, y) coordinates\n    of any visual target (e.g. 'blue download button', 'second song', 'close icon', 'submit button'),\n    and moves the mouse to click it.\n    \"\"\"\n    from tools.vision_grounding import vision_engine\n    return vision_engine.click_on_visual_target(target_description=target_description, double_click=double_click)",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -1973,6 +2040,33 @@
         "description": "tools.system_tools",
         "peekOfCode": "def get_top_processes(sort_by: str = \"memory\", count: int = 5) -> List[Dict[str, Any]]:\n    \"\"\"\n    Enumerates running Windows processes sorted by memory consumption (RAM) or CPU usage.\n    Filters out system idle and zero-value background processes.\n    \"\"\"\n    count = min(max(1, count), 10)\n    sort_key = \"memory_percent\" if sort_by.lower() == \"memory\" else \"cpu_percent\"\n    processes = []\n    for proc in psutil.process_iter(['pid', 'name', 'memory_info', 'memory_percent', 'cpu_percent']):\n        try:",
         "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "VisionGroundingEngine",
+        "kind": 6,
+        "importPath": "tools.vision_grounding",
+        "description": "tools.vision_grounding",
+        "peekOfCode": "class VisionGroundingEngine:\n    \"\"\"Multimodal Vision Engine for desktop screen understanding and coordinate localization.\"\"\"\n    def __init__(self, api_key: str = GEMINI_API_KEY):\n        self.api_key = api_key\n        self.client = genai.Client(api_key=self.api_key) if (HAS_GENAI and self.api_key) else None\n        self.candidate_models = [\n            \"gemini-flash-lite-latest\",\n            \"gemini-flash-latest\",\n            \"gemini-2.5-flash\",\n            \"gemini-2.5-pro\"",
+        "detail": "tools.vision_grounding",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tools.vision_grounding",
+        "description": "tools.vision_grounding",
+        "peekOfCode": "logger = logging.getLogger(\"vision_grounding\")\ntry:\n    import pyautogui\n    import win32service\n    import win32con\n    HAS_GUI = True\nexcept ImportError:\n    HAS_GUI = False\ntry:\n    from google import genai",
+        "detail": "tools.vision_grounding",
+        "documentation": {}
+    },
+    {
+        "label": "vision_engine",
+        "kind": 5,
+        "importPath": "tools.vision_grounding",
+        "description": "tools.vision_grounding",
+        "peekOfCode": "vision_engine = VisionGroundingEngine()",
+        "detail": "tools.vision_grounding",
         "documentation": {}
     },
     {

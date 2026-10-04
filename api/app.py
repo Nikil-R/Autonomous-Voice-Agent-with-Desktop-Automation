@@ -169,6 +169,18 @@ async def api_chrome_fill_search(query: str, submit: bool = True):
     from tools.file_tools import fill_chrome_search
     return fill_chrome_search(query=query, submit=submit)
 
+@app.post("/api/tools/vision-analyze")
+async def api_vision_analyze(question: str = "Describe what is on screen"):
+    """Uses Multimodal Vision to inspect and describe the desktop screen."""
+    from tools.file_tools import capture_and_analyze_screen
+    return capture_and_analyze_screen(question_or_task=question)
+
+@app.post("/api/tools/vision-click")
+async def api_vision_click(target: str, double_click: bool = False):
+    """Uses Multimodal Vision grounding to find and click any visual element on screen."""
+    from tools.file_tools import click_on_visual_target
+    return click_on_visual_target(target_description=target, double_click=double_click)
+
 @app.post("/api/tools/query-db")
 async def api_query_db(req: SQLRequest):
     """Executes safe read-only SQL queries against SQLite WAL tables."""

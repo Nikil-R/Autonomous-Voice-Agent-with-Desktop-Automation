@@ -80,7 +80,9 @@ class AgentBrain:
                     "focus_window",
                     "control_chrome_tab_video",
                     "click_chrome_element",
-                    "fill_chrome_search"
+                    "fill_chrome_search",
+                    "click_on_visual_target",
+                    "capture_and_analyze_screen"
                 }
                 executed_tool_names = {tc.function.name for tc in tool_calls}
                 if action_spoken_messages and executed_tool_names.issubset(action_tools):

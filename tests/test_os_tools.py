@@ -81,3 +81,11 @@ def test_cdp_tools_dispatch():
 
     res_f = dispatch_tool("fill_chrome_search", '{"query": "interstellar soundtrack", "submit": false}')
     assert "success" in res_f or "message" in res_f
+
+def test_vision_grounding_dispatch():
+    """Verify vision grounding tools can be safely dispatched."""
+    res_a = dispatch_tool("capture_and_analyze_screen", '{"question_or_task": "test inspection"}')
+    assert "success" in res_a or "message" in res_a
+
+    res_click = dispatch_tool("click_on_visual_target", '{"target_description": "blue download button"}')
+    assert "success" in res_click or "message" in res_click or "found" in res_click

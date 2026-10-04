@@ -15,7 +15,9 @@ from tools.file_tools import (
     focus_window,
     control_chrome_tab_video,
     click_chrome_element,
-    fill_chrome_search
+    fill_chrome_search,
+    capture_and_analyze_screen,
+    click_on_visual_target
 )
 from tools.db_tools import query_local_db
 
@@ -33,6 +35,8 @@ TOOL_REGISTRY: Dict[str, Callable] = {
     "control_chrome_tab_video": control_chrome_tab_video,
     "click_chrome_element": click_chrome_element,
     "fill_chrome_search": fill_chrome_search,
+    "capture_and_analyze_screen": capture_and_analyze_screen,
+    "click_on_visual_target": click_on_visual_target,
     "query_local_db": query_local_db,
 }
 

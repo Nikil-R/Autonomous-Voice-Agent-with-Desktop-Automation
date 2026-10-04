@@ -266,5 +266,43 @@ TOOL_SCHEMAS = [
                 "required": ["query"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "capture_and_analyze_screen",
+            "description": "Takes a screenshot of the user's desktop screen and uses Multimodal Vision AI to see, inspect, and describe whatever is on display. Use when user says 'what is on my screen?', 'look at my screen', or asks about visible content.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "question_or_task": {
+                        "type": "string",
+                        "description": "What to inspect or answer based on the visible screen."
+                    }
+                },
+                "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "click_on_visual_target",
+            "description": "Multimodal Screen Grounding: Uses Vision AI to locate the exact (x, y) pixel coordinates of any visible button, icon, link, or object on screen and physically moves the mouse to click it. Use when user says 'click the blue download button', 'select the second song', 'click the submit button', 'click the close icon', or asks to click any visual target.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "target_description": {
+                        "type": "string",
+                        "description": "Natural language visual description of what to click (e.g. 'blue download button', 'second song in the list', 'search button')."
+                    },
+                    "double_click": {
+                        "type": "boolean",
+                        "description": "Whether to perform a double click instead of single click (default false)."
+                    }
+                },
+                "required": ["target_description"]
+            }
+        }
     }
 ]

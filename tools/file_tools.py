@@ -462,3 +462,19 @@ def fill_chrome_search(query: str, submit: bool = True) -> Dict[str, Any]:
     """
     from tools.cdp_controller import cdp_controller
     return cdp_controller.fill_search_input(text=query, submit=submit)
+
+def capture_and_analyze_screen(question_or_task: str = "Describe what is currently visible on the screen.") -> Dict[str, Any]:
+    """
+    Captures a real-time screenshot and uses Multimodal Vision to inspect and explain the screen.
+    """
+    from tools.vision_grounding import vision_engine
+    return vision_engine.analyze_screen(question_or_task=question_or_task)
+
+def click_on_visual_target(target_description: str, double_click: bool = False) -> Dict[str, Any]:
+    """
+    Multimodal Screen Grounding: Captures the screen, uses Vision AI to identify the exact (x, y) coordinates
+    of any visual target (e.g. 'blue download button', 'second song', 'close icon', 'submit button'),
+    and moves the mouse to click it.
+    """
+    from tools.vision_grounding import vision_engine
+    return vision_engine.click_on_visual_target(target_description=target_description, double_click=double_click)
