@@ -77,7 +77,10 @@ class AgentBrain:
                     "search_web_or_play",
                     "open_folder_or_path",
                     "desktop_type_or_calculate",
-                    "focus_window"
+                    "focus_window",
+                    "control_chrome_tab_video",
+                    "click_chrome_element",
+                    "fill_chrome_search"
                 }
                 executed_tool_names = {tc.function.name for tc in tool_calls}
                 if action_spoken_messages and executed_tool_names.issubset(action_tools):

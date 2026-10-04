@@ -218,20 +218,24 @@ def open_application(app_name: str) -> Dict[str, Any]:
 
 def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:
     """
-    Immediately opens any website or web address in Google Chrome or default browser.
+    Immediately opens any website or web address in Google Chrome with CDP remote debugging enabled.
     """
     clean_url = url.strip()
     if not clean_url.startswith("http://") and not clean_url.startswith("https://"):
         clean_url = f"https://{clean_url}"
 
     try:
-        # Non-blocking direct launch via start chrome
-        subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
+        from tools.cdp_controller import cdp_controller
+        cdp_controller.ensure_chrome_cdp(initial_url=clean_url)
     except Exception:
         try:
-            webbrowser.open_new_tab(clean_url)
-        except Exception as e:
-            return {"success": False, "message": f"Failed to open URL {clean_url}: {str(e)}"}
+            # Fallback direct launch via start chrome
+            subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
+        except Exception:
+            try:
+                webbrowser.open_new_tab(clean_url)
+            except Exception as e:
+                return {"success": False, "message": f"Failed to open URL {clean_url}: {str(e)}"}
 
     db_manager.log_audit_event("url_opened", f"Opened URL: {clean_url}", success=True)
     # Natural spoken message
@@ -436,3 +440,25 @@ def control_media_or_volume(action: str) -> Dict[str, Any]:
         return {"success": True, "message": f"Executed media control: {act}."}
     except Exception as e:
         return {"success": False, "message": f"Failed media action {act}: {str(e)}"}
+
+def control_chrome_tab_video(action: str = "toggle") -> Dict[str, Any]:
+    """
+    Directly controls HTML5 video playback inside Chrome tab via CDP JavaScript execution.
+    Actions: 'pause', 'play', 'toggle', 'mute', 'unmute', 'forward', 'rewind'.
+    """
+    from tools.cdp_controller import cdp_controller
+    return cdp_controller.control_tab_video(action=action)
+
+def click_chrome_element(selector: str = "first_result") -> Dict[str, Any]:
+    """
+    Clicks the first search result, top video link, or exact DOM selector in the active Chrome tab.
+    """
+    from tools.cdp_controller import cdp_controller
+    return cdp_controller.click_dom_element(selector=selector)
+
+def fill_chrome_search(query: str, submit: bool = True) -> Dict[str, Any]:
+    """
+    Enters query text into the search box in the active Chrome tab and submits.
+    """
+    from tools.cdp_controller import cdp_controller
+    return cdp_controller.fill_search_input(text=query, submit=submit)

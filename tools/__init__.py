@@ -12,7 +12,10 @@ from tools.file_tools import (
     control_media_or_volume,
     open_folder_or_path,
     desktop_type_or_calculate,
-    focus_window
+    focus_window,
+    control_chrome_tab_video,
+    click_chrome_element,
+    fill_chrome_search
 )
 from tools.db_tools import query_local_db
 
@@ -27,6 +30,9 @@ TOOL_REGISTRY: Dict[str, Callable] = {
     "open_folder_or_path": open_folder_or_path,
     "desktop_type_or_calculate": desktop_type_or_calculate,
     "focus_window": focus_window,
+    "control_chrome_tab_video": control_chrome_tab_video,
+    "click_chrome_element": click_chrome_element,
+    "fill_chrome_search": fill_chrome_search,
     "query_local_db": query_local_db,
 }
 

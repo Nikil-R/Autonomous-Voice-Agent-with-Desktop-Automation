@@ -308,6 +308,38 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -1098,21 +1130,48 @@
         "documentation": {}
     },
     {
-        "label": "shutil",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "shutil",
-        "description": "shutil",
-        "detail": "shutil",
-        "documentation": {}
-    },
-    {
         "label": "subprocess",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "subprocess",
         "description": "subprocess",
         "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "websockets",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "websockets",
+        "description": "websockets",
+        "detail": "websockets",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
         "documentation": {}
     },
     {
@@ -1134,15 +1193,6 @@
         "documentation": {}
     },
     {
-        "label": "urllib.request",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "urllib.request",
-        "description": "urllib.request",
-        "detail": "urllib.request",
-        "documentation": {}
-    },
-    {
         "label": "psutil",
         "kind": 6,
         "isExtraImport": true,
@@ -1158,15 +1208,6 @@
         "importPath": "ctypes",
         "description": "ctypes",
         "detail": "ctypes",
-        "documentation": {}
-    },
-    {
-        "label": "logging",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "logging",
-        "description": "logging",
-        "detail": "logging",
         "documentation": {}
     },
     {
@@ -1489,7 +1530,7 @@
         "kind": 5,
         "importPath": "core.state",
         "description": "core.state",
-        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.\n4. Playing Songs & Videos: If the user asks to \"play a song\" or \"play X from Jailer 2 on YouTube\", use `search_web_or_play(query=\"...\", platform=\"youtube\")`. It automatically finds the top video and plays it immediately.\n5. Opening Folders & Projects: If the user asks to open a folder (e.g. \"Open folder Nikhil\", \"Open studies\", \"Open documents\"), use `open_folder_or_path(folder_name_or_path=\"...\")`.\n6. Universal Application Control: Launch ANY software or program (WhatsApp, Google Chrome, Google Antigravity, VS Code, Spotify, Discord, Notepad, Calculator, Paint, Settings) using `open_application`.\n7. Browser & Tab Navigation: Open ANY website or tab (YouTube, Wikipedia, Facebook, Instagram, GitHub, etc.) using `open_url`.\n8. Audio Controls: Control PC volume or playback (mute, volume_up, volume_down, play_pause) with `control_media_or_volume`.",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. In-Tab Chrome Video & Media Controls: If the user says \"pause the video\", \"play the video\", \"mute the video\", \"unmute\", or \"forward 10 seconds\", use `control_chrome_tab_video(action=\"pause\"|\"play\"|\"toggle\"|\"mute\"|\"forward\")`.\n4. Clicking Search Results & Elements in Chrome: If the user says \"click the first search result\", \"click the top video\", or \"select the first result\", use `click_chrome_element(selector=\"first_result\")`.\n5. Filling In Search Boxes: If the user says \"fill in this search box with ...\" or \"type into Google search\", use `fill_chrome_search(query=\"...\", submit=True)`.\n6. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.\n7. Playing Songs & Videos: If the user asks to \"play a song\" or \"play X from Jailer 2 on YouTube\", use `search_web_or_play(query=\"...\", platform=\"youtube\")`. It automatically finds the top video and plays it immediately.\n8. Window Focus & Switching: If the user asks to focus or switch to an app (\"bring Chrome to the front\", \"focus VS Code\", \"switch to Calculator\"), use `focus_window(app_or_title=\"...\")`.",
         "detail": "core.state",
         "documentation": {}
     },
@@ -1732,7 +1773,7 @@
         "kind": 2,
         "importPath": "tests.test_os_tools",
         "description": "tests.test_os_tools",
-        "peekOfCode": "def test_window_manager_listing():\n    \"\"\"Verify WindowManager enumerates active desktop windows.\"\"\"\n    from tools.window_manager import window_manager\n    windows = window_manager.list_visible_windows()\n    assert isinstance(windows, list)\ndef test_focus_window_dispatch():\n    \"\"\"Verify focus_window tool can be safely called.\"\"\"\n    res_str = dispatch_tool(\"focus_window\", '{\"app_or_title\": \"Calculator\"}')\n    assert \"success\" in res_str or \"message\" in res_str",
+        "peekOfCode": "def test_window_manager_listing():\n    \"\"\"Verify WindowManager enumerates active desktop windows.\"\"\"\n    from tools.window_manager import window_manager\n    windows = window_manager.list_visible_windows()\n    assert isinstance(windows, list)\ndef test_focus_window_dispatch():\n    \"\"\"Verify focus_window tool can be safely called.\"\"\"\n    res_str = dispatch_tool(\"focus_window\", '{\"app_or_title\": \"Calculator\"}')\n    assert \"success\" in res_str or \"message\" in res_str\ndef test_cdp_tools_dispatch():",
         "detail": "tests.test_os_tools",
         "documentation": {}
     },
@@ -1741,8 +1782,44 @@
         "kind": 2,
         "importPath": "tests.test_os_tools",
         "description": "tests.test_os_tools",
-        "peekOfCode": "def test_focus_window_dispatch():\n    \"\"\"Verify focus_window tool can be safely called.\"\"\"\n    res_str = dispatch_tool(\"focus_window\", '{\"app_or_title\": \"Calculator\"}')\n    assert \"success\" in res_str or \"message\" in res_str",
+        "peekOfCode": "def test_focus_window_dispatch():\n    \"\"\"Verify focus_window tool can be safely called.\"\"\"\n    res_str = dispatch_tool(\"focus_window\", '{\"app_or_title\": \"Calculator\"}')\n    assert \"success\" in res_str or \"message\" in res_str\ndef test_cdp_tools_dispatch():\n    \"\"\"Verify CDP browser tools can be safely dispatched.\"\"\"\n    res_v = dispatch_tool(\"control_chrome_tab_video\", '{\"action\": \"pause\"}')\n    assert \"success\" in res_v or \"message\" in res_v\n    res_c = dispatch_tool(\"click_chrome_element\", '{\"selector\": \"first_result\"}')\n    assert \"success\" in res_c or \"message\" in res_c",
         "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_cdp_tools_dispatch",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_cdp_tools_dispatch():\n    \"\"\"Verify CDP browser tools can be safely dispatched.\"\"\"\n    res_v = dispatch_tool(\"control_chrome_tab_video\", '{\"action\": \"pause\"}')\n    assert \"success\" in res_v or \"message\" in res_v\n    res_c = dispatch_tool(\"click_chrome_element\", '{\"selector\": \"first_result\"}')\n    assert \"success\" in res_c or \"message\" in res_c\n    res_f = dispatch_tool(\"fill_chrome_search\", '{\"query\": \"interstellar soundtrack\", \"submit\": false}')\n    assert \"success\" in res_f or \"message\" in res_f",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ChromeCDPController",
+        "kind": 6,
+        "importPath": "tools.cdp_controller",
+        "description": "tools.cdp_controller",
+        "peekOfCode": "class ChromeCDPController:\n    \"\"\"Manages connection to Google Chrome via Chrome DevTools Protocol (CDP on port 9222).\"\"\"\n    def __init__(self, port: int = 9222, host: str = \"127.0.0.1\"):\n        self.port = port\n        self.host = host\n        self.base_url = f\"http://{self.host}:{self.port}\"\n        self.profile_dir = os.path.expanduser(\"~/.apex_chrome_profile\")\n    def is_cdp_active(self) -> bool:\n        \"\"\"Checks if Chrome is actively listening with remote debugging enabled.\"\"\"\n        try:",
+        "detail": "tools.cdp_controller",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tools.cdp_controller",
+        "description": "tools.cdp_controller",
+        "peekOfCode": "logger = logging.getLogger(\"cdp_controller\")\nclass ChromeCDPController:\n    \"\"\"Manages connection to Google Chrome via Chrome DevTools Protocol (CDP on port 9222).\"\"\"\n    def __init__(self, port: int = 9222, host: str = \"127.0.0.1\"):\n        self.port = port\n        self.host = host\n        self.base_url = f\"http://{self.host}:{self.port}\"\n        self.profile_dir = os.path.expanduser(\"~/.apex_chrome_profile\")\n    def is_cdp_active(self) -> bool:\n        \"\"\"Checks if Chrome is actively listening with remote debugging enabled.\"\"\"",
+        "detail": "tools.cdp_controller",
+        "documentation": {}
+    },
+    {
+        "label": "cdp_controller",
+        "kind": 5,
+        "importPath": "tools.cdp_controller",
+        "description": "tools.cdp_controller",
+        "peekOfCode": "cdp_controller = ChromeCDPController()",
+        "detail": "tools.cdp_controller",
         "documentation": {}
     },
     {
@@ -1786,7 +1863,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome or default browser.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    try:\n        # Non-blocking direct launch via start chrome\n        subprocess.Popen(f'start chrome \"{clean_url}\"', shell=True)",
+        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome with CDP remote debugging enabled.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    try:\n        from tools.cdp_controller import cdp_controller\n        cdp_controller.ensure_chrome_cdp(initial_url=clean_url)",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -1832,6 +1909,33 @@
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
         "peekOfCode": "def control_media_or_volume(action: str) -> Dict[str, Any]:\n    \"\"\"\n    Controls desktop volume, mute, or media keys using PowerShell audio simulation.\n    Actions: 'mute', 'volume_up', 'volume_down', 'play_pause'.\n    \"\"\"\n    act = action.strip().lower()\n    # Virtual key codes via WScript.Shell\n    key_codes = {\n        \"mute\": \"0xAD\",\n        \"volume_down\": \"0xAE\",",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "control_chrome_tab_video",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def control_chrome_tab_video(action: str = \"toggle\") -> Dict[str, Any]:\n    \"\"\"\n    Directly controls HTML5 video playback inside Chrome tab via CDP JavaScript execution.\n    Actions: 'pause', 'play', 'toggle', 'mute', 'unmute', 'forward', 'rewind'.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    return cdp_controller.control_tab_video(action=action)\ndef click_chrome_element(selector: str = \"first_result\") -> Dict[str, Any]:\n    \"\"\"\n    Clicks the first search result, top video link, or exact DOM selector in the active Chrome tab.",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "click_chrome_element",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def click_chrome_element(selector: str = \"first_result\") -> Dict[str, Any]:\n    \"\"\"\n    Clicks the first search result, top video link, or exact DOM selector in the active Chrome tab.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    return cdp_controller.click_dom_element(selector=selector)\ndef fill_chrome_search(query: str, submit: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Enters query text into the search box in the active Chrome tab and submits.\n    \"\"\"",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "fill_chrome_search",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def fill_chrome_search(query: str, submit: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Enters query text into the search box in the active Chrome tab and submits.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    return cdp_controller.fill_search_input(text=query, submit=submit)",
         "detail": "tools.file_tools",
         "documentation": {}
     },

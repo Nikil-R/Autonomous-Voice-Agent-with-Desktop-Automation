@@ -210,5 +210,61 @@ TOOL_SCHEMAS = [
                 "required": ["app_or_title"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "control_chrome_tab_video",
+            "description": "Controls video playback directly inside the open Chrome/YouTube tab using Chrome DevTools Protocol (CDP). Use when user says 'pause the video', 'play the video', 'mute the video', 'unmute', 'forward 10 seconds', or 'rewind'.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": ["pause", "play", "toggle", "mute", "unmute", "forward", "rewind"],
+                        "description": "Video playback action to perform inside the Chrome tab."
+                    }
+                },
+                "required": ["action"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "click_chrome_element",
+            "description": "Clicks an exact DOM element or top search result inside Google Chrome without guessing coordinates. Use when user says 'click the first search result', 'click the first video', or 'select the top result'.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "selector": {
+                        "type": "string",
+                        "description": "CSS selector or 'first_result' to click the top YouTube video or Google search result."
+                    }
+                },
+                "required": ["selector"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "fill_chrome_search",
+            "description": "Locates the search box in the active Chrome tab (YouTube, Google, Wikipedia) and enters text. Use when user says 'fill in this search box with ...' or 'type ... into Google search'.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Text query to type into the search box."
+                    },
+                    "submit": {
+                        "type": "boolean",
+                        "description": "Whether to press enter and submit search (default true)."
+                    }
+                },
+                "required": ["query"]
+            }
+        }
     }
 ]

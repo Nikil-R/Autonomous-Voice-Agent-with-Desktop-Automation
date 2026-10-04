@@ -70,3 +70,14 @@ def test_focus_window_dispatch():
     """Verify focus_window tool can be safely called."""
     res_str = dispatch_tool("focus_window", '{"app_or_title": "Calculator"}')
     assert "success" in res_str or "message" in res_str
+
+def test_cdp_tools_dispatch():
+    """Verify CDP browser tools can be safely dispatched."""
+    res_v = dispatch_tool("control_chrome_tab_video", '{"action": "pause"}')
+    assert "success" in res_v or "message" in res_v
+
+    res_c = dispatch_tool("click_chrome_element", '{"selector": "first_result"}')
+    assert "success" in res_c or "message" in res_c
+
+    res_f = dispatch_tool("fill_chrome_search", '{"query": "interstellar soundtrack", "submit": false}')
+    assert "success" in res_f or "message" in res_f

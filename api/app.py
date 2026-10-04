@@ -151,6 +151,24 @@ async def api_focus_window(title: str):
     from tools.file_tools import focus_window
     return focus_window(title)
 
+@app.post("/api/tools/chrome-video")
+async def api_chrome_video(action: str = "toggle"):
+    """Controls HTML5 video inside active Chrome tab via CDP."""
+    from tools.file_tools import control_chrome_tab_video
+    return control_chrome_tab_video(action=action)
+
+@app.post("/api/tools/chrome-click")
+async def api_chrome_click(selector: str = "first_result"):
+    """Clicks DOM element or top search result inside Chrome via CDP."""
+    from tools.file_tools import click_chrome_element
+    return click_chrome_element(selector=selector)
+
+@app.post("/api/tools/chrome-fill-search")
+async def api_chrome_fill_search(query: str, submit: bool = True):
+    """Fills search box in active Chrome tab via CDP."""
+    from tools.file_tools import fill_chrome_search
+    return fill_chrome_search(query=query, submit=submit)
+
 @app.post("/api/tools/query-db")
 async def api_query_db(req: SQLRequest):
     """Executes safe read-only SQL queries against SQLite WAL tables."""
