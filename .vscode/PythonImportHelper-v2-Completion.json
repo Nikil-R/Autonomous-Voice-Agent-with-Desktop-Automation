@@ -127,14 +127,6 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -1718,7 +1710,7 @@
         "kind": 2,
         "importPath": "services.tts",
         "description": "services.tts",
-        "peekOfCode": "def clean_text_for_speech(text: str) -> str:\n    \"\"\"\n    Cleans text before voice synthesis to prevent TTS from reading out\n    formatting symbols like asterisks, hashtags, backticks, underscores, or bullet dashes.\n    Converts numbers and symbols into natural human speech.\n    \"\"\"\n    if not text:\n        return \"\"\n    # Strip markdown headers (###), bold/italic asterisks (***, **, *), underscores (_), backticks (`)\n    cleaned = re.sub(r'[*_#`~]', '', text)",
+        "peekOfCode": "def clean_text_for_speech(text: str) -> str:\n    \"\"\"\n    Cleans text before voice synthesis to prevent TTS from reading out\n    formatting symbols like asterisks, hashtags, backticks, underscores, or bullet dashes.\n    Converts numbers and symbols into natural human speech.\n    \"\"\"\n    if not text:\n        return \"\"\n    # 1. Convert mathematical operations into natural spoken English\n    # Examples: \"20 * 10\" -> \"20 times 10\", \"500 + 250\" -> \"500 plus 250\"",
         "detail": "services.tts",
         "documentation": {}
     },
@@ -1970,7 +1962,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome with CDP remote debugging enabled.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    try:\n        from tools.cdp_controller import cdp_controller\n        cdp_controller.ensure_chrome_cdp(initial_url=clean_url)",
+        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome using the user's regular profile.\n    Never uses isolated guest profiles or blocking sleep loops.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    opened = False\n    # 1. Try launching in user's standard Google Chrome",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -2006,7 +1998,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Interacts with desktop applications using window state awareness and automated GUI keystrokes.\n    Example: opens Calculator, explicitly focuses its window, and types '20*10=' to display the calculation.\n    \"\"\"\n    import time\n    from tools.window_manager import window_manager\n    try:\n        import pyautogui\n    except ImportError:",
+        "peekOfCode": "def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Interacts with desktop applications using window state awareness and automated GUI keystrokes.\n    Reuses existing Calculator instance if already open instead of spawning duplicate windows.\n    Evaluates the calculation directly to announce the complete answer naturally.\n    \"\"\"\n    import time\n    from tools.window_manager import window_manager\n    try:\n        import pyautogui",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -2024,7 +2016,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def control_chrome_tab_video(action: str = \"toggle\") -> Dict[str, Any]:\n    \"\"\"\n    Directly controls HTML5 video playback inside Chrome tab via CDP JavaScript execution.\n    Actions: 'pause', 'play', 'toggle', 'mute', 'unmute', 'forward', 'rewind'.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    return cdp_controller.control_tab_video(action=action)\ndef click_chrome_element(selector: str = \"first_result\") -> Dict[str, Any]:\n    \"\"\"\n    Clicks the first search result, top video link, or exact DOM selector in the active Chrome tab.",
+        "peekOfCode": "def control_chrome_tab_video(action: str = \"toggle\") -> Dict[str, Any]:\n    \"\"\"\n    Directly controls HTML5 video playback inside Chrome tab via CDP JavaScript execution.\n    Actions: 'pause', 'play', 'toggle', 'mute', 'unmute', 'forward', 'rewind'.\n    Automatically falls back to Windows system media key (play_pause) if CDP is not connected.\n    \"\"\"\n    from tools.cdp_controller import cdp_controller\n    if cdp_controller.is_cdp_active():\n        res = cdp_controller.control_tab_video(action=action)\n        if res.get(\"success\"):",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -2105,7 +2097,7 @@
         "kind": 6,
         "importPath": "tools.vision_grounding",
         "description": "tools.vision_grounding",
-        "peekOfCode": "class VisionGroundingEngine:\n    \"\"\"Multimodal Vision Engine for desktop screen understanding and coordinate localization.\"\"\"\n    def __init__(self, api_key: str = GEMINI_API_KEY):\n        self.api_key = api_key\n        self.client = genai.Client(api_key=self.api_key) if (HAS_GENAI and self.api_key) else None\n        self.candidate_models = [\n            \"gemini-flash-lite-latest\",\n            \"gemini-flash-latest\",\n            \"gemini-2.5-flash\",\n            \"gemini-2.5-pro\"",
+        "peekOfCode": "class VisionGroundingEngine:\n    \"\"\"Multimodal Vision Engine for desktop screen understanding and coordinate localization.\"\"\"\n    def __init__(self, api_key: str = GEMINI_API_KEY):\n        self.api_key = api_key\n        self.client = genai.Client(api_key=self.api_key) if (HAS_GENAI and self.api_key) else None\n        self.candidate_models = [\n            \"gemini-2.5-flash\",\n            \"gemini-flash-latest\",\n            \"gemini-flash-lite-latest\",\n            \"gemini-2.5-pro\"",
         "detail": "tools.vision_grounding",
         "documentation": {}
     },
@@ -2170,15 +2162,6 @@
         "description": "main",
         "peekOfCode": "__all__ = [\"app\"]",
         "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "check_environment",
-        "kind": 2,
-        "importPath": "run",
-        "description": "run",
-        "peekOfCode": "def check_environment():\n    \"\"\"Validates runtime prerequisites and keys.\"\"\"\n    if not GROQ_API_KEY:\n        print(\"\\n❌ Error: GROQ_API_KEY is not set in ApexCore/.env or environment.\")\n        print(\"Please configure your GROQ_API_KEY in ApexCore/.env before launching.\\n\")\n        sys.exit(1)\nasync def main():\n    check_environment()\n    orchestrator = FullDuplexOrchestrator()\n    try:",
-        "detail": "run",
         "documentation": {}
     },
     {
