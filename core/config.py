@@ -27,7 +27,7 @@ TTS_VOICE = "en-US-ChristopherNeural"  # Professional energetic neural voice
 VAD_MODEL_PATH = BASE_DIR / "models" / "silero_vad.onnx"
 SPEECH_PROB_THRESHOLD = 0.55
 INTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)
-SILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end
+SILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs
 SILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)
 
 # Models

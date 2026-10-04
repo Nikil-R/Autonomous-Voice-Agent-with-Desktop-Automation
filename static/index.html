@@ -652,54 +652,132 @@
 
     <script>
         let isListening = false;
+        let continuousMode = true; // Full-duplex continuous voice session
         let recognition = null;
+        let speechBuffer = "";
+        let silenceTimer = null;
+        let currentAudio = null;
 
-        // Initialize Speech Recognition if browser supports it
+        function stopCurrentAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+        }
+
+        // Initialize Speech Recognition
         if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
             const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
             recognition = new SpeechRec();
-            recognition.continuous = false;
-            recognition.interimResults = false;
+            recognition.continuous = true;
+            recognition.interimResults = true;
             recognition.lang = 'en-US';
 
             recognition.onstart = () => {
                 isListening = true;
                 const orb = document.getElementById('voiceOrb');
                 orb.className = 'voice-orb listening';
-                document.getElementById('orbStatus').innerText = 'Listening to voice...';
+                document.getElementById('orbStatus').innerText = 'Continuous Voice Active (Listening...)';
+                document.getElementById('orbSubtext').innerText = 'Speak anytime! Press Space (outside text box) to toggle on/off.';
             };
 
             recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                document.getElementById('chatInput').value = transcript;
-                sendMessage();
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+
+                // BARGE-IN: If user speaks anything while assistant audio is playing, STOP audio instantly!
+                if (interimTranscript.trim().length > 0 || finalTranscript.trim().length > 0) {
+                    if (currentAudio && !currentAudio.paused) {
+                        console.log("🚨 Instant Barge-In: Halting assistant playback immediately!");
+                        stopCurrentAudio();
+                        document.getElementById('voiceOrb').className = 'voice-orb listening';
+                        document.getElementById('orbStatus').innerText = 'Interrupted! Listening to you...';
+                    }
+                }
+
+                if (finalTranscript.trim().length > 0) {
+                    speechBuffer += " " + finalTranscript.trim();
+                }
+
+                // Natural endpoint debounce: Wait 1.0 second of silence after finishing speaking
+                // so natural pauses during long 10-15 word sentences don't prematurely cut you off!
+                clearTimeout(silenceTimer);
+                silenceTimer = setTimeout(() => {
+                    const textToSend = (speechBuffer + " " + interimTranscript).trim();
+                    if (textToSend.length > 0) {
+                        speechBuffer = "";
+                        document.getElementById('chatInput').value = textToSend;
+                        sendMessage();
+                    }
+                }, 1000);
             };
 
             recognition.onend = () => {
-                isListening = false;
-                const orb = document.getElementById('voiceOrb');
-                orb.className = 'voice-orb';
-                document.getElementById('orbStatus').innerText = 'Click Orb to Speak';
+                // If in continuous mode, automatically restart recognition so connection stays alive
+                if (continuousMode && isListening) {
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        // Already started or busy
+                    }
+                } else {
+                    isListening = false;
+                    document.getElementById('voiceOrb').className = 'voice-orb';
+                    document.getElementById('orbStatus').innerText = 'Voice Paused (Press Space or Click Orb)';
+                }
             };
 
-            recognition.onerror = () => {
-                isListening = false;
-                document.getElementById('voiceOrb').className = 'voice-orb';
-                document.getElementById('orbStatus').innerText = 'Click Orb to Speak';
+            recognition.onerror = (err) => {
+                console.warn("Speech recognition notice:", err.error);
+                if (err.error === 'no-speech') {
+                    // Normal idle timeout, keep connection alive if continuous
+                    return;
+                }
             };
         }
 
         function toggleMic() {
             if (!recognition) {
-                alert('Browser speech recognition not supported in this browser. Please use the text input below.');
+                alert('Speech recognition is not supported in this browser. Please use Google Chrome or Edge.');
                 return;
             }
             if (isListening) {
+                continuousMode = false;
+                isListening = false;
+                stopCurrentAudio();
                 recognition.stop();
+                document.getElementById('voiceOrb').className = 'voice-orb';
+                document.getElementById('orbStatus').innerText = 'Voice Off (Press Space or Click Orb)';
             } else {
-                recognition.start();
+                continuousMode = true;
+                isListening = true;
+                stopCurrentAudio();
+                try {
+                    recognition.start();
+                } catch (e) {}
             }
         }
+
+        // Global Hotkey: Press Spacebar (when not typing in an input field) to toggle voice
+        window.addEventListener('keydown', (e) => {
+            const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+            if (activeTag === 'input' || activeTag === 'textarea') {
+                return;
+            }
+            if (e.code === 'Space') {
+                e.preventDefault();
+                toggleMic();
+            }
+        });
 
         async function fetchVitals() {
             try {

@@ -1304,7 +1304,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "CHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end",
+        "peekOfCode": "CHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1313,7 +1313,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "DTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)",
+        "peekOfCode": "DTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1322,7 +1322,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "OUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"",
+        "peekOfCode": "OUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1331,7 +1331,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "TTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"",
+        "peekOfCode": "TTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1340,7 +1340,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "VAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"",
+        "peekOfCode": "VAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1349,7 +1349,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "SPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "SPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1358,7 +1358,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "INTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "INTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1367,7 +1367,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "SILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "SILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
