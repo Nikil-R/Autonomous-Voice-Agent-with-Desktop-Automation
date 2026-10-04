@@ -1066,6 +1066,14 @@
         "documentation": {}
     },
     {
+        "label": "app",
+        "importPath": "api.app",
+        "description": "api.app",
+        "isExtraImport": true,
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
         "label": "shutil",
         "kind": 6,
         "isExtraImport": true,
@@ -1108,15 +1116,6 @@
         "importPath": "psutil",
         "description": "psutil",
         "detail": "psutil",
-        "documentation": {}
-    },
-    {
-        "label": "uvicorn",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uvicorn",
-        "description": "uvicorn",
-        "detail": "uvicorn",
         "documentation": {}
     },
     {
@@ -1759,20 +1758,20 @@
         "documentation": {}
     },
     {
-        "label": "main",
-        "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def main():\n    print(\"\\n\" + \"=\" * 65)\n    print(\"🚀 APEXCORE BACKEND SERVER INITIALIZING\")\n    print(\"Serving on http://127.0.0.1:8000\")\n    print(\"Interactive UI:       http://127.0.0.1:8000\")\n    print(\"Interactive Swagger:  http://127.0.0.1:8000/docs\")\n    print(\"=\" * 65 + \"\\n\")\n    uvicorn.run(\n        \"api.app:app\",\n        host=\"127.0.0.1\",",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
         "label": "BASE_DIR",
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(BASE_DIR))\nif hasattr(sys.stdout, \"reconfigure\"):\n    sys.stdout.reconfigure(encoding=\"utf-8\")\nif hasattr(sys.stderr, \"reconfigure\"):\n    sys.stderr.reconfigure(encoding=\"utf-8\")\ndef main():\n    print(\"\\n\" + \"=\" * 65)\n    print(\"🚀 APEXCORE BACKEND SERVER INITIALIZING\")\n    print(\"Serving on http://127.0.0.1:8000\")",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nif str(BASE_DIR) not in sys.path:\n    sys.path.insert(0, str(BASE_DIR))\n# Import the FastAPI instance\nfrom api.app import app\n__all__ = [\"app\"]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "__all__ = [\"app\"]",
         "detail": "main",
         "documentation": {}
     },

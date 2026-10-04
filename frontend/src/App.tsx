@@ -4,39 +4,46 @@ import {
   MicOff, 
   Volume2, 
   Cpu, 
-  Activity, 
   Sparkles, 
   Command, 
   ChevronDown, 
   ChevronUp, 
-  Maximize2, 
-  Minimize2,
-  X,
-  Radio
+  Radio 
 } from 'lucide-react';
 import './App.css';
 
 const API_BASE = 'http://127.0.0.1:8000';
 
-export default function App() {
-  const [isListening, setIsListening] = useState(false);
-  const [continuousMode, setContinuousMode] = useState(true);
-  const [status, setStatus] = useState('idle'); // 'idle' | 'listening' | 'thinking' | 'speaking'
-  const [interimText, setInterimText] = useState('');
-  const [lastResponse, setLastResponse] = useState('');
-  const [expanded, setExpanded] = useState(false);
-  const [vitals, setVitals] = useState({ cpu: 0, ram: 0, disk: 0 });
-  const [history, setHistory] = useState([
-    { role: 'assistant', text: 'Jarvis HUD active. Press Spacebar or click the Notch to speak.' }
+interface VitalsData {
+  cpu: number;
+  ram: number;
+  disk: number;
+}
+
+interface ChatMessage {
+  role: 'user' | 'assistant';
+  text: string;
+}
+
+export default function App(): React.JSX.Element {
+  const [isListening, setIsListening] = useState<boolean>(false);
+  const [continuousMode, setContinuousMode] = useState<boolean>(true);
+  const [status, setStatus] = useState<'idle' | 'listening' | 'thinking' | 'speaking'>('idle');
+  const [interimText, setInterimText] = useState<string>('');
+  const [lastResponse, setLastResponse] = useState<string>('');
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const [vitals, setVitals] = useState<VitalsData>({ cpu: 0, ram: 0, disk: 0 });
+  const [history, setHistory] = useState<ChatMessage[]>([
+    { role: 'assistant', text: 'Jarvis Voice Notch is online. Press Spacebar or click to speak.' }
   ]);
 
-  const recognitionRef = useRef(null);
-  const currentAudioRef = useRef(null);
-  const silenceTimerRef = useRef(null);
-  const speechBufferRef = useRef('');
+  const recognitionRef = useRef<any>(null);
+  const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+  const silenceTimerRef = useRef<any>(null);
+  const speechBufferRef = useRef<string>('');
 
   // Stop currently playing audio immediately (Instant Barge-In)
-  const stopAudio = () => {
+  const stopAudio = (): void => {
     if (currentAudioRef.current) {
       currentAudioRef.current.pause();
       currentAudioRef.current.currentTime = 0;
@@ -56,7 +63,7 @@ export default function App() {
           disk: data.disk_c_free_gb || 0
         });
       } catch (e) {
-        // Backend offline or booting
+        // Backend offline or reloading
       }
     };
     fetchVitals();
@@ -66,8 +73,9 @@ export default function App() {
 
   // Web Speech Recognition Setup
   useEffect(() => {
+    const windowAny = window as any;
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRec = windowAny.SpeechRecognition || windowAny.webkitSpeechRecognition;
       const rec = new SpeechRec();
       rec.continuous = true;
       rec.interimResults = true;
@@ -78,7 +86,7 @@ export default function App() {
         setStatus('listening');
       };
 
-      rec.onresult = (event) => {
+      rec.onresult = (event: any) => {
         let interim = '';
         let final = '';
 
@@ -128,7 +136,7 @@ export default function App() {
         }
       };
 
-      rec.onerror = (err) => {
+      rec.onerror = (err: any) => {
         if (err.error !== 'no-speech') {
           console.warn('Speech error:', err.error);
         }
@@ -139,7 +147,7 @@ export default function App() {
   }, [continuousMode, isListening]);
 
   // Send message to FastAPI Backend
-  const sendUserMessage = async (prompt) => {
+  const sendUserMessage = async (prompt: string): Promise<void> => {
     stopAudio();
     setStatus('thinking');
     setHistory((prev) => [...prev, { role: 'user', text: prompt }]);
@@ -176,7 +184,7 @@ export default function App() {
   };
 
   // Toggle voice recognition
-  const toggleVoice = () => {
+  const toggleVoice = (): void => {
     if (!recognitionRef.current) return;
     if (isListening) {
       setContinuousMode(false);
@@ -196,7 +204,7 @@ export default function App() {
 
   // Global Hotkey (Spacebar) to toggle continuous listening
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
       if (tag === 'input' || tag === 'textarea') return;
 
@@ -226,7 +234,7 @@ export default function App() {
                 <span className="bar bar-3"></span>
               </div>
             ) : status === 'speaking' ? (
-              <Volume2 className="icon-pulse animate-spin-slow" size={18} />
+              <Volume2 className="icon-pulse" size={18} />
             ) : status === 'thinking' ? (
               <Sparkles className="icon-pulse" size={18} />
             ) : (
@@ -257,7 +265,7 @@ export default function App() {
           {/* Expand HUD Toggle */}
           <button 
             className="expand-btn interactive"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation();
               setExpanded(!expanded);
             }}
@@ -268,7 +276,7 @@ export default function App() {
 
         {/* 📋 Expanded HUD Tray when clicked */}
         {expanded && (
-          <div className="hud-expanded-tray interactive" onClick={(e) => e.stopPropagation()}>
+          <div className="hud-expanded-tray interactive" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
             <div className="hud-tray-header">
               <div className="hud-vitals-row">
                 <div className="hud-metric">
@@ -305,12 +313,13 @@ export default function App() {
             {/* Manual Command Input */}
             <form 
               className="hud-input-row"
-              onSubmit={(e) => {
+              onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
-                const val = e.target.elements.cmd.value.trim();
-                if (val) {
-                  sendUserMessage(val);
-                  e.target.elements.cmd.value = '';
+                const form = e.currentTarget;
+                const input = form.elements.namedItem('cmd') as HTMLInputElement;
+                if (input && input.value.trim()) {
+                  sendUserMessage(input.value.trim());
+                  input.value = '';
                 }
               }}
             >
