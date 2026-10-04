@@ -1151,7 +1151,7 @@
         "kind": 6,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "class URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern ApexCore Web UI.\"\"\"",
+        "peekOfCode": "class URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Jarvis Dynamic Notch React UI.\"\"\"",
         "detail": "api.app",
         "documentation": {}
     },
@@ -1160,7 +1160,7 @@
         "kind": 6,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "class FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern ApexCore Web UI.\"\"\"\n    return FileResponse(STATIC_DIR / \"index.html\")\n@app.get(\"/api/health\")\nasync def health_check():",
+        "peekOfCode": "class FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Jarvis Dynamic Notch React UI.\"\"\"\n    if REACT_DIST_DIR.exists() and (REACT_DIST_DIR / \"index.html\").exists():\n        return FileResponse(REACT_DIST_DIR / \"index.html\")\n    return FileResponse(STATIC_DIR / \"index.html\")",
         "detail": "api.app",
         "documentation": {}
     },
@@ -1183,11 +1183,20 @@
         "documentation": {}
     },
     {
+        "label": "REACT_DIST_DIR",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "REACT_DIST_DIR = BASE_DIR / \"frontend\" / \"dist\"\nSTATIC_DIR = BASE_DIR / \"static\"\nif REACT_DIST_DIR.exists():\n    app.mount(\"/assets\", StaticFiles(directory=str(REACT_DIST_DIR / \"assets\")), name=\"assets\")\napp.mount(\"/static\", StaticFiles(directory=str(STATIC_DIR)), name=\"static\")\n# Shared backend instances\nstate = ConversationState()\nbrain = AgentBrain()\ntts = TTSService()\nchunker = SentenceChunker()",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
         "label": "STATIC_DIR",
         "kind": 5,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "STATIC_DIR = BASE_DIR / \"static\"\napp.mount(\"/static\", StaticFiles(directory=str(STATIC_DIR)), name=\"static\")\n# Shared backend instances\nstate = ConversationState()\nbrain = AgentBrain()\ntts = TTSService()\nchunker = SentenceChunker()\ntelemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):",
+        "peekOfCode": "STATIC_DIR = BASE_DIR / \"static\"\nif REACT_DIST_DIR.exists():\n    app.mount(\"/assets\", StaticFiles(directory=str(REACT_DIST_DIR / \"assets\")), name=\"assets\")\napp.mount(\"/static\", StaticFiles(directory=str(STATIC_DIR)), name=\"static\")\n# Shared backend instances\nstate = ConversationState()\nbrain = AgentBrain()\ntts = TTSService()\nchunker = SentenceChunker()\ntelemetry = TelemetryProfiler()",
         "detail": "api.app",
         "documentation": {}
     },

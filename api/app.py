@@ -44,8 +44,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static frontend
+# Mount React frontend build directory if available, else static
+REACT_DIST_DIR = BASE_DIR / "frontend" / "dist"
 STATIC_DIR = BASE_DIR / "static"
+
+if REACT_DIST_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=str(REACT_DIST_DIR / "assets")), name="assets")
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 # Shared backend instances
@@ -76,7 +80,9 @@ class FileSearchRequest(BaseModel):
 
 @app.get("/", include_in_schema=False)
 async def serve_index():
-    """Serves the modern ApexCore Web UI."""
+    """Serves the modern Jarvis Dynamic Notch React UI."""
+    if REACT_DIST_DIR.exists() and (REACT_DIST_DIR / "index.html").exists():
+        return FileResponse(REACT_DIST_DIR / "index.html")
     return FileResponse(STATIC_DIR / "index.html")
 
 @app.get("/api/health")
