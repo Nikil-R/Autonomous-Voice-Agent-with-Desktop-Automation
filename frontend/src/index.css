@@ -1,14 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --bg-notch: rgba(13, 17, 23, 0.82);
-  --border-notch: rgba(255, 255, 255, 0.12);
-  --glow-idle: rgba(99, 102, 241, 0.35);
-  --glow-listening: rgba(16, 185, 129, 0.6);
-  --glow-speaking: rgba(6, 182, 212, 0.65);
-  --glow-thinking: rgba(245, 158, 11, 0.6);
-  --color-text: #f8fafc;
-  --color-muted: #94a3b8;
+  /* Premium Slate Titanium & Muted Mineral Palette (non-black, non-white, refined) */
+  --surface-notch: rgba(28, 32, 42, 0.88);
+  --surface-card: rgba(33, 38, 50, 0.94);
+  --surface-elevated: rgba(41, 47, 62, 0.75);
+  
+  --border-subtle: rgba(148, 163, 184, 0.16);
+  --border-active: rgba(129, 140, 248, 0.4);
+  
+  --accent-primary: #818cf8;
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
+  --accent-cyan: #38bdf8;
+  
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --shadow-notch: 0 16px 40px -10px rgba(8, 11, 18, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --shadow-active: 0 20px 48px -8px rgba(8, 11, 18, 0.75), 0 0 0 1px rgba(129, 140, 248, 0.35);
 }
 
 * {
@@ -19,28 +30,35 @@
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: transparent;
-  color: var(--color-text);
+  color: var(--text-primary);
   overflow: hidden;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  pointer-events: none; /* Let clicks pass through outside UI elements */
+  pointer-events: none; /* Pass-through clicks outside floating elements */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Allow interaction with all HUD and notch components */
+/* Allow click interaction on HUD and floating notch elements */
 .interactive {
   pointer-events: auto;
 }
 
-/* Custom Scrollbar */
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
 }

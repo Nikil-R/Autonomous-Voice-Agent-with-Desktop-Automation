@@ -391,20 +391,29 @@ def desktop_type_or_calculate(calculation_or_keys: str, app_to_open: Optional[st
     is_calc = "calc" in target_app.lower()
 
     # 1. Window State Awareness: Check if app/calculator is already running
-    existing = window_manager.find_window_by_keyword(target_app)
-    if existing:
-        hwnd, title = existing
-        window_manager.focus_and_foreground_window(hwnd)
-        time.sleep(0.15)
-        # In Calculator, clear prior screen with Escape so new calculation is fresh
-        if pyautogui and is_calc:
-            pyautogui.press("escape")
-            time.sleep(0.05)
-    else:
-        # Launch new instance only if not already open
-        open_application(target_app)
-        window_manager.wait_and_focus_window(target_app, timeout_seconds=2.5)
-        time.sleep(0.2)
+    if pyautogui:
+        pyautogui.FAILSAFE = False
+
+    try:
+        existing = window_manager.find_window_by_keyword(target_app)
+        if existing:
+            hwnd, title = existing
+            window_manager.focus_and_foreground_window(hwnd)
+            time.sleep(0.15)
+            # In Calculator, clear prior screen with Escape so new calculation is fresh
+            if pyautogui and is_calc:
+                try:
+                    pyautogui.press("escape")
+                except Exception:
+                    pass
+                time.sleep(0.05)
+        else:
+            # Launch new instance only if not already open
+            open_application(target_app)
+            window_manager.wait_and_focus_window(target_app, timeout_seconds=2.5)
+            time.sleep(0.2)
+    except Exception as e:
+        print(f"[Calculator window focus warning]: {e}")
 
     # 2. Clean and evaluate expression
     raw_expr = calculation_or_keys.strip()

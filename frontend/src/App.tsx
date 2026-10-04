@@ -3,7 +3,6 @@ import {
   Mic, 
   MicOff, 
   Volume2, 
-  Cpu, 
   Sparkles, 
   Command, 
   ChevronDown, 
@@ -13,12 +12,6 @@ import {
 import './App.css';
 
 const API_BASE = 'http://127.0.0.1:8000';
-
-interface VitalsData {
-  cpu: number;
-  ram: number;
-  disk: number;
-}
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -32,7 +25,6 @@ export default function App(): React.JSX.Element {
   const [interimText, setInterimText] = useState<string>('');
   const [lastResponse, setLastResponse] = useState<string>('');
   const [expanded, setExpanded] = useState<boolean>(false);
-  const [vitals, setVitals] = useState<VitalsData>({ cpu: 0, ram: 0, disk: 0 });
   const [history, setHistory] = useState<ChatMessage[]>([
     { role: 'assistant', text: 'Jarvis Voice Notch is online. Press Spacebar or click to speak.' }
   ]);
@@ -131,26 +123,6 @@ export default function App(): React.JSX.Element {
       if (wsRef.current) wsRef.current.close();
     };
   }, [isListening]);
-
-  // Fetch real-time vitals
-  useEffect(() => {
-    const fetchVitals = async () => {
-      try {
-        const res = await fetch(`${API_BASE}/api/tools/vitals`);
-        const data = await res.json();
-        setVitals({
-          cpu: data.cpu_usage_percent || 0,
-          ram: data.ram_percent || 0,
-          disk: data.disk_c_free_gb || 0
-        });
-      } catch (e) {
-        // Backend offline or reloading
-      }
-    };
-    fetchVitals();
-    const interval = setInterval(fetchVitals, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Web Speech Recognition Setup
   useEffect(() => {
@@ -346,46 +318,31 @@ export default function App(): React.JSX.Element {
             </span>
           </div>
 
-          {/* Quick Stats Pill */}
-          <div className="notch-vitals">
-            <Cpu size={14} className="vital-icon" />
-            <span className="vital-tag">{vitals.cpu}%</span>
-          </div>
-
-          {/* Expand HUD Toggle */}
+          {/* Expand / Close HUD Toggle */}
           <button 
             className="expand-btn interactive"
             onClick={(e: React.MouseEvent) => {
               e.stopPropagation();
               setExpanded(!expanded);
             }}
+            title={expanded ? 'Collapse HUD' : 'Expand Terminal History'}
           >
-            {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            {expanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
           </button>
         </div>
 
-        {/* 📋 Expanded HUD Tray when clicked */}
+        {/* 📋 Expanded Minimalist HUD Tray */}
         {expanded && (
           <div className="hud-expanded-tray interactive" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
             <div className="hud-tray-header">
-              <div className="hud-vitals-row">
-                <div className="hud-metric">
-                  <span className="metric-label">CPU</span>
-                  <span className="metric-val">{vitals.cpu}%</span>
-                </div>
-                <div className="hud-metric">
-                  <span className="metric-label">RAM</span>
-                  <span className="metric-val">{vitals.ram}%</span>
-                </div>
-                <div className="hud-metric">
-                  <span className="metric-label">Disk C</span>
-                  <span className="metric-val">{vitals.disk} GB</span>
-                </div>
+              <div className="tray-title-badge">
+                <span className="dot-live"></span>
+                <span>Session Terminal</span>
               </div>
               <div className="tray-controls">
                 <button className="pill-btn" onClick={toggleVoice}>
-                  {isListening ? <MicOff size={14} /> : <Mic size={14} />}
-                  {isListening ? 'Mute' : 'Listen'}
+                  {isListening ? <MicOff size={13} /> : <Mic size={13} />}
+                  <span>{isListening ? 'Mute' : 'Listen'}</span>
                 </button>
               </div>
             </div>
@@ -394,7 +351,7 @@ export default function App(): React.JSX.Element {
             <div className="hud-chat-history">
               {history.map((msg, i) => (
                 <div key={i} className={`hud-bubble ${msg.role}`}>
-                  <span className="hud-bubble-role">{msg.role === 'user' ? 'You' : 'Jarvis'}</span>
+                  <span className="hud-bubble-role">{msg.role === 'user' ? 'Operator' : 'ApexCore'}</span>
                   <p>{msg.text}</p>
                 </div>
               ))}
@@ -415,10 +372,10 @@ export default function App(): React.JSX.Element {
             >
               <input 
                 name="cmd" 
-                placeholder="Type a command or press Spacebar to speak..." 
+                placeholder="Type a command or speak (e.g. 'Open calculator', 'What is CPU usage?')..." 
                 autoComplete="off"
               />
-              <button type="submit" className="send-action-btn">
+              <button type="submit" className="send-action-btn" title="Execute Command">
                 <Command size={14} />
               </button>
             </form>
@@ -430,7 +387,7 @@ export default function App(): React.JSX.Element {
       {!expanded && (
         <div className="hotkey-pill interactive" onClick={toggleVoice}>
           <kbd>SPACE</kbd>
-          <span>{isListening ? 'Mute Jarvis' : 'Voice Activate'}</span>
+          <span>{isListening ? 'Mute Assistant' : 'Press to Speak'}</span>
         </div>
       )}
     </div>
