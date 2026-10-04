@@ -1,0 +1,1779 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncGenerator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncGenerator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocketDisconnect",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "StaticFiles",
+        "importPath": "fastapi.staticfiles",
+        "description": "fastapi.staticfiles",
+        "isExtraImport": true,
+        "detail": "fastapi.staticfiles",
+        "documentation": {}
+    },
+    {
+        "label": "FileResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_API_KEY",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "TTS_VOICE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SCHEMA_PATH",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INPUT_SAMPLE_RATE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "CHUNK_SIZE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "CHUNK_DURATION_MS",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "DTYPE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SPEECH_PROB_THRESHOLD",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INTERRUPT_PROB_THRESHOLD",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SILENCE_FRAMES",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_API_KEY",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_LLM_MODEL",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_API_KEY",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_WHISPER_MODEL",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INPUT_SAMPLE_RATE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "TTS_VOICE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "VAD_MODEL_PATH",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INPUT_SAMPLE_RATE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationState",
+        "importPath": "core.state",
+        "description": "core.state",
+        "isExtraImport": true,
+        "detail": "core.state",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationState",
+        "importPath": "core.state",
+        "description": "core.state",
+        "isExtraImport": true,
+        "detail": "core.state",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationState",
+        "importPath": "core.state",
+        "description": "core.state",
+        "isExtraImport": true,
+        "detail": "core.state",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationState",
+        "importPath": "core.state",
+        "description": "core.state",
+        "isExtraImport": true,
+        "detail": "core.state",
+        "documentation": {}
+    },
+    {
+        "label": "TelemetryProfiler",
+        "importPath": "core.telemetry",
+        "description": "core.telemetry",
+        "isExtraImport": true,
+        "detail": "core.telemetry",
+        "documentation": {}
+    },
+    {
+        "label": "TelemetryProfiler",
+        "importPath": "core.telemetry",
+        "description": "core.telemetry",
+        "isExtraImport": true,
+        "detail": "core.telemetry",
+        "documentation": {}
+    },
+    {
+        "label": "db_manager",
+        "importPath": "database.db",
+        "description": "database.db",
+        "isExtraImport": true,
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "db_manager",
+        "importPath": "database.db",
+        "description": "database.db",
+        "isExtraImport": true,
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "DatabaseManager",
+        "importPath": "database.db",
+        "description": "database.db",
+        "isExtraImport": true,
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "db_manager",
+        "importPath": "database.db",
+        "description": "database.db",
+        "isExtraImport": true,
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "db_manager",
+        "importPath": "database.db",
+        "description": "database.db",
+        "isExtraImport": true,
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "db_manager",
+        "importPath": "database.db",
+        "description": "database.db",
+        "isExtraImport": true,
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "get_system_vitals",
+        "importPath": "tools.system_tools",
+        "description": "tools.system_tools",
+        "isExtraImport": true,
+        "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_top_processes",
+        "importPath": "tools.system_tools",
+        "description": "tools.system_tools",
+        "isExtraImport": true,
+        "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_system_vitals",
+        "importPath": "tools.system_tools",
+        "description": "tools.system_tools",
+        "isExtraImport": true,
+        "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_top_processes",
+        "importPath": "tools.system_tools",
+        "description": "tools.system_tools",
+        "isExtraImport": true,
+        "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "search_files",
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "isExtraImport": true,
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "open_application",
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "isExtraImport": true,
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "open_url",
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "isExtraImport": true,
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "search_files",
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "isExtraImport": true,
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "open_application",
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "isExtraImport": true,
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "query_local_db",
+        "importPath": "tools.db_tools",
+        "description": "tools.db_tools",
+        "isExtraImport": true,
+        "detail": "tools.db_tools",
+        "documentation": {}
+    },
+    {
+        "label": "query_local_db",
+        "importPath": "tools.db_tools",
+        "description": "tools.db_tools",
+        "isExtraImport": true,
+        "detail": "tools.db_tools",
+        "documentation": {}
+    },
+    {
+        "label": "AgentBrain",
+        "importPath": "services.brain",
+        "description": "services.brain",
+        "isExtraImport": true,
+        "detail": "services.brain",
+        "documentation": {}
+    },
+    {
+        "label": "AgentBrain",
+        "importPath": "services.brain",
+        "description": "services.brain",
+        "isExtraImport": true,
+        "detail": "services.brain",
+        "documentation": {}
+    },
+    {
+        "label": "AgentBrain",
+        "importPath": "services.brain",
+        "description": "services.brain",
+        "isExtraImport": true,
+        "detail": "services.brain",
+        "documentation": {}
+    },
+    {
+        "label": "TTSService",
+        "importPath": "services.tts",
+        "description": "services.tts",
+        "isExtraImport": true,
+        "detail": "services.tts",
+        "documentation": {}
+    },
+    {
+        "label": "TTSService",
+        "importPath": "services.tts",
+        "description": "services.tts",
+        "isExtraImport": true,
+        "detail": "services.tts",
+        "documentation": {}
+    },
+    {
+        "label": "TTSService",
+        "importPath": "services.tts",
+        "description": "services.tts",
+        "isExtraImport": true,
+        "detail": "services.tts",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceChunker",
+        "importPath": "pipeline.chunker",
+        "description": "pipeline.chunker",
+        "isExtraImport": true,
+        "detail": "pipeline.chunker",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceChunker",
+        "importPath": "pipeline.chunker",
+        "description": "pipeline.chunker",
+        "isExtraImport": true,
+        "detail": "pipeline.chunker",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceChunker",
+        "importPath": "pipeline.chunker",
+        "description": "pipeline.chunker",
+        "isExtraImport": true,
+        "detail": "pipeline.chunker",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceChunker",
+        "importPath": "pipeline.chunker",
+        "description": "pipeline.chunker",
+        "isExtraImport": true,
+        "detail": "pipeline.chunker",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "WhisperSTTService",
+        "importPath": "services.stt",
+        "description": "services.stt",
+        "isExtraImport": true,
+        "detail": "services.stt",
+        "documentation": {}
+    },
+    {
+        "label": "WhisperSTTService",
+        "importPath": "services.stt",
+        "description": "services.stt",
+        "isExtraImport": true,
+        "detail": "services.stt",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "copy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "copy",
+        "description": "copy",
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "sounddevice",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sounddevice",
+        "description": "sounddevice",
+        "detail": "sounddevice",
+        "documentation": {}
+    },
+    {
+        "label": "SileroVAD",
+        "importPath": "services.vad",
+        "description": "services.vad",
+        "isExtraImport": true,
+        "detail": "services.vad",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncGroq",
+        "importPath": "groq",
+        "description": "groq",
+        "isExtraImport": true,
+        "detail": "groq",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncGroq",
+        "importPath": "groq",
+        "description": "groq",
+        "isExtraImport": true,
+        "detail": "groq",
+        "documentation": {}
+    },
+    {
+        "label": "TOOL_SCHEMAS",
+        "importPath": "tools",
+        "description": "tools",
+        "isExtraImport": true,
+        "detail": "tools",
+        "documentation": {}
+    },
+    {
+        "label": "dispatch_tool",
+        "importPath": "tools",
+        "description": "tools",
+        "isExtraImport": true,
+        "detail": "tools",
+        "documentation": {}
+    },
+    {
+        "label": "dispatch_tool",
+        "importPath": "tools",
+        "description": "tools",
+        "isExtraImport": true,
+        "detail": "tools",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "wave",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "wave",
+        "description": "wave",
+        "detail": "wave",
+        "documentation": {}
+    },
+    {
+        "label": "edge_tts",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "edge_tts",
+        "description": "edge_tts",
+        "detail": "edge_tts",
+        "documentation": {}
+    },
+    {
+        "label": "soundfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "soundfile",
+        "description": "soundfile",
+        "detail": "soundfile",
+        "documentation": {}
+    },
+    {
+        "label": "onnxruntime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "onnxruntime",
+        "description": "onnxruntime",
+        "detail": "onnxruntime",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "TestClient",
+        "importPath": "fastapi.testclient",
+        "description": "fastapi.testclient",
+        "isExtraImport": true,
+        "detail": "fastapi.testclient",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "api.app",
+        "description": "api.app",
+        "isExtraImport": true,
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "webbrowser",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "webbrowser",
+        "description": "webbrowser",
+        "detail": "webbrowser",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.parse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "psutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psutil",
+        "description": "psutil",
+        "detail": "psutil",
+        "documentation": {}
+    },
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "ChatRequest",
+        "kind": 6,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "class ChatRequest(BaseModel):\n    prompt: str\nclass SQLRequest(BaseModel):\n    sql_query: str\nclass AppLaunchRequest(BaseModel):\n    app_name: str\nclass URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "SQLRequest",
+        "kind": 6,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "class SQLRequest(BaseModel):\n    sql_query: str\nclass AppLaunchRequest(BaseModel):\n    app_name: str\nclass URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "AppLaunchRequest",
+        "kind": 6,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "class AppLaunchRequest(BaseModel):\n    app_name: str\nclass URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "URLRequest",
+        "kind": 6,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "class URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern ApexCore Web UI.\"\"\"",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "FileSearchRequest",
+        "kind": 6,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "class FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern ApexCore Web UI.\"\"\"\n    return FileResponse(STATIC_DIR / \"index.html\")\n@app.get(\"/api/health\")\nasync def health_check():",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(BASE_DIR))\nfrom fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect\nfrom fastapi.staticfiles import StaticFiles\nfrom fastapi.responses import FileResponse, JSONResponse\nfrom fastapi.middleware.cors import CORSMiddleware\nfrom pydantic import BaseModel\nfrom core.config import GROQ_API_KEY, TTS_VOICE\nfrom core.state import ConversationState\nfrom core.telemetry import TelemetryProfiler",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "app = FastAPI(\n    title=\"ApexCore Voice AI Engine\",\n    description=\"High-performance asynchronous desktop automation & database intelligence voice platform.\",\n    version=\"1.0.0\"\n)\n# Enable CORS for browser integration\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_DIR",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "STATIC_DIR = BASE_DIR / \"static\"\napp.mount(\"/static\", StaticFiles(directory=str(STATIC_DIR)), name=\"static\")\n# Shared backend instances\nstate = ConversationState()\nbrain = AgentBrain()\ntts = TTSService()\nchunker = SentenceChunker()\ntelemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "state",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "state = ConversationState()\nbrain = AgentBrain()\ntts = TTSService()\nchunker = SentenceChunker()\ntelemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):\n    prompt: str\nclass SQLRequest(BaseModel):\n    sql_query: str",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "brain",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "brain = AgentBrain()\ntts = TTSService()\nchunker = SentenceChunker()\ntelemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):\n    prompt: str\nclass SQLRequest(BaseModel):\n    sql_query: str\nclass AppLaunchRequest(BaseModel):",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "tts",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "tts = TTSService()\nchunker = SentenceChunker()\ntelemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):\n    prompt: str\nclass SQLRequest(BaseModel):\n    sql_query: str\nclass AppLaunchRequest(BaseModel):\n    app_name: str",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "chunker",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "chunker = SentenceChunker()\ntelemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):\n    prompt: str\nclass SQLRequest(BaseModel):\n    sql_query: str\nclass AppLaunchRequest(BaseModel):\n    app_name: str\nclass URLRequest(BaseModel):",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "telemetry",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "telemetry = TelemetryProfiler()\n# Request Models\nclass ChatRequest(BaseModel):\n    prompt: str\nclass SQLRequest(BaseModel):\n    sql_query: str\nclass AppLaunchRequest(BaseModel):\n    app_name: str\nclass URLRequest(BaseModel):\n    url: str",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "print_comparison",
+        "kind": 2,
+        "importPath": "benchmarks.compare_engines",
+        "description": "benchmarks.compare_engines",
+        "peekOfCode": "def print_comparison():\n    \"\"\"Prints comprehensive architectural comparison matrix.\"\"\"\n    print(\"\\n\" + \"=\"*70)\n    print(\"🏆 BENCHMARK & ARCHITECTURAL COMPARISON MATRIX\")\n    print(\"=\"*70)\n    print(f\"{'Metric / Feature':<30} | {'ApexCore Cascade':<18} | {'Native Multimodal'}\")\n    print(\"-\" * 70)\n    print(f\"{'Time-to-First-Audio (TTFA)':<30} | {'~450ms (Optimized)':<18} | {'~380ms'}\")\n    print(f\"{'Framework Dependency':<30} | {'Zero (Pure Python)':<18} | {'Vendor SDK Required'}\")\n    print(f\"{'Local Tool Execution':<30} | {'Native OS / SQLite':<18} | {'Client Function RPC'}\")",
+        "detail": "benchmarks.compare_engines",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nload_dotenv(BASE_DIR / \".env\")\n# API Keys\nGROQ_API_KEY = os.getenv(\"GROQ_API_KEY\", \"\")\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\", \"\")\n# Audio Ingestion (Input Microphone)\nINPUT_SAMPLE_RATE = 16000  # 16 kHz mono\nCHANNELS = 1\nCHUNK_DURATION_MS = 32     # 32 ms per frame\nCHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_API_KEY",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "GROQ_API_KEY = os.getenv(\"GROQ_API_KEY\", \"\")\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\", \"\")\n# Audio Ingestion (Input Microphone)\nINPUT_SAMPLE_RATE = 16000  # 16 kHz mono\nCHANNELS = 1\nCHUNK_DURATION_MS = 32     # 32 ms per frame\nCHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GEMINI_API_KEY",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "GEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\", \"\")\n# Audio Ingestion (Input Microphone)\nINPUT_SAMPLE_RATE = 16000  # 16 kHz mono\nCHANNELS = 1\nCHUNK_DURATION_MS = 32     # 32 ms per frame\nCHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INPUT_SAMPLE_RATE",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "INPUT_SAMPLE_RATE = 16000  # 16 kHz mono\nCHANNELS = 1\nCHUNK_DURATION_MS = 32     # 32 ms per frame\nCHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "CHANNELS",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "CHANNELS = 1\nCHUNK_DURATION_MS = 32     # 32 ms per frame\nCHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "CHUNK_DURATION_MS",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "CHUNK_DURATION_MS = 32     # 32 ms per frame\nCHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "CHUNK_SIZE",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "CHUNK_SIZE = int(INPUT_SAMPLE_RATE * (CHUNK_DURATION_MS / 1000.0))  # 512 samples\nDTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "DTYPE",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "DTYPE = \"int16\"\n# Audio Output (Speaker Playback)\nOUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "OUTPUT_SAMPLE_RATE",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "OUTPUT_SAMPLE_RATE = 24000  # 24 kHz for high-fidelity speech\nTTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "TTS_VOICE",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "TTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "VAD_MODEL_PATH",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "VAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SPEECH_PROB_THRESHOLD",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "SPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INTERRUPT_PROB_THRESHOLD",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "INTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SILENCE_DURATION_MS",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "SILENCE_DURATION_MS = 500         # 500ms trailing silence triggers turn end\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SILENCE_FRAMES",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "SILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_WHISPER_MODEL",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "GROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_LLM_MODEL",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "GROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "DB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "SCHEMA_PATH",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "SCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationState",
+        "kind": 6,
+        "importPath": "core.state",
+        "description": "core.state",
+        "peekOfCode": "class ConversationState:\n    \"\"\"Maintains multi-turn context, message history, and handles barge-in reconciliation.\"\"\"\n    def __init__(self, system_prompt: str = SYSTEM_PROMPT):\n        self.system_prompt = system_prompt\n        self.messages: List[Dict[str, Any]] = [\n            {\"role\": \"system\", \"content\": self.system_prompt}\n        ]\n        self._last_spoken_turn: Optional[str] = None\n        self.is_speaking: bool = False\n        self.is_interrupted: bool = False",
+        "detail": "core.state",
+        "documentation": {}
+    },
+    {
+        "label": "SYSTEM_PROMPT",
+        "kind": 5,
+        "importPath": "core.state",
+        "description": "core.state",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Universal Application Control: Launch ANY software or program (WhatsApp, Chrome, VS Code, Spotify, Discord, Notepad, Calculator, Paint, Settings) using `open_application`.\n4. Browser & Tab Navigation: Open ANY website or tab (YouTube, Wikipedia, Facebook, Instagram, GitHub, etc.) using `open_url`.\n5. Web & Video Search: If the user says \"search for X on YouTube\" or \"play X\", use `search_web_or_play(query=\"...\", platform=\"youtube\")`.\n6. Audio Controls: Control PC volume or playback (mute, volume_up, volume_down, play_pause) with `control_media_or_volume`.\n7. Vitals & DB: Report CPU, RAM, disk space using `get_system_vitals` or query SQLite databases.\n8. Tone: Address the user politely like Jarvis (\"Right away, Sir\", \"Opening WhatsApp now\"). Keep it human, warm, and brief.",
+        "detail": "core.state",
+        "documentation": {}
+    },
+    {
+        "label": "TelemetryProfiler",
+        "kind": 6,
+        "importPath": "core.telemetry",
+        "description": "core.telemetry",
+        "peekOfCode": "class TelemetryProfiler:\n    \"\"\"Tracks millisecond timings across every stage of the conversational turn.\"\"\"\n    def __init__(self):\n        self.turn_id: int = 0\n        self.timings: Dict[str, float] = {}\n        self.active: bool = False\n    def start_turn(self) -> None:\n        \"\"\"Starts timing a new conversational turn.\"\"\"\n        self.turn_id += 1\n        self.timings = {\"turn_start\": time.perf_counter()}",
+        "detail": "core.telemetry",
+        "documentation": {}
+    },
+    {
+        "label": "DatabaseManager",
+        "kind": 6,
+        "importPath": "database.db",
+        "description": "database.db",
+        "peekOfCode": "class DatabaseManager:\n    \"\"\"Thread-safe SQLite connection manager with WAL (Write-Ahead Logging) mode.\"\"\"\n    def __init__(self, db_path: Path = DB_PATH, schema_path: Path = SCHEMA_PATH):\n        self.db_path = db_path\n        self.schema_path = schema_path\n        self.db_path.parent.mkdir(parents=True, exist_ok=True)\n        self.init_db()\n    def get_connection(self) -> sqlite3.Connection:\n        \"\"\"Creates connection configured with WAL mode and fast pragmas.\"\"\"\n        conn = sqlite3.connect(str(self.db_path), check_same_thread=False)",
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "_lock",
+        "kind": 5,
+        "importPath": "database.db",
+        "description": "database.db",
+        "peekOfCode": "_lock = threading.Lock()\nclass DatabaseManager:\n    \"\"\"Thread-safe SQLite connection manager with WAL (Write-Ahead Logging) mode.\"\"\"\n    def __init__(self, db_path: Path = DB_PATH, schema_path: Path = SCHEMA_PATH):\n        self.db_path = db_path\n        self.schema_path = schema_path\n        self.db_path.parent.mkdir(parents=True, exist_ok=True)\n        self.init_db()\n    def get_connection(self) -> sqlite3.Connection:\n        \"\"\"Creates connection configured with WAL mode and fast pragmas.\"\"\"",
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "db_manager",
+        "kind": 5,
+        "importPath": "database.db",
+        "description": "database.db",
+        "peekOfCode": "db_manager = DatabaseManager()",
+        "detail": "database.db",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceChunker",
+        "kind": 6,
+        "importPath": "pipeline.chunker",
+        "description": "pipeline.chunker",
+        "peekOfCode": "class SentenceChunker:\n    \"\"\"\n    Buffers a stream of incoming tokens and yields complete sentences immediately\n    upon encountering punctuation boundaries (. ? ! ; : \\n).\n    This enables Sentence #1 to be sent to TTS synthesis while the LLM is still\n    generating Sentence #2, drastically reducing Time-to-First-Audio (TTFA).\n    \"\"\"\n    PUNCTUATION_REGEX = re.compile(r\"([.?!;:\\n]+(?:\\s+|$))\")\n    def __init__(self, min_sentence_words: int = 3):\n        self.min_sentence_words = min_sentence_words",
+        "detail": "pipeline.chunker",
+        "documentation": {}
+    },
+    {
+        "label": "FullDuplexOrchestrator",
+        "kind": 6,
+        "importPath": "pipeline.orchestrator",
+        "description": "pipeline.orchestrator",
+        "peekOfCode": "class FullDuplexOrchestrator:\n    \"\"\"\n    Master full-duplex orchestrator:\n    - Real-time microphone capture via sounddevice.InputStream\n    - Silero VAD turn endpointing\n    - Software Echo gating (suppresses mic echo while speaker output is active)\n    - Sub-500ms TTFA sentence streaming to Edge-TTS\n    - Instant Barge-In interruption (<5ms task cancellation)\n    - Latency profiling on every turn\n    \"\"\"",
+        "detail": "pipeline.orchestrator",
+        "documentation": {}
+    },
+    {
+        "label": "AgentBrain",
+        "kind": 6,
+        "importPath": "services.brain",
+        "description": "services.brain",
+        "peekOfCode": "class AgentBrain:\n    \"\"\"\n    Pure Python asynchronous ReAct (Reason + Act) loop.\n    1. Sends conversation history + JSON schemas to Groq LLM.\n    2. Resolves and executes tool calls recursively.\n    3. Streams the final conversational response tokens for sub-500ms TTFA synthesis.\n    \"\"\"\n    def __init__(self, api_key: str = GROQ_API_KEY, model: str = GROQ_LLM_MODEL):\n        self.api_key = api_key\n        self.model = model",
+        "detail": "services.brain",
+        "documentation": {}
+    },
+    {
+        "label": "WhisperSTTService",
+        "kind": 6,
+        "importPath": "services.stt",
+        "description": "services.stt",
+        "peekOfCode": "class WhisperSTTService:\n    \"\"\"\n    Zero-disk in-memory audio packaging and ultra-fast transcription service.\n    Encodes raw PCM into standard WAV bytes in RAM via io.BytesIO()\n    and sends directly to Groq Whisper LPU.\n    \"\"\"\n    def __init__(self, api_key: str = GROQ_API_KEY, model: str = GROQ_WHISPER_MODEL):\n        self.api_key = api_key\n        self.model = model\n        self.client = AsyncGroq(api_key=self.api_key)",
+        "detail": "services.stt",
+        "documentation": {}
+    },
+    {
+        "label": "TTSService",
+        "kind": 6,
+        "importPath": "services.tts",
+        "description": "services.tts",
+        "peekOfCode": "class TTSService:\n    \"\"\"\n    Asynchronous streaming neural TTS service using Edge-TTS over WebSockets.\n    Decodes compressed audio chunks in memory and outputs to speakers or audio queues.\n    \"\"\"\n    def __init__(self, voice: str = TTS_VOICE):\n        self.voice = voice\n    async def synthesize_to_bytes(self, text: str) -> bytes:\n        \"\"\"Synthesizes text into MP3 audio bytes in memory after sanitizing markdown symbols.\"\"\"\n        clean_prompt = clean_text_for_speech(text)",
+        "detail": "services.tts",
+        "documentation": {}
+    },
+    {
+        "label": "clean_text_for_speech",
+        "kind": 2,
+        "importPath": "services.tts",
+        "description": "services.tts",
+        "peekOfCode": "def clean_text_for_speech(text: str) -> str:\n    \"\"\"\n    Cleans text before voice synthesis to prevent TTS from reading out\n    formatting symbols like asterisks, hashtags, backticks, underscores, or bullet dashes.\n    Converts numbers and symbols into natural human speech.\n    \"\"\"\n    if not text:\n        return \"\"\n    # Strip markdown headers (###), bold/italic asterisks (***, **, *), underscores (_), backticks (`)\n    cleaned = re.sub(r'[*_#`~]', '', text)",
+        "detail": "services.tts",
+        "documentation": {}
+    },
+    {
+        "label": "SileroVAD",
+        "kind": 6,
+        "importPath": "services.vad",
+        "description": "services.vad",
+        "peekOfCode": "class SileroVAD:\n    \"\"\"\n    Sub-millisecond neural Voice Activity Detection using Silero VAD v5 ONNX.\n    Maintains recurrent hidden states across audio frames.\n    \"\"\"\n    def __init__(self, model_path: Union[str, Path] = VAD_MODEL_PATH):\n        self.model_path = str(model_path)\n        opts = ort.SessionOptions()\n        opts.inter_op_num_threads = 1\n        opts.intra_op_num_threads = 1",
+        "detail": "services.vad",
+        "documentation": {}
+    },
+    {
+        "label": "test_health_check_endpoint",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_health_check_endpoint():\n    \"\"\"Verify health check endpoint returns 200 and expected status.\"\"\"\n    res = client.get(\"/api/health\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"status\"] == \"online\"\n    assert data[\"engine\"] == \"ApexCore Full-Duplex AI\"\n    assert data[\"database_wal\"] is True\ndef test_vitals_endpoint():\n    \"\"\"Verify system vitals returns proper performance metrics.\"\"\"",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_vitals_endpoint",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_vitals_endpoint():\n    \"\"\"Verify system vitals returns proper performance metrics.\"\"\"\n    res = client.get(\"/api/tools/vitals\")\n    assert res.status_code == 200\n    data = res.json()\n    assert \"cpu_usage_percent\" in data\n    assert \"ram_percent\" in data\n    assert \"disk_c_free_gb\" in data\ndef test_processes_endpoint():\n    \"\"\"Verify top processes enumeration works via API.\"\"\"",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_processes_endpoint",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_processes_endpoint():\n    \"\"\"Verify top processes enumeration works via API.\"\"\"\n    res = client.get(\"/api/tools/processes?sort_by=memory&count=3\")\n    assert res.status_code == 200\n    data = res.json()\n    assert isinstance(data, list)\n    assert len(data) <= 3\ndef test_safe_sql_query_endpoint():\n    \"\"\"Verify query-db executes valid SELECT query.\"\"\"\n    res = client.post(\"/api/tools/query-db\", json={\"sql_query\": \"SELECT 1 as test_col;\"})",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_safe_sql_query_endpoint",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_safe_sql_query_endpoint():\n    \"\"\"Verify query-db executes valid SELECT query.\"\"\"\n    res = client.post(\"/api/tools/query-db\", json={\"sql_query\": \"SELECT 1 as test_col;\"})\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"success\"] is True\n    assert data[\"data\"][0][\"test_col\"] == 1\ndef test_sql_query_security_endpoint():\n    \"\"\"Verify malicious or write statements are rejected.\"\"\"\n    res = client.post(\"/api/tools/query-db\", json={\"sql_query\": \"DROP TABLE conversation_logs;\"})",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_sql_query_security_endpoint",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_sql_query_security_endpoint():\n    \"\"\"Verify malicious or write statements are rejected.\"\"\"\n    res = client.post(\"/api/tools/query-db\", json={\"sql_query\": \"DROP TABLE conversation_logs;\"})\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"success\"] is False\n    assert \"Security constraint\" in data[\"error\"]",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "client = TestClient(app)\ndef test_health_check_endpoint():\n    \"\"\"Verify health check endpoint returns 200 and expected status.\"\"\"\n    res = client.get(\"/api/health\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"status\"] == \"online\"\n    assert data[\"engine\"] == \"ApexCore Full-Duplex AI\"\n    assert data[\"database_wal\"] is True\ndef test_vitals_endpoint():",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_database_wal_mode",
+        "kind": 2,
+        "importPath": "tests.test_db",
+        "description": "tests.test_db",
+        "peekOfCode": "def test_database_wal_mode(tmp_path):\n    \"\"\"Verify SQLite database enables WAL mode and handles writes/reads.\"\"\"\n    db_file = tmp_path / \"test_apex.db\"\n    schema_file = tmp_path / \"test_schema.sql\"\n    schema_file.write_text(\n        \"CREATE TABLE test_table (id INTEGER PRIMARY KEY, msg TEXT);\"\n    )\n    db = DatabaseManager(db_path=db_file, schema_path=schema_file)\n    # Check WAL mode\n    with db.get_connection() as conn:",
+        "detail": "tests.test_db",
+        "documentation": {}
+    },
+    {
+        "label": "test_query_local_db_security",
+        "kind": 2,
+        "importPath": "tests.test_db",
+        "description": "tests.test_db",
+        "peekOfCode": "def test_query_local_db_security():\n    \"\"\"Verify write or injection attempts are blocked by query_local_db.\"\"\"\n    # Attempting DROP\n    res = query_local_db(\"DROP TABLE system_telemetry;\")\n    assert res[\"success\"] is False\n    assert \"Security constraint\" in res[\"error\"]\n    # Attempting INSERT\n    res2 = query_local_db(\"INSERT INTO audit_events (event_type) VALUES ('hack');\")\n    assert res2[\"success\"] is False\n    assert \"Security constraint\" in res2[\"error\"]",
+        "detail": "tests.test_db",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_system_vitals",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_get_system_vitals():\n    \"\"\"Verify system vitals returns valid keys and realistic bounds.\"\"\"\n    vitals = get_system_vitals()\n    assert \"cpu_usage_percent\" in vitals\n    assert \"ram_used_gb\" in vitals\n    assert \"disk_c_free_gb\" in vitals\n    assert isinstance(vitals[\"cpu_usage_percent\"], (int, float))\n    assert vitals[\"cpu_usage_percent\"] >= 0.0\n    assert vitals[\"ram_used_gb\"] > 0.0\n    assert vitals[\"disk_c_free_gb\"] > 0.0",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_top_processes",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_get_top_processes():\n    \"\"\"Verify process enumeration returns requested count and sorted.\"\"\"\n    procs = get_top_processes(sort_by=\"memory\", count=5)\n    assert len(procs) <= 5\n    assert len(procs) > 0\n    first = procs[0]\n    assert \"pid\" in first\n    assert \"name\" in first\n    assert \"memory_mb\" in first\n    assert first[\"memory_mb\"] >= 0.0",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_open_application_not_found",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_open_application_not_found():\n    \"\"\"Verify non-existent application returns failure message gracefully.\"\"\"\n    res = open_application(\"non_existent_fake_app_xyz_999\")\n    assert res[\"success\"] is False\n    assert \"Could not find or launch\" in res[\"message\"]\ndef test_open_url_tool():\n    \"\"\"Verify open_url tool properly normalizes URL structure.\"\"\"\n    from tools.file_tools import open_url\n    res = open_url(\"youtube.com\")\n    assert res[\"success\"] is True",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_open_url_tool",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_open_url_tool():\n    \"\"\"Verify open_url tool properly normalizes URL structure.\"\"\"\n    from tools.file_tools import open_url\n    res = open_url(\"youtube.com\")\n    assert res[\"success\"] is True\n    assert \"https://youtube.com\" in res[\"url\"]\ndef test_tool_dispatch():\n    \"\"\"Verify generic tool dispatcher handles valid and invalid requests.\"\"\"\n    res_str = dispatch_tool(\"get_system_vitals\", \"{}\")\n    assert \"cpu_usage_percent\" in res_str",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_tool_dispatch",
+        "kind": 2,
+        "importPath": "tests.test_os_tools",
+        "description": "tests.test_os_tools",
+        "peekOfCode": "def test_tool_dispatch():\n    \"\"\"Verify generic tool dispatcher handles valid and invalid requests.\"\"\"\n    res_str = dispatch_tool(\"get_system_vitals\", \"{}\")\n    assert \"cpu_usage_percent\" in res_str\n    err_str = dispatch_tool(\"non_existent_tool\", \"{}\")\n    assert \"error\" in err_str",
+        "detail": "tests.test_os_tools",
+        "documentation": {}
+    },
+    {
+        "label": "query_local_db",
+        "kind": 2,
+        "importPath": "tools.db_tools",
+        "description": "tools.db_tools",
+        "peekOfCode": "def query_local_db(sql_query: str) -> Dict[str, Any]:\n    \"\"\"\n    Safely executes a read-only SELECT query against SQLite in WAL mode.\n    Rejects write/drop commands to prevent accidental corruption.\n    \"\"\"\n    cleaned = sql_query.strip().lower()\n    if not cleaned.startswith(\"select\"):\n        return {\n            \"success\": False,\n            \"error\": \"Security constraint: Only read-only 'SELECT' queries are permitted.\"",
+        "detail": "tools.db_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_installed_windows_apps",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def get_installed_windows_apps() -> Dict[str, str]:\n    \"\"\"\n    Discovers all installed Windows apps and UWP applications (e.g. WhatsApp, Spotify, Chrome)\n    via PowerShell Get-StartApps and caches them.\n    Returns mapping of lowercase app name -> AppID / launch target.\n    \"\"\"\n    global _installed_apps_cache\n    if _installed_apps_cache is not None:\n        return _installed_apps_cache\n    apps_map: Dict[str, str] = {}",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "search_files",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def search_files(directory: str, extension: Optional[str] = None, keyword: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Recursively scans target user folders (Desktop, Downloads, Documents) for files.\n    \"\"\"\n    user_home = Path.home()\n    allowed_folders = {\n        \"desktop\": user_home / \"Desktop\",\n        \"downloads\": user_home / \"Downloads\",\n        \"documents\": user_home / \"Documents\",\n    }",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "open_application",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def open_application(app_name: str) -> Dict[str, Any]:\n    \"\"\"\n    Universal application launcher for Windows:\n    1. Checks common alias dictionary (calc, notepad, code, chrome, whatsapp, etc.).\n    2. Checks dynamic Windows StartApps (WhatsApp, Chrome, Discord, Spotify, etc.).\n    3. Searches system PATH via shutil.which.\n    4. Falls back to Windows 'start' shell execution.\n    \"\"\"\n    clean_name = app_name.strip().lower()\n    # 1. Direct common alias match",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "open_url",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Opens any website or web address in Google Chrome or default browser.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    opened_with_chrome = False\n    try:\n        installed = get_installed_windows_apps()",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "search_web_or_play",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def search_web_or_play(query: str, platform: str = \"youtube\") -> Dict[str, Any]:\n    \"\"\"\n    Searches Google, YouTube, or Wikipedia directly and opens the resulting page/video in Chrome.\n    Example: search_web_or_play(query=\"Interstellar soundtrack\", platform=\"youtube\")\n    \"\"\"\n    q_encoded = urllib.parse.quote(query.strip())\n    plat = platform.strip().lower()\n    if plat == \"youtube\":\n        target_url = f\"https://www.youtube.com/results?search_query={q_encoded}\"\n        label = f\"Searching YouTube for '{query}'\"",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "control_media_or_volume",
+        "kind": 2,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "def control_media_or_volume(action: str) -> Dict[str, Any]:\n    \"\"\"\n    Controls desktop volume, mute, or media keys using PowerShell audio simulation.\n    Actions: 'mute', 'volume_up', 'volume_down', 'play_pause'.\n    \"\"\"\n    act = action.strip().lower()\n    # Virtual key codes via WScript.Shell\n    key_codes = {\n        \"mute\": \"0xAD\",\n        \"volume_down\": \"0xAE\",",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "COMMON_DESKTOP_APPS",
+        "kind": 5,
+        "importPath": "tools.file_tools",
+        "description": "tools.file_tools",
+        "peekOfCode": "COMMON_DESKTOP_APPS = {\n    \"calc\": \"calc.exe\",\n    \"calculator\": \"calc.exe\",\n    \"notepad\": \"notepad.exe\",\n    \"notes\": \"notepad.exe\",\n    \"code\": \"code\",\n    \"vscode\": \"code\",\n    \"visual studio code\": \"code\",\n    \"explorer\": \"explorer.exe\",\n    \"file explorer\": \"explorer.exe\",",
+        "detail": "tools.file_tools",
+        "documentation": {}
+    },
+    {
+        "label": "TOOL_SCHEMAS",
+        "kind": 5,
+        "importPath": "tools.schemas",
+        "description": "tools.schemas",
+        "peekOfCode": "TOOL_SCHEMAS = [\n    {\n        \"type\": \"function\",\n        \"function\": {\n            \"name\": \"get_system_vitals\",\n            \"description\": \"Retrieves real-time system performance metrics including CPU usage %, RAM utilized/free (GB), Drive C free space (GB), and battery percentage.\",\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {},\n                \"required\": []",
+        "detail": "tools.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "get_system_vitals",
+        "kind": 2,
+        "importPath": "tools.system_tools",
+        "description": "tools.system_tools",
+        "peekOfCode": "def get_system_vitals() -> Dict[str, Any]:\n    \"\"\"\n    Retrieves real-time system performance metrics:\n    CPU %, RAM utilized vs free (GB), Disk C: free space (GB), Battery %.\n    Also persists a telemetry snapshot to SQLite WAL database.\n    \"\"\"\n    cpu_percent = psutil.cpu_percent(interval=0.1)\n    vm = psutil.virtual_memory()\n    disk = shutil.disk_usage(\"C:\\\\\")\n    battery = psutil.sensors_battery()",
+        "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_top_processes",
+        "kind": 2,
+        "importPath": "tools.system_tools",
+        "description": "tools.system_tools",
+        "peekOfCode": "def get_top_processes(sort_by: str = \"memory\", count: int = 5) -> List[Dict[str, Any]]:\n    \"\"\"\n    Enumerates running Windows processes sorted by memory consumption (RAM) or CPU usage.\n    Filters out system idle and zero-value background processes.\n    \"\"\"\n    count = min(max(1, count), 10)\n    sort_key = \"memory_percent\" if sort_by.lower() == \"memory\" else \"cpu_percent\"\n    processes = []\n    for proc in psutil.process_iter(['pid', 'name', 'memory_info', 'memory_percent', 'cpu_percent']):\n        try:",
+        "detail": "tools.system_tools",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    print(\"\\n\" + \"=\" * 65)\n    print(\"🚀 APEXCORE BACKEND SERVER INITIALIZING\")\n    print(\"Serving on http://127.0.0.1:8000\")\n    print(\"Interactive UI:       http://127.0.0.1:8000\")\n    print(\"Interactive Swagger:  http://127.0.0.1:8000/docs\")\n    print(\"=\" * 65 + \"\\n\")\n    uvicorn.run(\n        \"api.app:app\",\n        host=\"127.0.0.1\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(BASE_DIR))\nif hasattr(sys.stdout, \"reconfigure\"):\n    sys.stdout.reconfigure(encoding=\"utf-8\")\nif hasattr(sys.stderr, \"reconfigure\"):\n    sys.stderr.reconfigure(encoding=\"utf-8\")\ndef main():\n    print(\"\\n\" + \"=\" * 65)\n    print(\"🚀 APEXCORE BACKEND SERVER INITIALIZING\")\n    print(\"Serving on http://127.0.0.1:8000\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "check_environment",
+        "kind": 2,
+        "importPath": "run",
+        "description": "run",
+        "peekOfCode": "def check_environment():\n    \"\"\"Validates runtime prerequisites and keys.\"\"\"\n    if not GROQ_API_KEY:\n        print(\"\\n❌ Error: GROQ_API_KEY is not set in ApexCore/.env or environment.\")\n        print(\"Please configure your GROQ_API_KEY in ApexCore/.env before launching.\\n\")\n        sys.exit(1)\nasync def main():\n    check_environment()\n    orchestrator = FullDuplexOrchestrator()\n    try:",
+        "detail": "run",
+        "documentation": {}
+    }
+]

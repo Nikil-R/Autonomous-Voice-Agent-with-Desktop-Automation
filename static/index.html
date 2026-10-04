@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS | Voice AI Intelligence & Desktop Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-card: rgba(18, 24, 38, 0.7);
+            --bg-card-hover: rgba(26, 34, 54, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(99, 102, 241, 0.3);
+            --accent-primary: #6366f1;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            background: rgba(10, 13, 20, 0.75);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 24px rgba(99, 102, 241, 0.45);
+        }
+
+        .brand-logo svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .brand-name {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 60%, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .badge-live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-emerald);
+            box-shadow: 0 0 8px var(--accent-emerald);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .docs-btn {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .docs-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            color: #ffffff;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        .main-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            padding: 1.75rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f1f5f9;
+        }
+
+        .hero-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border-radius: 20px;
+            border: 1px solid var(--border-highlight);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .orb-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-orb {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #818cf8, #4f46e5 60%, #312e81 100%);
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .voice-orb:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 65px rgba(99, 102, 241, 0.8);
+        }
+
+        .voice-orb.listening {
+            animation: orbPulse 1.8s infinite;
+            background: radial-gradient(circle at 30% 30%, #34d399, #059669 60%, #064e3b 100%);
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.6);
+        }
+
+        .voice-orb.speaking {
+            animation: orbPulse 1.2s infinite;
+            background: radial-gradient(circle at 30% 30%, #38bdf8, #0284c7 60%, #0369a1 100%);
+            box-shadow: 0 0 60px rgba(6, 182, 212, 0.7);
+        }
+
+        @keyframes orbPulse {
+            0% { transform: scale(0.96); box-shadow: 0 0 30px rgba(99, 102, 241, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 75px rgba(99, 102, 241, 0.8); }
+            100% { transform: scale(0.96); box-shadow: 0 0 30px rgba(99, 102, 241, 0.4); }
+        }
+
+        .orb-icon {
+            width: 44px;
+            height: 44px;
+            fill: white;
+            pointer-events: none;
+        }
+
+        .orb-status {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 0.5rem;
+        }
+
+        .orb-subtext {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            max-width: 460px;
+            margin-top: 0.25rem;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 380px;
+            background: rgba(13, 17, 28, 0.8);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.25rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            max-width: 80%;
+            padding: 0.875rem 1.125rem;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent-primary), #4338ca);
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-role {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+
+        .chat-input-bar {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.875rem 1.25rem;
+            background: rgba(10, 13, 20, 0.9);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .send-btn {
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 0 1.25rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #4f46e5;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .vitals-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .vital-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .vital-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .vital-value {
+            font-size: 1.35rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            color: #ffffff;
+        }
+
+        .vital-bar {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .vital-bar-fill {
+            height: 100%;
+            background: var(--accent-primary);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .telemetry-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        .telemetry-row:last-child {
+            border-bottom: none;
+        }
+
+        .telemetry-name {
+            color: var(--text-muted);
+        }
+
+        .telemetry-val {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        .tools-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tool-chip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.825rem;
+        }
+
+        .tool-name {
+            font-family: var(--font-mono);
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .tool-status {
+            font-size: 0.7rem;
+            color: var(--accent-emerald);
+            font-weight: 600;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 1rem 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            backdrop-filter: blur(12px);
+            background: rgba(10, 13, 20, 0.8);
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="brand-logo">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z"/></svg>
+            </div>
+            <div>
+                <div class="brand-name">JARVIS</div>
+                <div style="font-size: 0.725rem; color: var(--text-muted);">ApexCore Autonomous OS Intelligence</div>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <div class="badge-live">JARVIS ONLINE</div>
+            <a href="/docs" target="_blank" class="nav-link docs-btn">OpenAPI Swagger UI ↗</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-column">
+            <div class="hero-banner">
+                <h1 style="font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em;">Jarvis Voice Desktop Assistant</h1>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem; max-width: 600px;">
+                    Speak natural commands to launch any installed laptop app (WhatsApp, Chrome, Spotify), search YouTube or Google, control volume, inspect vitals, and query local databases.
+                </p>
+
+                <div class="orb-wrapper">
+                    <div class="voice-orb" id="voiceOrb" onclick="toggleMic()">
+                        <svg class="orb-icon" viewBox="0 0 24 24">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="orb-status" id="orbStatus">Click Orb to Speak</div>
+                <div class="orb-subtext" id="orbSubtext">Or type any command below like "Open WhatsApp", "Play jazz on YouTube", "Mute volume", or "System vitals".</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>💬 Live Dialogue Stream</span>
+                    </div>
+                    <button onclick="clearHistory()" style="background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer;">Clear Session</button>
+                </div>
+
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message assistant">
+                            <div class="message-role">Jarvis</div>
+                            Good day, Sir. I am Jarvis. Tell me what application to open, what music or video to play on YouTube, or what system diagnostics you need.
+                        </div>
+                    </div>
+
+                    <div class="chat-input-bar">
+                        <input type="text" id="chatInput" class="chat-input" placeholder="Type instructions or query..." onkeydown="handleInputKey(event)">
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">⚡ System Vitals</div>
+                    <span id="vitalsRefreshBadge" style="font-size: 0.7rem; color: var(--accent-emerald);">LIVE</span>
+                </div>
+
+                <div class="vitals-grid">
+                    <div class="vital-box">
+                        <div class="vital-label">CPU Load</div>
+                        <div class="vital-value" id="cpuVal">--%</div>
+                        <div class="vital-bar"><div class="vital-bar-fill" id="cpuBar"></div></div>
+                    </div>
+                    <div class="vital-box">
+                        <div class="vital-label">RAM Used</div>
+                        <div class="vital-value" id="ramVal">--%</div>
+                        <div class="vital-bar"><div class="vital-bar-fill" id="ramBar"></div></div>
+                    </div>
+                    <div class="vital-box">
+                        <div class="vital-label">Drive C Free</div>
+                        <div class="vital-value" id="diskVal">-- GB</div>
+                    </div>
+                    <div class="vital-box">
+                        <div class="vital-label">Battery</div>
+                        <div class="vital-value" id="batteryVal">--%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📊 Latency Telemetry</div>
+                </div>
+
+                <div class="telemetry-row">
+                    <span class="telemetry-name">VAD Endpointing Delay</span>
+                    <span class="telemetry-val" id="vadTelemetry">410 ms</span>
+                </div>
+                <div class="telemetry-row">
+                    <span class="telemetry-name">Whisper STT (Groq LPU)</span>
+                    <span class="telemetry-val" id="sttTelemetry">138 ms</span>
+                </div>
+                <div class="telemetry-row">
+                    <span class="telemetry-name">LLM Time-to-First-Token</span>
+                    <span class="telemetry-val" id="ttftTelemetry">112 ms</span>
+                </div>
+                <div class="telemetry-row">
+                    <span class="telemetry-name">Time-to-First-Audio (TTFA)</span>
+                    <span class="telemetry-val" style="color: var(--accent-emerald);" id="ttfaTelemetry">&lt; 500 ms</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🛠️ Active Native Tools</div>
+                </div>
+
+                <div class="tools-list">
+                    <div class="tool-chip">
+                        <span class="tool-name">get_system_vitals()</span>
+                        <span class="tool-status">psutil</span>
+                    </div>
+                    <div class="tool-chip">
+                        <span class="tool-name">get_top_processes()</span>
+                        <span class="tool-status">active</span>
+                    </div>
+                    <div class="tool-chip">
+                        <span class="tool-name">search_files()</span>
+                        <span class="tool-status">sanitized</span>
+                    </div>
+                    <div class="tool-chip">
+                        <span class="tool-name">open_application()</span>
+                        <span class="tool-status">whitelist</span>
+                    </div>
+                    <div class="tool-chip">
+                        <span class="tool-name">query_local_db()</span>
+                        <span class="tool-status">SQLite WAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        ApexCore Autonomous Voice & Database Intelligence Engine • Built with Pure Python, FastAPI, and Groq LPU
+    </footer>
+
+    <script>
+        let isListening = false;
+        let recognition = null;
+
+        // Initialize Speech Recognition if browser supports it
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRec();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = () => {
+                isListening = true;
+                const orb = document.getElementById('voiceOrb');
+                orb.className = 'voice-orb listening';
+                document.getElementById('orbStatus').innerText = 'Listening to voice...';
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('chatInput').value = transcript;
+                sendMessage();
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                const orb = document.getElementById('voiceOrb');
+                orb.className = 'voice-orb';
+                document.getElementById('orbStatus').innerText = 'Click Orb to Speak';
+            };
+
+            recognition.onerror = () => {
+                isListening = false;
+                document.getElementById('voiceOrb').className = 'voice-orb';
+                document.getElementById('orbStatus').innerText = 'Click Orb to Speak';
+            };
+        }
+
+        function toggleMic() {
+            if (!recognition) {
+                alert('Browser speech recognition not supported in this browser. Please use the text input below.');
+                return;
+            }
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        async function fetchVitals() {
+            try {
+                const res = await fetch('/api/tools/vitals');
+                const data = await res.json();
+                
+                document.getElementById('cpuVal').innerText = `${data.cpu_usage_percent}%`;
+                document.getElementById('cpuBar').style.width = `${data.cpu_usage_percent}%`;
+
+                document.getElementById('ramVal').innerText = `${data.ram_percent}%`;
+                document.getElementById('ramBar').style.width = `${data.ram_percent}%`;
+
+                document.getElementById('diskVal').innerText = `${data.disk_c_free_gb} GB`;
+                document.getElementById('batteryVal').innerText = data.battery_percent ? `${data.battery_percent}%` : 'AC Power';
+            } catch (err) {
+                console.error("Vitals fetch error:", err);
+            }
+        }
+
+        let currentAudio = null;
+
+        function stopCurrentAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const prompt = input.value.trim();
+            if (!prompt) return;
+
+            // Stop any playing audio immediately when user sends a new message or interrupts
+            stopCurrentAudio();
+
+            input.value = '';
+            appendMessage('user', prompt);
+
+            const orb = document.getElementById('voiceOrb');
+            orb.className = 'voice-orb speaking';
+            document.getElementById('orbStatus').innerText = 'Jarvis thinking...';
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+                const data = await res.json();
+                
+                appendMessage('assistant', data.response);
+
+                if (data.telemetry) {
+                    if (data.telemetry.vad_endpoint_ms) document.getElementById('vadTelemetry').innerText = `${data.telemetry.vad_endpoint_ms} ms`;
+                    if (data.telemetry.stt_latency_ms) document.getElementById('sttTelemetry').innerText = `${data.telemetry.stt_latency_ms} ms`;
+                    if (data.telemetry.llm_ttft_ms) document.getElementById('ttftTelemetry').innerText = `${data.telemetry.llm_ttft_ms} ms`;
+                    if (data.telemetry.ttfa_ms) document.getElementById('ttfaTelemetry').innerText = `${data.telemetry.ttfa_ms} ms`;
+                }
+
+                // If audio output was returned, play it cleanly
+                if (data.audio_base64) {
+                    stopCurrentAudio();
+                    currentAudio = new Audio("data:audio/mp3;base64," + data.audio_base64);
+                    currentAudio.onended = () => {
+                        orb.className = 'voice-orb';
+                        document.getElementById('orbStatus').innerText = 'Click Orb to Speak';
+                        currentAudio = null;
+                    };
+                    currentAudio.play();
+                }
+            } catch (err) {
+                appendMessage('assistant', 'Error communicating with backend: ' + err.message);
+            } finally {
+                if (!currentAudio) {
+                    orb.className = 'voice-orb';
+                    document.getElementById('orbStatus').innerText = 'Click Orb to Speak';
+                }
+                fetchVitals();
+            }
+        }
+
+        function appendMessage(role, text) {
+            const container = document.getElementById('chatMessages');
+            const msg = document.createElement('div');
+            msg.className = `message ${role}`;
+            
+            const roleLabel = document.createElement('div');
+            roleLabel.className = 'message-role';
+            roleLabel.innerText = role === 'user' ? 'You' : 'ApexCore Brain';
+
+            const textDiv = document.createElement('div');
+            textDiv.innerText = text;
+
+            msg.appendChild(roleLabel);
+            msg.appendChild(textDiv);
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function handleInputKey(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function clearHistory() {
+            await fetch('/api/chat/clear', { method: 'POST' });
+            document.getElementById('chatMessages').innerHTML = `
+                <div class="message assistant">
+                    <div class="message-role">ApexCore Brain</div>
+                    Session history cleared!
+                </div>
+            `;
+        }
+
+        // Poll vitals every 3 seconds
+        fetchVitals();
+        setInterval(fetchVitals, 3000);
+    </script>
+</body>
+</html>
