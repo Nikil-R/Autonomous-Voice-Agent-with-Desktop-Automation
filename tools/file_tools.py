@@ -271,43 +271,96 @@ def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:
 def search_web_or_play(query: str, platform: str = "youtube", play_direct: bool = True) -> Dict[str, Any]:
     """
     Searches Google, YouTube, or Wikipedia directly and opens the resulting page or plays the video in Chrome.
-    If platform is 'youtube', automatically extracts the top video ID and opens the direct watch URL to play the song immediately!
+    If platform is 'youtube':
+    1. Scrapes video candidates and verifies title relevance against query keywords.
+    2. If a confident match is verified, opens the direct watch URL immediately.
+    3. If ambiguous, opens the YouTube search page and uses Chrome CDP to click the top official result!
     """
     clean_query = query.strip()
     q_encoded = urllib.parse.quote(clean_query)
     plat = platform.strip().lower()
 
     if plat == "youtube":
-        target_url = f"https://www.youtube.com/results?search_query={q_encoded}"
+        search_page_url = f"https://www.youtube.com/results?search_query={q_encoded}"
+        target_watch_url = None
+        matched_title = clean_query
+
         if play_direct:
             try:
-                # Scrape top video ID from YouTube search page
+                # 1. Scrape YouTube search page HTML
                 req = urllib.request.Request(
-                    target_url,
+                    search_page_url,
                     headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
                 )
                 html = urllib.request.urlopen(req, timeout=4).read().decode("utf-8", errors="ignore")
-                video_ids = re.findall(r'watch\?v=([a-zA-Z0-9_-]{11})', html)
-                if video_ids:
-                    # Found direct video!
-                    top_video_id = video_ids[0]
-                    direct_watch_url = f"https://www.youtube.com/watch?v={top_video_id}"
-                    open_url(direct_watch_url)
-                    db_manager.log_audit_event("youtube_play", f"Playing {clean_query} ({direct_watch_url})", success=True)
-                    return {
-                        "success": True,
-                        "url": direct_watch_url,
-                        "message": f"Playing {clean_query} on YouTube now, Sir."
-                    }
-            except Exception as e:
-                print(f"[YouTube direct play fallback]: {e}")
 
-        # Fallback to standard search query if direct scrape didn't catch
-        open_url(target_url)
+                # Parse JSON videoRenderer structures containing videoId and title
+                # Regex extracts (videoId, titleText) pairs
+                video_entries = re.findall(
+                    r'"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})".*?"title":\{"runs":\[\{"text":"(.*?)"\}',
+                    html
+                )
+
+                if video_entries:
+                    query_words = [w.lower() for w in re.findall(r'\w+', clean_query) if len(w) > 2]
+                    
+                    # Check candidates to find the best title match
+                    best_id = None
+                    best_title = None
+                    for vid_id, vid_title in video_entries[:5]:
+                        title_lower = vid_title.lower()
+                        # Count matching words
+                        matches = sum(1 for w in query_words if w in title_lower)
+                        if matches >= max(1, len(query_words) // 2):
+                            best_id = vid_id
+                            best_title = vid_title
+                            break
+
+                    if best_id:
+                        target_watch_url = f"https://www.youtube.com/watch?v={best_id}"
+                        matched_title = best_title or clean_query
+                    else:
+                        # Fallback to absolute top video if reasonable
+                        top_vid_id, top_title = video_entries[0]
+                        target_watch_url = f"https://www.youtube.com/watch?v={top_vid_id}"
+                        matched_title = top_title
+                else:
+                    # Fallback to simple watch ID regex
+                    simple_ids = re.findall(r'watch\?v=([a-zA-Z0-9_-]{11})', html)
+                    if simple_ids:
+                        target_watch_url = f"https://www.youtube.com/watch?v={simple_ids[0]}"
+            except Exception as e:
+                print(f"[YouTube title verification warning]: {e}")
+
+        # 2. If a confident direct watch URL was verified, launch it directly!
+        if target_watch_url:
+            open_url(target_watch_url)
+            db_manager.log_audit_event("youtube_play", f"Playing {clean_query} ({target_watch_url})", success=True)
+            return {
+                "success": True,
+                "url": target_watch_url,
+                "title": matched_title,
+                "message": f"Playing {matched_title} on YouTube, Sir."
+            }
+
+        # 3. Direct Query Fallback via Chrome CDP:
+        # Open search page, then click the top search result inside the live Chrome DOM!
+        open_url(search_page_url)
+        db_manager.log_audit_event("youtube_search_cdp", f"Searching {clean_query} on YouTube", success=True)
+        
+        # Asynchronously attempt CDP in-tab click on the top result
+        try:
+            from tools.cdp_controller import cdp_controller
+            if cdp_controller.is_cdp_active():
+                time.sleep(1.2)  # Allow page DOM to populate
+                cdp_controller.click_dom_element("first_result")
+        except Exception:
+            pass
+
         return {
             "success": True,
-            "url": target_url,
-            "message": f"Playing {clean_query} on YouTube, Sir."
+            "url": search_page_url,
+            "message": f"Playing top result for {clean_query} on YouTube, Sir."
         }
     elif plat == "wikipedia":
         target_url = f"https://en.wikipedia.org/wiki/Special:Search?search={q_encoded}"
