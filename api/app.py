@@ -85,7 +85,7 @@ class FileSearchRequest(BaseModel):
 
 @app.get("/", include_in_schema=False)
 async def serve_index():
-    """Serves the modern Jarvis Dynamic Notch React UI."""
+    """Serves the modern Dynamic Notch React UI."""
     if REACT_DIST_DIR.exists() and (REACT_DIST_DIR / "index.html").exists():
         return FileResponse(REACT_DIST_DIR / "index.html")
     return FileResponse(STATIC_DIR / "index.html")

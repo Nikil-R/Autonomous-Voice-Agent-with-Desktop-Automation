@@ -92,7 +92,7 @@ class VisionGroundingEngine:
         jpeg_bytes, width, height = shot
 
         prompt = f"""
-You are Jarvis, an ultra-fast multimodal AI desktop assistant.
+You are an ultra-fast multimodal AI desktop assistant.
 Look at this screenshot of the user's computer screen ({width}x{height} pixels).
 The user asks: "{question_or_task}"
 

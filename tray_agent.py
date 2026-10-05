@@ -40,24 +40,24 @@ def create_tray_icon_image():
 
 
 def focus_or_launch_hud():
-    """Brings the Jarvis Dynamic Notch window to the absolute foreground or launches it."""
-    # Look for existing browser window with Jarvis HUD
-    found = window_manager.find_window_by_keyword("Jarvis")
+    """Brings the Voice Dynamic Notch window to the absolute foreground or launches it."""
+    # Look for existing browser window with Voice HUD
+    found = window_manager.find_window_by_keyword("Voice")
     if not found:
-        found = window_manager.find_window_by_keyword("ApexCore")
+        found = window_manager.find_window_by_keyword("Autonomous")
 
     if found:
         hwnd, title = found
         window_manager.focus_and_foreground_window(hwnd)
-        print(f"⚡ [Global Hotkey] Focused existing Jarvis HUD: {title}")
+        print(f"⚡ [Global Hotkey] Focused existing Voice HUD: {title}")
     else:
         # Launch dedicated app-window mode in Chrome
         try:
             cmd = f'start chrome --app="{FRONTEND_URL}"'
             subprocess.Popen(cmd, shell=True)
-            print("🚀 [Global Hotkey] Launched Jarvis floating HUD window.")
+            print("🚀 [Global Hotkey] Launched floating HUD window.")
             # Focus after short settlement
-            window_manager.wait_and_focus_window("Jarvis", timeout_seconds=3.0)
+            window_manager.wait_and_focus_window("Voice", timeout_seconds=3.0)
         except Exception:
             webbrowser.open(FRONTEND_URL)
 
@@ -115,17 +115,17 @@ def run_system_tray():
         os._exit(0)
 
     menu = pystray.Menu(
-        pystray.MenuItem("Jarvis Voice HUD (Ctrl+Shift+Space)", on_open_hud, default=True),
+        pystray.MenuItem("Voice Agent HUD (Ctrl+Shift+Space)", on_open_hud, default=True),
         pystray.Menu.SEPARATOR,
         pystray.MenuItem("Open Notch in Chrome", lambda icon, item: webbrowser.open(FRONTEND_URL)),
         pystray.Menu.SEPARATOR,
-        pystray.MenuItem("Exit Jarvis Agent", on_exit)
+        pystray.MenuItem("Exit Voice Agent", on_exit)
     )
 
     tray_icon = pystray.Icon(
-        name="JarvisVoiceAgent",
+        name="VoiceAgentHUD",
         icon=icon_image,
-        title="Jarvis Autonomous Voice Agent (Ctrl+Shift+Space)",
+        title="Autonomous Voice Agent (Ctrl+Shift+Space)",
         menu=menu
     )
 

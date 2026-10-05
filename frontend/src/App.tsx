@@ -26,7 +26,7 @@ export default function App(): React.JSX.Element {
   const [lastResponse, setLastResponse] = useState<string>('');
   const [expanded, setExpanded] = useState<boolean>(false);
   const [history, setHistory] = useState<ChatMessage[]>([
-    { role: 'assistant', text: 'Jarvis Voice Notch is online. Press Spacebar or click to speak.' }
+    { role: 'assistant', text: 'Voice Assistant is online. Press Spacebar or click to speak.' }
   ]);
 
   const recognitionRef = useRef<any>(null);
@@ -241,7 +241,7 @@ export default function App(): React.JSX.Element {
     } catch (err) {
       console.error('API Error:', err);
       setStatus('idle');
-      setHistory((prev) => [...prev, { role: 'assistant', text: 'Error connecting to Jarvis backend.' }]);
+      setHistory((prev) => [...prev, { role: 'assistant', text: 'Error connecting to backend server.' }]);
     }
   };
 
@@ -306,7 +306,7 @@ export default function App(): React.JSX.Element {
 
           {/* Notch Text State */}
           <div className="notch-text-wrapper">
-            <span className="notch-brand">JARVIS</span>
+            <span className="notch-brand">VOICE AI</span>
             <span className="notch-state-desc">
               {status === 'listening'
                 ? interimText ? `"${interimText}"` : 'Listening... (Speak naturally)'
