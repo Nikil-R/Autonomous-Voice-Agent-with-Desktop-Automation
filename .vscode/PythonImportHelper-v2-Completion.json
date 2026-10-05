@@ -663,6 +663,22 @@
         "documentation": {}
     },
     {
+        "label": "GROQ_FALLBACK_MODELS",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GEMINI_API_KEY",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
         "label": "GROQ_API_KEY",
         "importPath": "core.config",
         "description": "core.config",
@@ -712,6 +728,22 @@
     },
     {
         "label": "GEMINI_API_KEY",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "INPUT_SAMPLE_RATE",
+        "importPath": "core.config",
+        "description": "core.config",
+        "isExtraImport": true,
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "CHUNK_SIZE",
         "importPath": "core.config",
         "description": "core.config",
         "isExtraImport": true,
@@ -999,6 +1031,14 @@
         "documentation": {}
     },
     {
+        "label": "WhisperSTTService",
+        "importPath": "services.stt",
+        "description": "services.stt",
+        "isExtraImport": true,
+        "detail": "services.stt",
+        "documentation": {}
+    },
+    {
         "label": "load_dotenv",
         "importPath": "dotenv",
         "description": "dotenv",
@@ -1069,7 +1109,31 @@
         "documentation": {}
     },
     {
+        "label": "SileroVAD",
+        "importPath": "services.vad",
+        "description": "services.vad",
+        "isExtraImport": true,
+        "detail": "services.vad",
+        "documentation": {}
+    },
+    {
         "label": "AsyncGroq",
+        "importPath": "groq",
+        "description": "groq",
+        "isExtraImport": true,
+        "detail": "groq",
+        "documentation": {}
+    },
+    {
+        "label": "RateLimitError",
+        "importPath": "groq",
+        "description": "groq",
+        "isExtraImport": true,
+        "detail": "groq",
+        "documentation": {}
+    },
+    {
+        "label": "APIError",
         "importPath": "groq",
         "description": "groq",
         "isExtraImport": true,
@@ -1264,14 +1328,6 @@
         "isExtraImport": true,
         "importPath": "tkinter",
         "description": "tkinter",
-        "detail": "tkinter",
-        "documentation": {}
-    },
-    {
-        "label": "font",
-        "importPath": "tkinter",
-        "description": "tkinter",
-        "isExtraImport": true,
         "detail": "tkinter",
         "documentation": {}
     },
@@ -1555,7 +1611,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "TTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"",
+        "peekOfCode": "TTS_VOICE = \"en-US-ChristopherNeural\"  # Professional energetic neural voice\n# Silero VAD Settings\nVAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1564,7 +1620,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "VAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"",
+        "peekOfCode": "VAD_MODEL_PATH = BASE_DIR / \"models\" / \"silero_vad.onnx\"\nSPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1573,7 +1629,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "SPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "SPEECH_PROB_THRESHOLD = 0.55\nINTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1582,7 +1638,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "INTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "INTERRUPT_PROB_THRESHOLD = 0.72  # Higher threshold when speaker is active (AEC gating)\nSILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1591,7 +1647,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "SILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "SILENCE_DURATION_MS = 900         # 900ms natural pause silence allows continuous sentences without premature cutoffs\nSILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1600,7 +1656,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "SILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "SILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)\n# Models\nGROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1609,7 +1665,7 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "GROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "GROQ_WHISPER_MODEL = \"whisper-large-v3-turbo\"\nGROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1618,7 +1674,16 @@
         "kind": 5,
         "importPath": "core.config",
         "description": "core.config",
-        "peekOfCode": "GROQ_LLM_MODEL = \"qwen/qwen3.8-27b\"\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "peekOfCode": "GROQ_LLM_MODEL = \"openai/gpt-oss-20b\"\nGROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
+        "detail": "core.config",
+        "documentation": {}
+    },
+    {
+        "label": "GROQ_FALLBACK_MODELS",
+        "kind": 5,
+        "importPath": "core.config",
+        "description": "core.config",
+        "peekOfCode": "GROQ_FALLBACK_MODELS = [\"openai/gpt-oss-20b\", \"openai/gpt-oss-120b\", \"qwen/qwen3.8-27b\"]\n# Database Settings\nDB_PATH = BASE_DIR / \"database\" / \"apexcore.db\"\nSCHEMA_PATH = BASE_DIR / \"database\" / \"schema.sql\"",
         "detail": "core.config",
         "documentation": {}
     },
@@ -1717,7 +1782,7 @@
         "kind": 6,
         "importPath": "services.brain",
         "description": "services.brain",
-        "peekOfCode": "class AgentBrain:\n    \"\"\"\n    Pure Python asynchronous ReAct (Reason + Act) loop.\n    1. Sends conversation history + JSON schemas to Groq LLM.\n    2. Resolves and executes tool calls recursively.\n    3. Streams the final conversational response tokens for sub-500ms TTFA synthesis.\n    \"\"\"\n    def __init__(self, api_key: str = GROQ_API_KEY, model: str = GROQ_LLM_MODEL):\n        self.api_key = api_key\n        self.model = model",
+        "peekOfCode": "class AgentBrain:\n    \"\"\"\n    Pure Python asynchronous ReAct (Reason + Act) loop.\n    1. Sends conversation history + JSON schemas to high-speed LLMs (openai/gpt-oss-20b, 120b, qwen).\n    2. Automatically cascades through fallback models upon encountering any 429 rate limit.\n    3. Seamlessly falls back to Google Gemini 3.5 Flash if needed.\n    4. Resolves and executes tool calls recursively.\n    5. Streams the final conversational response tokens for sub-500ms TTFA synthesis.\n    \"\"\"\n    def __init__(self, api_key: str = GROQ_API_KEY, model: str = GROQ_LLM_MODEL):",
         "detail": "services.brain",
         "documentation": {}
     },
@@ -2203,7 +2268,7 @@
         "kind": 5,
         "importPath": "floating_notch",
         "description": "floating_notch",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(BASE_DIR))\nimport requests\nimport sounddevice as sd\nimport soundfile as sf\nimport io\nAPI_BASE = \"http://127.0.0.1:8000\"\nclass FloatingNotchHUD:\n    \"\"\"Native Windows Transparent Floating Dynamic Island HUD.\"\"\"\n    def __init__(self):",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(BASE_DIR))\nimport requests\nimport numpy as np\nimport sounddevice as sd\nimport soundfile as sf\nimport io\nfrom services.stt import WhisperSTTService\nfrom services.vad import SileroVAD\nfrom core.config import INPUT_SAMPLE_RATE, CHUNK_SIZE",
         "detail": "floating_notch",
         "documentation": {}
     },
