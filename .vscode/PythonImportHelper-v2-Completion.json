@@ -1962,7 +1962,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome using the user's regular profile.\n    Never uses isolated guest profiles or blocking sleep loops.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    opened = False\n    # 1. Try launching in user's standard Google Chrome",
+        "peekOfCode": "def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"\n    Immediately opens any website or web address in Google Chrome using the user's regular profile.\n    Robustly searches known Chrome installation paths on Windows before falling back to default browser.\n    \"\"\"\n    clean_url = url.strip()\n    if not clean_url.startswith(\"http://\") and not clean_url.startswith(\"https://\"):\n        clean_url = f\"https://{clean_url}\"\n    opened = False\n    # 1. Check known Google Chrome installation paths on Windows",
         "detail": "tools.file_tools",
         "documentation": {}
     },

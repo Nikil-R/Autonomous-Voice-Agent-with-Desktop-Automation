@@ -313,7 +313,7 @@ export default function App(): React.JSX.Element {
                 : status === 'speaking'
                 ? lastResponse || 'Speaking...'
                 : status === 'thinking'
-                ? 'Executing...'
+                ? lastResponse || 'Right away, Sir...'
                 : 'Press Space to Activate'}
             </span>
           </div>

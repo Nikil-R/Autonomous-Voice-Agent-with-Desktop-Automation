@@ -219,21 +219,38 @@ def open_application(app_name: str) -> Dict[str, Any]:
 def open_url(url: str, browser: Optional[str] = None) -> Dict[str, Any]:
     """
     Immediately opens any website or web address in Google Chrome using the user's regular profile.
-    Never uses isolated guest profiles or blocking sleep loops.
+    Robustly searches known Chrome installation paths on Windows before falling back to default browser.
     """
     clean_url = url.strip()
     if not clean_url.startswith("http://") and not clean_url.startswith("https://"):
         clean_url = f"https://{clean_url}"
 
     opened = False
-    # 1. Try launching in user's standard Google Chrome
-    try:
-        subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
-        opened = True
-    except Exception:
-        pass
+    
+    # 1. Check known Google Chrome installation paths on Windows
+    chrome_paths = [
+        os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+        os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+        os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
+    ]
+    chrome_binary = next((p for p in chrome_paths if os.path.exists(p)), None)
 
-    # 2. Fallback to default system browser
+    if chrome_binary:
+        try:
+            subprocess.Popen([chrome_binary, clean_url])
+            opened = True
+        except Exception as e:
+            print(f"[Chrome binary launch error]: {e}")
+
+    # 2. Try Windows shell 'start chrome'
+    if not opened:
+        try:
+            subprocess.Popen(f'start chrome "{clean_url}"', shell=True)
+            opened = True
+        except Exception:
+            pass
+
+    # 3. Fallback to default system browser
     if not opened:
         try:
             webbrowser.open_new_tab(clean_url)

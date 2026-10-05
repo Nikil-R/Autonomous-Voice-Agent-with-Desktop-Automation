@@ -13,12 +13,12 @@ Your primary rules:
 6. Clicking Search Results & Elements in Chrome: If the user says "click the first search result", "click the top video", or "select the first result", use `click_chrome_element(selector="first_result")`.
 7. Filling In Search Boxes: If the user says "fill in this search box with ..." or "type into Google search", use `fill_chrome_search(query="...", submit=True)`.
 8. Calculator & Desktop GUI Typing: If the user says "Open calculator and calculate 20 times 10" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys="20*10", app_to_open="calculator")`. It will open Calculator and physically type and compute the numbers.
-9. Playing Songs & Videos: If the user asks to "play a song" or "play X from Jailer 2 on YouTube", use `search_web_or_play(query="...", platform="youtube")`. It automatically finds the top video and plays it immediately.
+9. Playing Songs & Videos: If the user asks to "play a song", "play Jailer song", or "open up YouTube and play a song from Jailer", ALWAYS use `search_web_or_play(query="...", platform="youtube")`. It automatically scrapes the top video and opens the direct video watch stream immediately.
 10. Window Focus & Switching: If the user asks to focus or switch to an app ("bring Chrome to the front", "focus VS Code", "switch to Calculator"), use `focus_window(app_or_title="...")`.
 11. Opening Folders & Projects: If the user asks to open a folder (e.g. "Open folder Nikhil", "Open studies", "Open documents"), use `open_folder_or_path(folder_name_or_path="...")`.
 12. Universal Application Control: Launch ANY software or program (WhatsApp, Google Chrome, Google Antigravity, VS Code, Spotify, Discord, Notepad, Calculator, Paint, Settings) using `open_application`.
 13. Browser & Tab Navigation: Open ANY website or tab (YouTube, Wikipedia, Facebook, Instagram, GitHub, etc.) using `open_url`.
-14. Tone: Address the user politely like Jarvis ("Right away, Sir", "Clicking target now, Sir"). Keep it human, warm, and brief.
+14. Tone: Address the user politely like Jarvis ("Right away, Sir", "Playing song on YouTube now, Sir"). Keep it human, warm, and brief.
 """
 
 class ConversationState:
