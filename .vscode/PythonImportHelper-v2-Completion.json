@@ -127,6 +127,14 @@
         "documentation": {}
     },
     {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -1251,6 +1259,32 @@
         "documentation": {}
     },
     {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "font",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
         "label": "Image",
         "importPath": "PIL",
         "description": "PIL",
@@ -1323,7 +1357,7 @@
         "kind": 6,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "class URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Jarvis Dynamic Notch React UI.\"\"\"",
+        "peekOfCode": "class URLRequest(BaseModel):\n    url: str\n    browser: Optional[str] = \"chrome\"\nclass FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Dynamic Notch React UI.\"\"\"",
         "detail": "api.app",
         "documentation": {}
     },
@@ -1332,7 +1366,7 @@
         "kind": 6,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "class FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Jarvis Dynamic Notch React UI.\"\"\"\n    if REACT_DIST_DIR.exists() and (REACT_DIST_DIR / \"index.html\").exists():\n        return FileResponse(REACT_DIST_DIR / \"index.html\")\n    return FileResponse(STATIC_DIR / \"index.html\")",
+        "peekOfCode": "class FileSearchRequest(BaseModel):\n    directory: str\n    extension: Optional[str] = None\n    keyword: Optional[str] = None\n@app.get(\"/\", include_in_schema=False)\nasync def serve_index():\n    \"\"\"Serves the modern Dynamic Notch React UI.\"\"\"\n    if REACT_DIST_DIR.exists() and (REACT_DIST_DIR / \"index.html\").exists():\n        return FileResponse(REACT_DIST_DIR / \"index.html\")\n    return FileResponse(STATIC_DIR / \"index.html\")",
         "detail": "api.app",
         "documentation": {}
     },
@@ -1620,7 +1654,7 @@
         "kind": 5,
         "importPath": "core.state",
         "description": "core.state",
-        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are Jarvis, an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Multimodal Screen Grounding & Visual Clicking: If the user says \"click the blue download button\", \"select the second song\", \"click the submit button\", or tells you to click something visually on screen, use `click_on_visual_target(target_description=\"...\")`. It takes a screenshot, locates the exact coordinates with Vision AI, and clicks it!\n4. Seeing and Inspecting Screen: If the user asks \"what is on my screen?\", \"look at this\", or asks to describe the screen, use `capture_and_analyze_screen(question_or_task=\"...\")`.\n5. In-Tab Chrome Video & Media Controls: If the user says \"pause the video\", \"play the video\", \"mute the video\", \"unmute\", or \"forward 10 seconds\", use `control_chrome_tab_video(action=\"pause\"|\"play\"|\"toggle\"|\"mute\"|\"forward\")`.\n6. Clicking Search Results & Elements in Chrome: If the user says \"click the first search result\", \"click the top video\", or \"select the first result\", use `click_chrome_element(selector=\"first_result\")`.\n7. Filling In Search Boxes: If the user says \"fill in this search box with ...\" or \"type into Google search\", use `fill_chrome_search(query=\"...\", submit=True)`.\n8. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are an ultra-fast, intelligent, autonomous voice desktop assistant for the user's laptop.\nYour primary rules:\n1. BREVITY AND CONCISENESS (CRITICAL): When answering general knowledge questions (like \"What is PCM?\"), give a maximum of 1 or 2 clear, crisp, high-impact sentences. NEVER lecture or give 4-5 sentences. If the user wants elaboration, they will ask.\n2. ABSOLUTELY NO MARKDOWN SYMBOLS (CRITICAL): Never output asterisks (** or *), hashtags (###), bullet dashes (-), backticks (`), or formatting symbols. Your output is read out loud by a voice synthesizer, so writing **CPU** causes the engine to literally pronounce \"asterisk asterisk CPU\". Always write plain, spoken English.\n3. Multimodal Screen Grounding & Visual Clicking: If the user says \"click the blue download button\", \"select the second song\", \"click the submit button\", or tells you to click something visually on screen, use `click_on_visual_target(target_description=\"...\")`. It takes a screenshot, locates the exact coordinates with Vision AI, and clicks it!\n4. Seeing and Inspecting Screen: If the user asks \"what is on my screen?\", \"look at this\", or asks to describe the screen, use `capture_and_analyze_screen(question_or_task=\"...\")`.\n5. In-Tab Chrome Video & Media Controls: If the user says \"pause the video\", \"play the video\", \"mute the video\", \"unmute\", or \"forward 10 seconds\", use `control_chrome_tab_video(action=\"pause\"|\"play\"|\"toggle\"|\"mute\"|\"forward\")`.\n6. Clicking Search Results & Elements in Chrome: If the user says \"click the first search result\", \"click the top video\", or \"select the first result\", use `click_chrome_element(selector=\"first_result\")`.\n7. Filling In Search Boxes: If the user says \"fill in this search box with ...\" or \"type into Google search\", use `fill_chrome_search(query=\"...\", submit=True)`.\n8. Calculator & Desktop GUI Typing: If the user says \"Open calculator and calculate 20 times 10\" or asks to calculate something on the desktop calculator, use `desktop_type_or_calculate(calculation_or_keys=\"20*10\", app_to_open=\"calculator\")`. It will open Calculator and physically type and compute the numbers.",
         "detail": "core.state",
         "documentation": {}
     },
@@ -1971,7 +2005,7 @@
         "kind": 2,
         "importPath": "tools.file_tools",
         "description": "tools.file_tools",
-        "peekOfCode": "def search_web_or_play(query: str, platform: str = \"youtube\", play_direct: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Searches Google, YouTube, or Wikipedia directly and opens the resulting page or plays the video in Chrome.\n    If platform is 'youtube', automatically extracts the top video ID and opens the direct watch URL to play the song immediately!\n    \"\"\"\n    clean_query = query.strip()\n    q_encoded = urllib.parse.quote(clean_query)\n    plat = platform.strip().lower()\n    if plat == \"youtube\":\n        target_url = f\"https://www.youtube.com/results?search_query={q_encoded}\"",
+        "peekOfCode": "def search_web_or_play(query: str, platform: str = \"youtube\", play_direct: bool = True) -> Dict[str, Any]:\n    \"\"\"\n    Searches Google, YouTube, or Wikipedia directly and opens the resulting page or plays the video in Chrome.\n    If platform is 'youtube':\n    1. Scrapes video candidates and verifies title relevance against query keywords.\n    2. If a confident match is verified, opens the direct watch URL immediately.\n    3. If ambiguous, opens the YouTube search page and uses Chrome CDP to click the top official result!\n    \"\"\"\n    clean_query = query.strip()\n    q_encoded = urllib.parse.quote(clean_query)",
         "detail": "tools.file_tools",
         "documentation": {}
     },
@@ -2147,6 +2181,42 @@
         "documentation": {}
     },
     {
+        "label": "FloatingNotchHUD",
+        "kind": 6,
+        "importPath": "floating_notch",
+        "description": "floating_notch",
+        "peekOfCode": "class FloatingNotchHUD:\n    \"\"\"Native Windows Transparent Floating Dynamic Island HUD.\"\"\"\n    def __init__(self):\n        self.root = tk.Tk()\n        self.root.title(\"VoiceAgent_Overlay\")\n        self.root.overrideredirect(True)       # Frameless / No Windows titlebar\n        self.root.attributes(\"-topmost\", True)  # Always floats on top of all windows\n        self.transparent_key = \"#000001\"\n        self.root.attributes(\"-transparentcolor\", self.transparent_key)\n        self.root.config(bg=self.transparent_key)",
+        "detail": "floating_notch",
+        "documentation": {}
+    },
+    {
+        "label": "launch_native_floating_notch",
+        "kind": 2,
+        "importPath": "floating_notch",
+        "description": "floating_notch",
+        "peekOfCode": "def launch_native_floating_notch():\n    \"\"\"Starts the native transparent desktop notch HUD.\"\"\"\n    app = FloatingNotchHUD()\n    app.root.mainloop()\nif __name__ == \"__main__\":\n    launch_native_floating_notch()",
+        "detail": "floating_notch",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "floating_notch",
+        "description": "floating_notch",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(BASE_DIR))\nimport requests\nimport sounddevice as sd\nimport soundfile as sf\nimport io\nAPI_BASE = \"http://127.0.0.1:8000\"\nclass FloatingNotchHUD:\n    \"\"\"Native Windows Transparent Floating Dynamic Island HUD.\"\"\"\n    def __init__(self):",
+        "detail": "floating_notch",
+        "documentation": {}
+    },
+    {
+        "label": "API_BASE",
+        "kind": 5,
+        "importPath": "floating_notch",
+        "description": "floating_notch",
+        "peekOfCode": "API_BASE = \"http://127.0.0.1:8000\"\nclass FloatingNotchHUD:\n    \"\"\"Native Windows Transparent Floating Dynamic Island HUD.\"\"\"\n    def __init__(self):\n        self.root = tk.Tk()\n        self.root.title(\"VoiceAgent_Overlay\")\n        self.root.overrideredirect(True)       # Frameless / No Windows titlebar\n        self.root.attributes(\"-topmost\", True)  # Always floats on top of all windows\n        self.transparent_key = \"#000001\"\n        self.root.attributes(\"-transparentcolor\", self.transparent_key)",
+        "detail": "floating_notch",
+        "documentation": {}
+    },
+    {
         "label": "BASE_DIR",
         "kind": 5,
         "importPath": "main",
@@ -2187,7 +2257,7 @@
         "kind": 2,
         "importPath": "tray_agent",
         "description": "tray_agent",
-        "peekOfCode": "def focus_or_launch_hud():\n    \"\"\"Brings the Jarvis Dynamic Notch window to the absolute foreground or launches it.\"\"\"\n    # Look for existing browser window with Jarvis HUD\n    found = window_manager.find_window_by_keyword(\"Jarvis\")\n    if not found:\n        found = window_manager.find_window_by_keyword(\"ApexCore\")\n    if found:\n        hwnd, title = found\n        window_manager.focus_and_foreground_window(hwnd)\n        print(f\"⚡ [Global Hotkey] Focused existing Jarvis HUD: {title}\")",
+        "peekOfCode": "def focus_or_launch_hud():\n    \"\"\"Brings the native transparent Voice Dynamic Notch to the foreground or launches it.\"\"\"\n    found = window_manager.find_window_by_keyword(\"VoiceAgent_Overlay\")\n    if not found:\n        found = window_manager.find_window_by_keyword(\"Voice\")\n    if found:\n        hwnd, title = found\n        window_manager.focus_and_foreground_window(hwnd)\n        print(f\"⚡ [Global Hotkey] Focused existing Voice HUD: {title}\")\n    else:",
         "detail": "tray_agent",
         "documentation": {}
     },

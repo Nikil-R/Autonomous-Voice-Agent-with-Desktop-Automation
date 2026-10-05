@@ -40,26 +40,24 @@ def create_tray_icon_image():
 
 
 def focus_or_launch_hud():
-    """Brings the Voice Dynamic Notch window to the absolute foreground or launches it."""
-    # Look for existing browser window with Voice HUD
-    found = window_manager.find_window_by_keyword("Voice")
+    """Brings the native transparent Voice Dynamic Notch to the foreground or launches it."""
+    found = window_manager.find_window_by_keyword("VoiceAgent_Overlay")
     if not found:
-        found = window_manager.find_window_by_keyword("Autonomous")
+        found = window_manager.find_window_by_keyword("Voice")
 
     if found:
         hwnd, title = found
         window_manager.focus_and_foreground_window(hwnd)
         print(f"⚡ [Global Hotkey] Focused existing Voice HUD: {title}")
     else:
-        # Launch dedicated app-window mode in Chrome
+        # Launch native frameless transparent desktop notch HUD
+        notch_script = BASE_DIR / "floating_notch.py"
         try:
-            cmd = f'start chrome --app="{FRONTEND_URL}"'
-            subprocess.Popen(cmd, shell=True)
-            print("🚀 [Global Hotkey] Launched floating HUD window.")
-            # Focus after short settlement
-            window_manager.wait_and_focus_window("Voice", timeout_seconds=3.0)
-        except Exception:
-            webbrowser.open(FRONTEND_URL)
+            subprocess.Popen([sys.executable, str(notch_script)])
+            print("🚀 [Global Hotkey] Launched native transparent floating notch HUD.")
+            window_manager.wait_and_focus_window("VoiceAgent_Overlay", timeout_seconds=3.0)
+        except Exception as e:
+            print(f"Failed to launch floating notch: {e}")
 
 
 class GlobalHotkeyManager:
