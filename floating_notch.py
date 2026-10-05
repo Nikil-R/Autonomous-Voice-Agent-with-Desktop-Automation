@@ -3,9 +3,9 @@ Native Windows Transparent Floating Desktop Notch HUD.
 Runs directly on the user's desktop screen across all applications without ANY browser window or background!
 - Borderless, semi-translucent titanium slate pill with rounded edges.
 - Always on top (-topmost) with transparent background (-transparentcolor).
-- Connects directly to FastAPI backend via WebSockets.
-- Includes microphone listener with speech recognition and instant Edge-TTS voice playback.
-- Press SPACE to speak, or click the mic button on the notch!
+- Direct high-fidelity microphone recording with sounddevice + Whisper Large v3 Turbo (NO speech_recognition dependency).
+- Global keyboard hook for Spacebar & hotkey detection using pynput.
+- Press SPACE to speak, or click the notch!
 """
 
 import sys
@@ -19,14 +19,19 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import font
 
-# Ensure ApexCore root is in sys.path
+# Ensure project root is in sys.path
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR))
 
 import requests
+import numpy as np
 import sounddevice as sd
 import soundfile as sf
 import io
+
+from services.stt import WhisperSTTService
+from services.vad import SileroVAD
+from core.config import INPUT_SAMPLE_RATE, CHUNK_SIZE
 
 API_BASE = "http://127.0.0.1:8000"
 
@@ -45,22 +50,25 @@ class FloatingNotchHUD:
 
         # Center at the top of the monitor
         screen_w = self.root.winfo_screenwidth()
-        notch_w = 480
-        notch_h = 64
-        x = (screen_w - notch_w) // 2
+        self.notch_w = 490
+        self.notch_h = 64
+        x = (screen_w - self.notch_w) // 2
         y = 14
-        self.root.geometry(f"{notch_w}x{notch_h}+{x}+{y}")
+        self.root.geometry(f"{self.notch_w}x{self.notch_h}+{x}+{y}")
 
         self.status = "idle"  # idle, listening, thinking, speaking
         self.current_text = "Press Space or Click to Speak"
         self.is_listening = False
-        self.audio_thread = None
+        self.is_recording = False
+        self.audio_frames = []
+        self.stt_service = WhisperSTTService()
+        self.vad_service = SileroVAD()
 
         # Build Canvas
         self.canvas = tk.Canvas(
             self.root,
-            width=notch_w,
-            height=notch_h,
+            width=self.notch_w,
+            height=self.notch_h,
             bg=self.transparent_key,
             highlightthickness=0
         )
@@ -69,9 +77,6 @@ class FloatingNotchHUD:
         # Click event to toggle listen
         self.canvas.bind("<Button-1>", lambda e: self.toggle_voice())
 
-        # Global Spacebar hotkey inside window
-        self.root.bind("<space>", lambda e: self.toggle_voice())
-
         # Draggable window capability
         self.canvas.bind("<ButtonPress-1>", self.start_drag)
         self.canvas.bind("<B1-Motion>", self.do_drag)
@@ -79,6 +84,24 @@ class FloatingNotchHUD:
         self.drag_y = 0
 
         self.draw_notch()
+        self._start_global_space_listener()
+
+    def _start_global_space_listener(self):
+        """Starts background pynput listener so Spacebar works from anywhere."""
+        from pynput import keyboard
+
+        def on_press(key):
+            try:
+                if key == keyboard.Key.space:
+                    # Only activate if currently idle
+                    if not self.is_listening and not self.is_recording:
+                        self.root.after(0, self.toggle_voice)
+            except Exception:
+                pass
+
+        listener = keyboard.Listener(on_press=on_press)
+        listener.daemon = True
+        listener.start()
 
     def start_drag(self, event):
         self.drag_x = event.x
@@ -91,7 +114,7 @@ class FloatingNotchHUD:
 
     def draw_notch(self):
         self.canvas.delete("all")
-        w, h = 480, 64
+        w, h = self.notch_w, self.notch_h
         r = 22  # Corner radius
 
         # Color schemes based on status
@@ -130,10 +153,10 @@ class FloatingNotchHUD:
         # Draw glowing status dot
         self.canvas.create_oval(24, 26, 36, 38, fill=dot_color, outline="")
 
-        # Draw brand label
+        # Draw project header label: AUTONOMOUS AGENT
         self.canvas.create_text(
             46, 24,
-            text="VOICE AI",
+            text="AUTONOMOUS AGENT",
             anchor="w",
             fill=accent_color,
             font=("Segoe UI", 8, "bold")
@@ -167,28 +190,70 @@ class FloatingNotchHUD:
         self.draw_notch()
 
     def toggle_voice(self):
-        if self.is_listening:
+        if self.is_listening or self.is_recording:
+            self.is_recording = False
             self.is_listening = False
             self.set_status("idle", "Press Space or Click to Speak")
         else:
             self.is_listening = True
+            self.is_recording = True
             self.set_status("listening", "Listening... (Speak naturally)")
-            threading.Thread(target=self._record_and_dispatch, daemon=True).start()
+            threading.Thread(target=self._record_audio_worker, daemon=True).start()
 
-    def _record_and_dispatch(self):
+    def _record_audio_worker(self):
+        """Records microphone PCM audio and transcribes with Whisper Large v3 Turbo."""
         try:
-            # Capture audio via SpeechRecognition or local Whisper
-            import speech_recognition as sr
-            recognizer = sr.Recognizer()
-            recognizer.energy_threshold = 300
-            recognizer.dynamic_energy_threshold = True
+            self.audio_frames = []
+            silence_count = 0
+            max_silence = 25  # ~800ms of silence
+            has_spoken = False
 
-            with sr.Microphone(sample_rate=16000) as source:
-                recognizer.adjust_for_ambient_noise(source, duration=0.3)
-                audio_data = recognizer.listen(source, timeout=5, phrase_time_limit=10)
+            def callback(indata, frames, time_info, status):
+                if not self.is_recording:
+                    raise sd.CallbackStop
+                self.audio_frames.append(indata.copy())
 
-            self.root.after(0, lambda: self.set_status("thinking", "Right away, Sir..."))
-            transcript = recognizer.recognize_google(audio_data)
+            with sd.InputStream(
+                samplerate=INPUT_SAMPLE_RATE,
+                channels=1,
+                dtype="int16",
+                blocksize=CHUNK_SIZE,
+                callback=callback
+            ):
+                start_time = time.time()
+                while self.is_recording:
+                    sd.sleep(32)
+                    if len(self.audio_frames) > 0:
+                        last_chunk = self.audio_frames[-1].flatten()
+                        is_speech = self.vad_service.is_speech(last_chunk, threshold=0.5)
+
+                        if is_speech:
+                            has_spoken = True
+                            silence_count = 0
+                        else:
+                            if has_spoken:
+                                silence_count += 1
+                                if silence_count >= max_silence:
+                                    # End of utterance detected!
+                                    break
+
+                    # Maximum 8 seconds per command
+                    if time.time() - start_time > 8.0:
+                        break
+
+            self.is_recording = False
+            if not self.audio_frames:
+                self.root.after(0, lambda: self.set_status("idle", "Press Space or Click to Speak"))
+                self.is_listening = False
+                return
+
+            self.root.after(0, lambda: self.set_status("thinking", "Transcribing..."))
+
+            # Assemble PCM audio array
+            pcm_array = np.concatenate(self.audio_frames, axis=0).flatten()
+
+            # Transcribe via Groq Whisper Large v3 Turbo
+            transcript = asyncio.run(self.stt_service.transcribe(pcm_array))
 
             if not transcript.strip():
                 self.root.after(0, lambda: self.set_status("idle", "Press Space or Click to Speak"))
@@ -197,15 +262,19 @@ class FloatingNotchHUD:
 
             self.root.after(0, lambda: self.set_status("thinking", f'"{transcript}"'))
 
-            # Send to FastAPI /api/chat
-            res = requests.post(f"{API_BASE}/api/chat", json={"prompt": transcript}, timeout=25)
+            # Dispatch prompt to FastAPI backend
+            res = requests.post(
+                f"{API_BASE}/api/chat",
+                json={"prompt": transcript},
+                timeout=25
+            )
             data = res.json()
             response_text = data.get("response", "")
             audio_b64 = data.get("audio_base64")
 
             self.root.after(0, lambda: self.set_status("speaking", response_text))
 
-            # Play audio bytes
+            # Play audio synthesized by Edge-TTS
             if audio_b64:
                 audio_bytes = base64.b64decode(audio_b64)
                 data_np, sr_val = sf.read(io.BytesIO(audio_bytes))
@@ -217,11 +286,10 @@ class FloatingNotchHUD:
 
         except Exception as e:
             err_msg = str(e)
-            if "WaitTimeoutError" in err_msg:
-                self.root.after(0, lambda: self.set_status("idle", "Press Space to Speak"))
-            else:
-                self.root.after(0, lambda: self.set_status("idle", "Error: " + err_msg[:25]))
+            print(f"[Floating Notch Error]: {e}")
+            self.root.after(0, lambda: self.set_status("idle", "Ready • Press Space to Speak"))
             self.is_listening = False
+            self.is_recording = False
 
 
 def launch_native_floating_notch():
