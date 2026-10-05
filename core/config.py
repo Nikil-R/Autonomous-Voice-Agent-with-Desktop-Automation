@@ -32,7 +32,8 @@ SILENCE_FRAMES = int(SILENCE_DURATION_MS / CHUNK_DURATION_MS)
 
 # Models
 GROQ_WHISPER_MODEL = "whisper-large-v3-turbo"
-GROQ_LLM_MODEL = "qwen/qwen3.8-27b"
+GROQ_LLM_MODEL = "openai/gpt-oss-20b"
+GROQ_FALLBACK_MODELS = ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.8-27b"]
 
 # Database Settings
 DB_PATH = BASE_DIR / "database" / "apexcore.db"
