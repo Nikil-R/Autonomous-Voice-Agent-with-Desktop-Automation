@@ -267,7 +267,7 @@ python -m pytest -v tests/
 | **Direct Knowledge** | *"What is photosynthesis?"* | Returns a concise, spoken answer without unhandled rate limits. |
 | **Calculation** | *"Calculate 20 times 10"* | Focuses existing Calculator, clears prior calculation, types `20*10=`, and speaks: *"Calculated 20 times 10 equals 200 in Calculator, Sir."* |
 | **Window Switching** | *"Bring Chrome to the front"* | Finds active Google Chrome window and brings it to foreground focus. |
-| **Media Playback** | *"Play a song from Jailer on YouTube"* | Scrapes and plays the top song directly in Chrome. |
+| **Media Playback** | *"Play a song from OneDirection on YouTube"* | Scrapes and plays the top song directly in Chrome. |
 | **Video Control** | *"Pause the video"* | Dispatches CDP video control to pause active HTML5 playback. |
 | **Screen Inspection** | *"What is currently on my screen?"* | Captures screenshot and describes active windows via Multimodal Vision. |
 | **Folder Access** | *"Open my Studies folder"* | Searches Desktop and Documents to launch the folder in Windows Explorer. |
